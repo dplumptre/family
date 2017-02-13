@@ -17,24 +17,43 @@ class PagesController extends Controller
 
     public function home()
     {
-        return view('layouts.frontend');
+        return view('pages.home');
     }
 
 
     public function about()
     {
-
+        return view('pages.about');
     }
 
 
     public function news()
     {
-
+        return view('pages.news');
     }
 
 
-    public function faq(){}
+    public function faq()
+    {
+        return view('pages.faq');
+    }
 
 
-    public function contact(){}
+    public function contact()
+    {
+        return view('pages.contact');
+    }
+
+
+    public function login()
+    {
+        return view('pages.login');
+    }
+
+
+    public function register()
+    {
+        return view('pages.register');
+    }
+
 }

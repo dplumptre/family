@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <!--[if IE 9]>
 <html class="ie9 no-focus" lang="en"> <![endif]-->
 <!--[if gt IE 9]><!-->
@@ -46,7 +45,7 @@
     <link rel="stylesheet" id="css-main" href="assets/css/oneui.css">
     <link rel="stylesheet" id="css-theme" href="assets/css/themes/amethyst.min.css">
     <link rel="stylesheet" id="css-theme" href="assets/css/style.css">
-    <link rel="stylesheet" id="css-main" href="{{ URL::asset('assets/css/custom.css') }}">
+    {{--<link rel="stylesheet" id="css-main" href="{{ URL::asset('assets/css/custom.css') }}">--}}
     @yield('head')
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
@@ -76,6 +75,7 @@
 <div id="page-container" class="side-scroll header-navbar-fixed header-navbar-transparent">
 
     @include('layouts.partials.header')
+
 
             <!-- Main Container -->
     @yield('content')

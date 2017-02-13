@@ -1,3 +1,4 @@
+@inject('request', 'Illuminate\Http\Request')
 <ul class="js-nav-main-header nav-main-header pull-right">
     <li class="text-right hidden-md hidden-lg">
         <!-- Toggle class helper (for main header navigation in small screens), functionality initialized in App() -> uiToggleClass() -->
@@ -6,30 +7,30 @@
         </button>
     </li>
     <li>
-        <a class="active" href="frontend_home_header_nav.html">Home</a>
+        <a class="{{current_link('home', $request->path())}}" href="{{route('home')}}">Home</a>
     </li>
 
     <li>
-        <a href="frontend_features.html">About</a>
+        <a class="{{current_link('about', $request->path())}}" href="{{route('about')}}">About</a>
     </li>
     <li>
-        <a href="frontend_features.html">News</a>
+        <a class="{{current_link('news', $request->path())}}" href="{{route('news')}}">News</a>
     </li>
     <li>
-        <a href="frontend_pricing.html">Faq</a>
+        <a class="{{current_link('faq', $request->path())}}" href="{{route('faq')}}">Faq</a>
     </li>
     <li>
-        <a href="frontend_contact.html">Contact</a>
+        <a class="{{current_link('contact', $request->path())}}" href="{{route('contact')}}">Contact</a>
     </li>
 
     <li>
         <a class="nav-submenu" href="javascript:void(0)">Account</a>
         <ul>
             <li>
-                <a href="frontend_team.html">Register</a>
+                <a href="{{route('register')}}l">Register</a>
             </li>
             <li>
-                <a href="frontend_support.html">Login</a>
+                <a href="{{route('login')}}">Login</a>
             </li>
         </ul>
     </li>
