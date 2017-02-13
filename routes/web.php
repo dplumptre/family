@@ -44,4 +44,9 @@ Route::get('/', 'WelcomeController@index');
 
 
 
-Route::get('/home', 'HomeController@index');
+Route::get('home', 'HomeController@index');
+Route::name('home')->get('home', 'PagesController@home');
+Route::name('about')->get('about', 'PagesController@about');
+Route::name('news')->get('about', 'PagesController@news');
+Route::name('faq')->get('about', 'PagesController@faq');
+Route::name('contact')->get('about', 'PagesController@contact');
