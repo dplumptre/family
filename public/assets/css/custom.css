@@ -1,0 +1,22 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 12, 2017, 7:42:51 PM
+    Author     : plumptre
+*/
+
+
+
+
+.bg-gray-lighter {
+    background-color: #AA6EAA !important;
+    color:white !important;
+}
+
+
+.bg-gray-lighter ,h1, .page-heading{
+    color:white !important;
+}

@@ -37,10 +37,17 @@ Route::get('/', 'WelcomeController@index');
 
 
 
-
-
-
-
+/*
+ *  ROUTE FOR LOGIN USERS
+ *  MUST BE  AUTHENTICATED 
+ *  UserController
+ */
+Route::get('/user-area', 'UserController@index');
+Route::get('/user-area/profile', 'UserController@profile');
+Route::get('/user-area/outgoing', 'UserController@outgoing');
+Route::get('/user-area/incoming', 'UserController@incoming');
+Route::get('/user-area/bank', 'UserController@bank');
+Route::get('/user-area/donate', 'UserController@donate');
 
 
 
