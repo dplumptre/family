@@ -50,8 +50,6 @@ Route::get('/user-area/bank', 'UserController@bank');
 Route::get('/user-area/donate', 'UserController@donate');
 
 
-
-Route::get('home', 'HomeController@index');
 Route::name('home')->get('home', 'PagesController@home');
 Route::name('about')->get('about', 'PagesController@about');
 Route::name('news')->get('about', 'PagesController@news');
