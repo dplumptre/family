@@ -27,10 +27,10 @@
         <a class="nav-submenu" href="javascript:void(0)">Account</a>
         <ul>
             <li>
-                <a href="{{route('register')}}">Register</a>
+                <a href="{{route('user.register')}}">Register</a>
             </li>
             <li>
-                <a href="{{route('login')}}">Login</a>
+                <a href="{{route('user.login')}}">Login</a>
             </li>
         </ul>
     </li>

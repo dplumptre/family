@@ -11,7 +11,8 @@
 |
 */
 
-
+Route::get('test', function(){
+});
 
 
 
@@ -20,21 +21,22 @@
  */
 Auth::routes();
 
-
-
-
-
 /*
- *  ROUTE FOR NORMAL PAGES
- *  NO AUTH 
- *  WelcomeController
+ * Login routes
  */
-#Route::get('/', 'WelcomeController@index');
+Route::group(
+    ['prefix'=>'user'], function(){
 
+    Route::name('user.login')->get('login', 'SessionsController@create')->middleware('guest');
+    Route::name('post.login')->post('login', 'SessionsController@store')->middleware('guest');
 
+    Route::name('user.logout')->get('logout', 'SessionsController@destroy')->middleware('auth');
+    Route::name('post.logout')->post('logout', 'SessionsController@destroy')->middleware('auth');
 
+    Route::name('user.register')->get('register', 'RegisterController@create')->middleware('guest');
+    Route::name('post.register')->post('register', 'RegisterController@store')->middleware('guest');
 
-
+});
 
 
 /*
@@ -42,12 +44,15 @@ Auth::routes();
  *  MUST BE  AUTHENTICATED 
  *  UserController
  */
-Route::get('/user-area', 'UserController@index');
-Route::get('/user-area/profile', 'UserController@profile');
-Route::get('/user-area/outgoing', 'UserController@outgoing');
-Route::get('/user-area/incoming', 'UserController@incoming');
-Route::get('/user-area/bank', 'UserController@bank');
-Route::get('/user-area/donate', 'UserController@donate');
+Route::group(
+    ['prefix'=>'user-area', 'middleware'=>'auth'], function(){
+    Route::name('dashboard')->get('/', 'UserController@index');
+    Route::name('profile')->get('profile', 'UserController@profile');
+    Route::get('outgoing', 'UserController@outgoing');
+    Route::get('incoming', 'UserController@incoming');
+    Route::get('bank', 'UserController@bank');
+    Route::get('donate', 'UserController@donate');
+});
 
 
 //Route::get('/', 'PagesController@home');
