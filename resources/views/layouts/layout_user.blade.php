@@ -91,10 +91,6 @@
                                         class="sidebar-mini-hide">Profile</span></a>
                         </li>
                         <li>
-                            <a href="{{ URL::asset('user-area/bank') }}"><i class="si si-speedometer"></i><span
-                                        class="sidebar-mini-hide">Bank Details</span></a>
-                        </li>
-                        <li>
                             <a href="{{ URL::asset('user-area/donate') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Make a Donation</span></a>
                         </li>
@@ -136,6 +132,12 @@
                                 <span class="badge badge-success pull-right">1</span>Profile
                             </a>
                         </li>
+                        <li>
+                            <a tabindex="-1" href="{{route('change.password')}}">
+                                <i class="si si-user pull-right"></i> Change Password
+                            </a>
+                        </li>
+
 
                         <li>
                             <a tabindex="-1" href="{{route('logout')}}"

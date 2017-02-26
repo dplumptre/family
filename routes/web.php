@@ -12,6 +12,9 @@
 */
 
 Route::get('test', function(){
+
+    dd(auth()->user()->userDetails);
+
 });
 
 
@@ -49,10 +52,11 @@ Route::group(
     ['prefix'=>'user-area', 'middleware'=>'auth'], function(){
     Route::get('/', 'UserController@index')->name('dashboard');
     Route::get('profile', 'UserController@profile')->name('profile');
+    Route::get('change-password', 'UserController@changePassword')->name('change.password');
+    Route::post('change-password', 'UserController@postChangePassword')->name('post.change.password');
     Route::get('update-details', 'UserController@updateDetails')->name('update-details');
     Route::get('outgoing', 'UserController@outgoing');
     Route::get('incoming', 'UserController@incoming');
-    Route::get('bank', 'UserController@bank');
     Route::get('donate', 'UserController@donate');
 });
 
