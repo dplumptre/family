@@ -12,6 +12,9 @@
 */
 
 Route::get('test', function(){
+
+    dd(auth()->user()->userDetails);
+
 });
 
 
@@ -44,17 +47,16 @@ Route::group(
  *  MUST BE  AUTHENTICATED 
  *  UserController
  */
+Route::get('dashboard', 'UserController@index');
 Route::group(
     ['prefix'=>'user-area', 'middleware'=>'auth'], function(){
-    Route::name('dashboard')->get('/', 'UserController@index');
-    Route::name('profile')->get('profile', 'UserController@profile');
+    Route::get('/', 'UserController@index')->name('dashboard');
+    Route::get('profile', 'UserController@profile')->name('profile');
+    Route::get('change-password', 'UserController@changePassword')->name('change.password');
+    Route::post('change-password', 'UserController@postChangePassword')->name('post.change.password');
+    Route::get('update-details', 'UserController@updateDetails')->name('update-details');
     Route::get('outgoing', 'UserController@outgoing');
     Route::get('incoming', 'UserController@incoming');
-    
-    Route::get('bank', 'UserController@bank');
-    Route::post('bank', 'UserController@createBank');
-    
-    
     Route::get('donate', 'UserController@donate');
 });
 

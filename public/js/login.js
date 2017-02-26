@@ -17,21 +17,22 @@ var BasePagesLogin = function() {
                 jQuery(e).closest('.help-block').remove();
             },
             rules: {
-                'login-username': {
+                'email': {
                     required: true,
-                    minlength: 3
-                },
-                'login-password': {
-                    required: true,
+                    email: true,
                     minlength: 5
+                },
+                'password': {
+                    required: true,
+                    minlength: 6
                 }
             },
             messages: {
-                'login-username': {
+                'email': {
                     required: 'Please enter a username',
                     minlength: 'Your username must consist of at least 3 characters'
                 },
-                'login-password': {
+                'password': {
                     required: 'Please provide a password',
                     minlength: 'Your password must be at least 5 characters long'
                 }

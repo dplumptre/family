@@ -13,6 +13,7 @@
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="_token" value="{{ csrf_token() }}">
 
     <link rel="shortcut icon" href="assets/img/favicons/favicon.png">
 
@@ -41,6 +42,7 @@
     <link rel="stylesheet" id="css-theme" href="/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     {{--<link rel="stylesheet" id="css-main" href="{{ URL::asset('assets/css/custom.css') }}">--}}
+    <script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>
     @yield('head')
 </head>
 <body>
@@ -48,6 +50,7 @@
 <div id="page-container" class="side-scroll header-navbar-fixed header-navbar-transparent">
 
     @include('layouts.partials.header')
+    @include('modals.login')
     @yield('content')
     @include('layouts.partials.footer')
 </div>

@@ -6,6 +6,7 @@ use App\Http\Requests\LoginUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Auth;
+use Illuminate\Support\Facades\Log;
 
 class SessionsController extends Controller
 {
@@ -29,8 +30,15 @@ class SessionsController extends Controller
         $remember = $request->get('rememberMe');
         if ( Auth::attempt($login_data, $remember) )
         {
+
+            if ( $request->ajax() ){
+                return response()->json(['success'=>true, 'message'=> 'Login Successful']);
+            }
             notify()->flash('Login Successful', 'success', ['text'=>'You have been logged in successfully']);
             return redirect()->intended('user-area');
+        }
+        if ( $request->ajax() ){
+            return response()->json(['success'=>false, 'message'=>'Email/Password invalid']);
         }
         notify()->flash('Invalid Email/Password', 'error');
         return redirect()->back()->withInput(Input::except('password'));

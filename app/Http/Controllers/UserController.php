@@ -21,6 +21,17 @@ class UserController extends Controller
     }
 
 
+    public function changePassword()
+    {
+        return view('user-area.change-password');
+    }
+
+    public function postChangePassword(Request $request)
+    {
+
+    }
+
+
     public function outgoing()
     {
         return view('user-area/outgoing');
@@ -33,18 +44,19 @@ class UserController extends Controller
     }
 
 
-    public function bank()
+
+    public function donate()
     {
-        return view('user-area/bank');
+        return view('user-area/donate');
     }
     public function createBank()
     {
         return view('user-area/bank');
     }
 
-    public function donate()
+    public function updateDetails()
     {
-        return view('user-area/donate');
+        return view('user-area.update-details');
     }
 
 }

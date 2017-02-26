@@ -39,6 +39,7 @@
     <li>
         <a class="{{current_link('contact', $request->path())}}" href="{{route('contact')}}">Contact</a>
     </li>
+
     
                 <li>
                     <a class="nav-submenu" href="javascript:void(0)">Account</a>
@@ -57,6 +58,7 @@
                     <!-- END Main Header Navigation -->
 
                     <!-- Header Navigation Left -->
+
 <ul class="nav-header pull-left">
     <li class="header-content">
         <a class="h5" href="index.html">
