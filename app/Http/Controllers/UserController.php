@@ -44,4 +44,10 @@ class UserController extends Controller
         return view('user-area/donate');
     }
 
+
+    public function updateDetails()
+    {
+        return view('user-area.update-details');
+    }
+
 }

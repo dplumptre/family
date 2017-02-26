@@ -138,9 +138,13 @@
                         </li>
 
                         <li>
-                            <a tabindex="-1" href="{{route('user.logout')}}">
+                            <a tabindex="-1" href="{{route('logout')}}"
+                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 <i class="si si-logout pull-right"></i>Log out
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -235,20 +239,22 @@
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
 
 
-<script src="{{ URL::asset('assets/js/core/jquery.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/core/bootstrap.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/core/jquery.slimscroll.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/core/jquery.scrollLock.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/core/jquery.appear.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/core/jquery.countTo.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/core/jquery.placeholder.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/core/js.cookie.min.js') }}"></script>
-<script src="{{ URL::asset('assets/js/app.js') }}"></script>
+<script src="/assets/js/core/jquery.min.js"></script>
+<script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="/assets/js/core/jquery.slimscroll.min.js"></script>
+<script src="/assets/js/core/jquery.scrollLock.min.js"></script>
+<script src="/assets/js/core/jquery.appear.min.js"></script>
+<script src="/assets/js/core/jquery.countTo.min.js"></script>
+<script src="/assets/js/core/jquery.placeholder.min.js"></script>
+<script src="/assets/js/core/js.cookie.min.js"></script>
+<script src="/assets/js/app.js"></script>
+@yield('scripts')
 @include('includes.notify')
+
 <!-- Page JS Plugins -->
-<script src="{{ URL::asset('assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
 
 <!-- Page JS Code -->
-<script src="{{ URL::asset('assets/js/pages/base_tables_datatables.js') }}"></script>
+<script src="/assets/js/pages/base_tables_datatables.js"></script>
 </body>
 </html>

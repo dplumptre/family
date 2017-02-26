@@ -22,15 +22,14 @@
     <li>
         <a class="{{current_link('contact', $request->path())}}" href="{{route('contact')}}">Contact</a>
     </li>
-
     <li>
         <a class="nav-submenu" href="javascript:void(0)">Account</a>
         <ul>
             <li>
-                <a href="{{route('user.register')}}">Register</a>
+                <a href="{{route('register')}}">Register</a>
             </li>
             <li>
-                <a href="{{route('user.login')}}">Login</a>
+                <a href="{{route('login')}}">Login</a>
             </li>
         </ul>
     </li>

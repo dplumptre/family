@@ -27,7 +27,8 @@
 
                     <div class="col-md-4 col-md-offset-4">
                         <div class="Box">
-                            <form class="form-horizontal" action="{{route('post.login')}}" method="post">
+                            @include('layouts.partials.errors')
+                            <form class="form-horizontal" action="{{route('post.login')}}" method="post" autocomplete="off">
                                 {{csrf_field()}}
                                 <div class="form-group">
                                     <div class="col-xs-12">
