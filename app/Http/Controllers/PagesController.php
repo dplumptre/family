@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class PagesController extends Controller
 {
@@ -24,6 +25,15 @@ class PagesController extends Controller
     public function about()
     {
         return view('pages.about');
+        
+        
+//      User::create([
+//            'username' => 'dplumptre',
+//            'email' => 'dplumptre@yahoo.com',
+//            'password' => bcrypt('password'),
+//        ]);
+        
+        
     }
 
 

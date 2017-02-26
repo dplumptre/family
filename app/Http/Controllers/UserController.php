@@ -37,7 +37,10 @@ class UserController extends Controller
     {
         return view('user-area/bank');
     }
-
+    public function createBank()
+    {
+        return view('user-area/bank');
+    }
 
     public function donate()
     {

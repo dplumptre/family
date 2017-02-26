@@ -7,19 +7,7 @@
             <div class="bg-primary-dark-op">
                 <section class="content content-full content-boxed overflow-hidden">
                     <!-- Section Content -->
-                    <div class="push-100-t push-50 text-center">
-                        <h1 class="h2 text-white push-10 visibility-hidden" data-toggle="appear"
-                            data-class="animated fadeInDown">Build your Web Application with One.</h1>
-
-                        <h2 class="h5 text-white-op push-50 visibility-hidden" data-toggle="appear"
-                            data-class="animated fadeInDown">Powerful, flexible and reliable UI framework that just
-                            works.
-                            Your valuable feedback made it happen.</h2>
-                        <a class="btn btn-rounded btn-noborder btn-lg btn-primary visibility-hidden"
-                           data-toggle="appear"
-                           data-class="animated bounceIn" data-timeout="800" href="frontend_pricing.html">Purchase
-                            Today</a>
-                    </div>
+              
                     <div class="row visibility-hidden" data-toggle="appear" data-class="animated fadeInUp">
                         <div class="col-sm-8 col-sm-offset-2">
 
@@ -29,45 +17,17 @@
                 </section>
             </div>
         </div>
+        
+        
+      <section class="">    
+          <img src="{{ URL::asset('assets/img/videos/hero_tech_small.jpg')}}" class="img-responsive" width="100%" height="10%"/>
+      </section>
+        
 
         <div class="bg-white">
             <section class="content content-boxed">
                 <!-- Section Content -->
-                <div class="row items-push-3x push-50-t nice-copy">
-                    <div class="col-sm-4">
-                        <div class="text-center push-30">
-                                    <span class="item item-2x item-circle border">
-                                        <i class="si si-compass"></i>
-                                    </span>
-                        </div>
-                        <h3 class="h5 font-w600 text-uppercase text-center push-10">Cross Browser Support</h3>
 
-                        <p>OneUI will play nice with all modern browsers such as Chrome, Firefox, Safari, Opera and the
-                            latest versions of Internet Explorer (9 and up).</p>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="text-center push">
-                                    <span class="item item-2x item-circle border">
-                                        <i class="si si-book-open"></i>
-                                    </span>
-                        </div>
-                        <h3 class="h5 font-w600 text-uppercase text-center push-10">Documentation</h3>
-
-                        <p>OneUI comes packed with a great documentation which covers all the basics to get you familiar
-                            with template’s structure and files. It is the best way to get started.</p>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="text-center push">
-                                    <span class="item item-2x item-circle border">
-                                        <i class="si si-rocket"></i>
-                                    </span>
-                        </div>
-                        <h3 class="h5 font-w600 text-uppercase text-center push-10">Clean &amp; Commented Code</h3>
-
-                        <p>The code is created with the developer in mind. It is clean, easy to follow, easy to
-                            replicate and at the same time well commented, so that you never feel lost.</p>
-                    </div>
-                </div>
                 <div class="row items-push-3x nice-copy">
                     <div class="col-sm-4">
                         <div class="text-center push-30">
@@ -141,32 +101,28 @@
                         <!-- Developer Plan -->
                         <a class="block block-bordered block-link-hover3 text-center" href="javascript:void(0)">
                             <div class="block-header">
-                                <h3 class="block-title">Developer</h3>
+                                <h3 class="block-title">BRONZE</h3>
                             </div>
                             <div class="block-content block-content-full bg-gray-lighter">
-                                <div class="h1 font-w700 push-10">$9</div>
-                                <div class="h5 font-w300 text-muted">per month</div>
+                                <div class="h1 font-w700 push-10">&#X20A6 5,000</div>
                             </div>
                             <div class="block-content">
                                 <table class="table table-borderless table-condensed">
                                     <tbody>
                                     <tr>
-                                        <td><strong>2</strong> Projects</td>
+                                        <td><strong>2:1</strong> MATRIX</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>10GB</strong> Storage</td>
+                                        <td><strong></strong> AUTO ASSIGN</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>15</strong> Clients</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Email</strong> Support</td>
+                                        <td><strong>&#X20A6 10,000</strong> <br />RETURN INVESTMENT</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="block-content block-content-mini block-content-full bg-gray-lighter">
-                                <span class="btn btn-default">Sign Up</span>
+                                        <span class="text-success ">ACTIVE</span>
                             </div>
                         </a>
                         <!-- END Developer Plan -->
@@ -175,32 +131,29 @@
                         <!-- Startup Plan -->
                         <a class="block block-bordered block-link-hover3 text-center" href="frontend_signup.html">
                             <div class="block-header">
-                                <h3 class="block-title text-primary">Startup</h3>
+                                <h3 class="block-title text-primary">SILVER</h3>
                             </div>
-                            <div class="block-content block-content-full bg-gray-lighter">
-                                <div class="h1 font-w700 text-primary push-10">$29</div>
-                                <div class="h5 font-w300 text-muted">per month</div>
+                           <div class="block-content block-content-full bg-gray-lighter">
+                                <div class="h1 font-w700 push-10">&#X20A6 10,000</div>
                             </div>
                             <div class="block-content">
                                 <table class="table table-borderless table-condensed">
                                     <tbody>
                                     <tr>
-                                        <td><strong>10</strong> Projects</td>
+                                        <td><strong>2:1</strong> MATRIX</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>30GB</strong> Storage</td>
+                                        <td><strong></strong> AUTO ASSIGN</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>100</strong> Clients</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>FULL</strong> Support</td>
+                                        <td><strong>&#X20A6 20,000</strong> <br />RETURN INVESTMENT</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="block-content block-content-mini block-content-full bg-gray-lighter">
-                                <span class="btn btn-primary">Sign Up</span>
+                                   <span class="text-success ">ACTIVE</span>
+                                   
                             </div>
                         </a>
                         <!-- END Startup Plan -->
@@ -209,32 +162,28 @@
                         <!-- Business Plan -->
                         <a class="block block-bordered block-link-hover3 text-center" href="javascript:void(0)">
                             <div class="block-header">
-                                <h3 class="block-title">Business</h3>
+                                <h3 class="block-title">GOLD</h3>
                             </div>
                             <div class="block-content block-content-full bg-gray-lighter">
-                                <div class="h1 font-w700 push-10">$49</div>
-                                <div class="h5 font-w300 text-muted">per month</div>
+                                <div class="h1 font-w700 push-10">&#X20A6 20,000</div>
                             </div>
                             <div class="block-content">
                                 <table class="table table-borderless table-condensed">
                                     <tbody>
                                     <tr>
-                                        <td><strong>50</strong> Projects</td>
+                                        <td><strong>2:1</strong> MATRIX</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>100GB</strong> Storage</td>
+                                        <td><strong></strong> AUTO ASSIGN</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>1000</strong> Clients</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>FULL</strong> Support</td>
+                                        <td><strong>&#X20A6 40,000</strong> <br />RETURN INVESTMENT</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="block-content block-content-mini block-content-full bg-gray-lighter">
-                                <span class="btn btn-default">Sign Up</span>
+                                       <span class="text-success ">ACTIVE</span>
                             </div>
                         </a>
                         <!-- END Business Plan -->
@@ -243,32 +192,28 @@
                         <!-- VIP Plan -->
                         <a class="block block-bordered block-link-hover3 text-center" href="javascript:void(0)">
                             <div class="block-header">
-                                <h3 class="block-title">VIP</h3>
+                                <h3 class="block-title">DIAMOND</h3>
                             </div>
-                            <div class="block-content block-content-full bg-gray-lighter">
-                                <div class="h1 font-w700 push-10">$99</div>
-                                <div class="h5 font-w300 text-muted">per month</div>
+                                                   <div class="block-content block-content-full bg-gray-lighter">
+                                <div class="h1 font-w700 push-10">&#X20A6 50,000</div>
                             </div>
                             <div class="block-content">
                                 <table class="table table-borderless table-condensed">
                                     <tbody>
                                     <tr>
-                                        <td><strong>Unlimited</strong> Projects</td>
+                                        <td><strong>2:1</strong> MATRIX</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Unlimited</strong> Storage</td>
+                                        <td><strong></strong> AUTO ASSIGN</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Unlimited</strong> Clients</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>FULL</strong> Support</td>
+                                        <td><strong>&#X20A6 100,000</strong> <br />RETURN INVESTMENT</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="block-content block-content-mini block-content-full bg-gray-lighter">
-                                <span class="btn btn-default">Sign Up</span>
+                             <span class="text-success ">loading...</span>
                             </div>
                         </a>
                         <!-- END VIP Plan -->

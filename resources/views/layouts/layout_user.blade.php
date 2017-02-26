@@ -131,9 +131,9 @@
                     <ul class="dropdown-menu dropdown-menu-right">
 
                         <li>
-                            <a tabindex="-1" href="#">
+                            <a tabindex="-1" href="{{ URL::asset('user-area/profile') }}">
                                 <i class="si si-user pull-right"></i>
-                                <span class="badge badge-success pull-right">1</span>Profile
+                               Profile
                             </a>
                         </li>
 

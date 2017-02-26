@@ -50,7 +50,11 @@ Route::group(
     Route::name('profile')->get('profile', 'UserController@profile');
     Route::get('outgoing', 'UserController@outgoing');
     Route::get('incoming', 'UserController@incoming');
+    
     Route::get('bank', 'UserController@bank');
+    Route::post('bank', 'UserController@createBank');
+    
+    
     Route::get('donate', 'UserController@donate');
 });
 
