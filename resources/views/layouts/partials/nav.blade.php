@@ -40,24 +40,6 @@
         <a class="{{current_link('contact', $request->path())}}" href="{{route('contact')}}">Contact</a>
     </li>
 
-    
-                <li>
-                    <a class="nav-submenu" href="javascript:void(0)">Account</a>
-                    <ul>
-                        <li>
-                            <a href="{{route('user.register')}}">Register</a>
-                        </li>
-                        <li>
-                            <a href="{{route('user.login')}}">Login</a>
-                        </li>
-                    </ul>
-                </li>
-    
-    
-                    </ul>
-                    <!-- END Main Header Navigation -->
-
-                    <!-- Header Navigation Left -->
 
 <ul class="nav-header pull-left">
     <li class="header-content">
