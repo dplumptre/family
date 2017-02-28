@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\User;
+use App\Models\Package;
 
 class PagesController extends Controller
 {
@@ -32,6 +33,14 @@ class PagesController extends Controller
 //            'email' => 'dplumptre@yahoo.com',
 //            'password' => bcrypt('password'),
 //        ]);
+        
+//        
+//        Package::create([
+//            'name' => 'Gold',
+//            'paying_amount' => 20000,
+//            'receiving_amount' => 40000,
+//            'description' => "This is the Gold Package",
+//        ]);     
         
         
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,6 +30,21 @@ class User extends Authenticatable
 
     public function userDetail()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne('App\Models\UserDetail');
     }
+    
+ 
+    public function payers()
+    {
+        return $this->hasMany('App\Models\Payer');
+    }   
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
