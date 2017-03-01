@@ -38,17 +38,19 @@
                 <!-- Page Content -->
                 <div class="content">
                   
+
                     
-                    
-                    
-                    
-                    
-                    
-                    
+                                  <div class="alert alert-info alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <p><i class="fa fa-info-circle"></i>
+                            <strong> Howdy! Please don't select a package if you don't have the funds.  Pairing might take a little time , thanks for your understanding.</strong>
+                        </p>
+                    </div>      
                     
          <!-- Mega Form -->
                     <div class="block block-bordered">
-                        <div class="block-header bg-gray-lighter">
+                        <div class="block block-themed">
+                        <div class="block-header bg-amethyst ">
                             <ul class="block-options">
                                 <li>
                                     <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
@@ -90,7 +92,7 @@
                 <button class="btn btn-warning" type="submit"><i class="fa fa-check push-5-r"></i> Begin </button>
             </div>
         </div>
-    </form>
+    </form>    </div>
                         </div>
                     </div>
                     <!-- END Mega Form -->           
