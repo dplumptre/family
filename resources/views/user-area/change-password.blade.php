@@ -26,7 +26,9 @@
                                 <h3 class="block-title">Change Password</h3>
                             </div>
                             <div class="block-content">
-                                <form class="form-horizontal push-5-t" action="#" method="post">
+                                @include('layouts.partials.errors')
+                                <form class="form-horizontal push-5-t" action="{{route('post.change.password')}}" method="post">
+                                    {{csrf_field()}}
 
                                     <div class="form-group">
                                         <div class="col-xs-6">

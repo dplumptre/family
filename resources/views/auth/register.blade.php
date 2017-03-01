@@ -1,49 +1,48 @@
-
 <!DOCTYPE html>
-<!--[if IE 9]>         <html class="ie9 no-focus" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-focus" lang="en"> <!--<![endif]-->
+<!--[if IE 9]>
+<html class="ie9 no-focus" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-focus" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
 
-    <title>OneUI - Admin Dashboard Template &amp; UI Framework</title>
+    <title>@yield('page_title', config('app.name'))</title>
 
-    <meta name="description" content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="description"
+          content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="_token" value="{{ csrf_token() }}">
 
-    <!-- Icons -->
-    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="assets/img/favicons/favicon.png">
 
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="assets/img/favicons/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-192x192.png" sizes="192x192">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon-180x180.png">
-    <!-- END Icons -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon-180x180.png">
 
-    <!-- Stylesheets -->
-    <!-- Web fonts -->
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <link rel="stylesheet"
+          href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
 
-    <!-- Bootstrap and OneUI CSS framework -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" id="css-main" href="assets/css/oneui.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.css">
+    <link rel="stylesheet" id="css-theme" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
 
-    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
-    <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
-    <!-- END Stylesheets -->
+    <script>window.Laravel = {csrfToken: '{{ csrf_token() }}'}</script>
+    @yield('head')
 </head>
 <body>
 <!-- Register Content -->
@@ -55,48 +54,80 @@
                     <!-- Register Title -->
                     <div class="text-center">
                         <i class="fa fa-2x fa-circle-o-notch text-primary"></i>
+
                         <h1 class="h3 push-10-t">Create Account</h1>
                     </div>
-                    @include('layouts.partials.errors')
-                    <form class="js-validation-register form-horizontal push-50-t push-50" action="{{route('register')}}" method="post">
+
+                    <form class="js-validation-material form-horizontal push-50-t push-50" action="{{route('register')}}" method="post">
                         {{csrf_field()}}
-                        <div class="form-group">
+                        <div class="form-group{{$errors->has('username') ? ' has-error':'   '}}">
                             <div class="col-xs-12">
                                 <div class="form-material form-material-success">
-                                    <input class="form-control" type="text" id="username" name="username" placeholder="Please enter a username" value="{{old('username')}}">
+                                    <input class="form-control" type="text" id="username" name="username"
+                                           placeholder="Please enter a username" value="{{old('username')}}">
                                     <label for="username">Username</label>
                                 </div>
+                                @if ($errors->has('username'))
+                                    <div class="help-block text-right animated fadeInDown">
+                                        {{$errors->first('username')}}
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{$errors->has('email') ? ' has-error':'   '}}">
                             <div class="col-xs-12">
                                 <div class="form-material form-material-success">
-                                    <input class="form-control" type="email" id="email" name="email" placeholder="Please provide your email" value="{{old('email')}}">
+                                    <input class="form-control" type="email" id="email" name="email"
+                                           placeholder="Please provide your email" value="{{old('email')}}">
                                     <label for="email">Email</label>
                                 </div>
+                                @if ($errors->has('email'))
+                                    <div class="help-block text-right animated fadeInDown">
+                                        {{$errors->first('email')}}
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{$errors->has('password') ? ' has-error':'   '}}">
                             <div class="col-xs-12">
                                 <div class="form-material form-material-success">
-                                    <input class="form-control" type="password" id="password" name="password" placeholder="Choose a strong password..">
+                                    <input class="form-control" type="password" id="password" name="password"
+                                           placeholder="Choose a strong password..">
                                     <label for="password">Password</label>
                                 </div>
+                                @if ($errors->has('password'))
+                                    <div class="help-block text-right animated fadeInDown">
+                                        {{$errors->first('password')}}
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{$errors->has('password_confirmation') ? ' has-error':'   '}}">
                             <div class="col-xs-12">
                                 <div class="form-material form-material-success">
-                                    <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" placeholder="..and confirm it">
+                                    <input class="form-control" type="password" id="password_confirmation"
+                                           name="password_confirmation" placeholder="..and confirm it">
                                     <label for="password_confirmation">Confirm Password</label>
                                 </div>
+                                @if ($errors->has('password_confirmation'))
+                                    <div class="help-block text-right animated fadeInDown">
+                                        {{$errors->first('password_confirmation')}}
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{$errors->has('terms') ? ' has-error':'   '}}">
                             <div class="col-xs-7 col-sm-8">
                                 <label class="css-input switch switch-sm switch-success">
-                                    <input type="checkbox" id="terms" name="terms" value="1"{{old('terms') ? ' checked':''}}><span></span> I agree with terms &amp; conditions
+                                    <input type="checkbox" id="terms" name="terms"
+                                           value="1"{{old('terms') ? ' checked':''}}><span></span> I agree with terms
+                                    &amp; conditions
                                 </label>
+                                @if ($errors->has('terms'))
+                                    <div class="help-block text-left animated fadeInDown">
+                                        {{$errors->first('terms')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="col-xs-5 col-sm-4">
                                 <div class="font-s13 text-right push-5-t">
@@ -138,16 +169,37 @@
                     <h3 class="block-title">Terms &amp; Conditions</h3>
                 </div>
                 <div class="block-content">
-                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum quis in sit varius lorem sit metus mi.</p>
-                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum quis in sit varius lorem sit metus mi.</p>
-                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum quis in sit varius lorem sit metus mi.</p>
-                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum quis in sit varius lorem sit metus mi.</p>
-                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum quis in sit varius lorem sit metus mi.</p>
+                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing
+                        luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor
+                        tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum
+                        quis in sit varius lorem sit metus mi.</p>
+
+                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing
+                        luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor
+                        tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum
+                        quis in sit varius lorem sit metus mi.</p>
+
+                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing
+                        luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor
+                        tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum
+                        quis in sit varius lorem sit metus mi.</p>
+
+                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing
+                        luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor
+                        tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum
+                        quis in sit varius lorem sit metus mi.</p>
+
+                    <p>Dolor posuere proin blandit accumsan senectus netus nullam curae, ornare laoreet adipiscing
+                        luctus mauris adipiscing pretium eget fermentum, tristique lobortis est ut metus lobortis tortor
+                        tincidunt himenaeos habitant quis dictumst proin odio sagittis purus mi, nec taciti vestibulum
+                        quis in sit varius lorem sit metus mi.</p>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Close</button>
-                <button class="btn btn-sm btn-primary" type="button" data-dismiss="modal"><i class="fa fa-check"></i> I agree</button>
+                <button class="btn btn-sm btn-primary" type="button" data-dismiss="modal"><i class="fa fa-check"></i> I
+                    agree
+                </button>
             </div>
         </div>
     </div>

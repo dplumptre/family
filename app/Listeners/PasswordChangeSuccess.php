@@ -2,14 +2,13 @@
 
 namespace App\Listeners;
 
-use App\Events\UserRegistered;
-use App\Mail\UserWelcome;
-use Illuminate\Auth\Events\Registered;
+use App\Events\PasswordChanged;
+use App\Mail\PasswordChange;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class SendWelcomeEmail
+class PasswordChangeSuccess
 {
     /**
      * Create the event listener.
@@ -24,11 +23,11 @@ class SendWelcomeEmail
     /**
      * Handle the event.
      *
-     * @param  UserRegistered  $event
+     * @param  PasswordChanged  $event
      * @return void
      */
-    public function handle(Registered $event)
+    public function handle(PasswordChanged $event)
     {
-        Mail::to($event->user)->send(new UserWelcome($event->user));
+        Mail::to($event->user)->send(new PasswordChange($event->user));
     }
 }

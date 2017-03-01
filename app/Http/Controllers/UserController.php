@@ -1,17 +1,19 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangePassword;
+use App\Http\Requests\createPackage;
+use App\Http\Requests\UpdateProfile;
 use App\Models\Package;
 use App\Models\Payer;
 use App\Abstracts\useful_functions;
 use Auth;
-use Illuminate\Http\Request;
 
 
 class UserController extends Controller
 {
     //
-    
+
     public  $handycodes="";
     
 
@@ -28,7 +30,7 @@ class UserController extends Controller
 
     }
 
-    
+
 
     public function index()
     {
@@ -42,14 +44,22 @@ class UserController extends Controller
     }
 
 
+    public function postProfile(UpdateProfile $request)
+    {
+        $request->save();
+        return redirect()->back();
+    }
+
+
     public function changePassword()
     {
         return view('user-area.change-password');
     }
 
-    public function postChangePassword(Request $request)
+    public function postChangePassword(ChangePassword $request)
     {
-
+        $request->save();
+        return redirect()->route('dashboard');
     }
 
 
@@ -61,24 +71,44 @@ class UserController extends Controller
 
     public function incoming()
     {
-      return  view('user-area/incoming');
+        return view('user-area/incoming');
     }
-
 
 
     public function donate()
     {
         $id = Auth::id();
-        $package = Package::get();
+        $package =   Package::all();
         $payer   = Payer::with('packages')->where('user_id',$id)->orderBy('id', 'DESC')->get();
         
         //dd( $payer);
         
-        return view('user-area/donate')->with('package',  Package::all())
+        return view('user-area/donate')->with('package',$package )
                                         ->with('arr', $this->handycodes->arr)
                                         ->with('payer',$payer);
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
         public function postDonate(\App\Http\Requests\createPackage $request)
@@ -122,9 +152,8 @@ class UserController extends Controller
         }  
     
     
-    
-    
-    
+
+
 
     public function updateDetails()
     {

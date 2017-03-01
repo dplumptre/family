@@ -13,9 +13,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\UserRegistered' => [
+        'Illuminate\Auth\Events\Registered' => [
             'App\Listeners\SendWelcomeEmail',
         ],
+
+        'App\Events\PasswordChanged' =>[
+            'App\Listeners\PasswordChangeSuccess'
+        ],
+
     ];
 
     /**
