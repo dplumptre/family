@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangePassword;
+use App\Http\Requests\UpdateProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -21,14 +24,22 @@ class UserController extends Controller
     }
 
 
+    public function postProfile(UpdateProfile $request)
+    {
+        $request->save();
+        return redirect()->back();
+    }
+
+
     public function changePassword()
     {
         return view('user-area.change-password');
     }
 
-    public function postChangePassword(Request $request)
+    public function postChangePassword(ChangePassword $request)
     {
-
+        $request->save();
+        return redirect()->route('dashboard');
     }
 
 

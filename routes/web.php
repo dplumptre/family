@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('test', function(){
+use Illuminate\Http\Request;
 
-    dd(auth()->user()->userDetails);
+Route::get('test', function(Request $request){
+
+    dd(
+        \Illuminate\Support\Facades\Hash::check('secret', auth()->user()->getAuthPassword())
+    );
 
 });
 
@@ -52,6 +56,7 @@ Route::group(
     ['prefix'=>'user-area', 'middleware'=>'auth'], function(){
     Route::get('/', 'UserController@index')->name('dashboard');
     Route::get('profile', 'UserController@profile')->name('profile');
+    Route::post('profile', 'UserController@postProfile')->name('post.profile');
     Route::get('change-password', 'UserController@changePassword')->name('change.password');
     Route::post('change-password', 'UserController@postChangePassword')->name('post.change.password');
     Route::get('update-details', 'UserController@updateDetails')->name('update-details');

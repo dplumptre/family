@@ -37,6 +37,7 @@
           href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" id="css-main" href="assets/css/oneui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
 <body>
 <!-- Login Content -->
@@ -117,7 +118,7 @@
 <script src="/assets/js/core/jquery.placeholder.min.js"></script>
 <script src="/assets/js/core/js.cookie.min.js"></script>
 <script src="/assets/js/app.js"></script>
-
+@include('includes.notify')
 <!-- Page JS Plugins -->
 <script src="/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
 
