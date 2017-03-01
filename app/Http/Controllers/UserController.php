@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
+
 use App\Models\Package;
 use App\Models\Payer;
+use App\Abstracts\useful_functions;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -9,14 +11,23 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //
-
     
-    protected $arr = array(
-        
-        0 => 'pending',
-        1 =>'processing',
-        2 =>'com[pleted'
-    );
+    public  $handycodes="";
+    
+
+       function __construct() {
+           
+        /*
+         * created an abstract class useful funstions
+         * to put some codes that might be reusable 
+         * and we can use any time and instatiated it below
+         * so its available
+         * /
+         */
+        $this->handycodes = new useful_functions();
+
+    }
+
     
 
     public function index()
@@ -57,13 +68,14 @@ class UserController extends Controller
 
     public function donate()
     {
+        $id = Auth::id();
         $package = Package::get();
-        $payer   = Payer::with('packages')->get();
+        $payer   = Payer::with('packages')->where('user_id',$id)->orderBy('id', 'DESC')->get();
         
         //dd( $payer);
         
         return view('user-area/donate')->with('package',  Package::all())
-                                        ->with('arr', $this->arr)
+                                        ->with('arr', $this->handycodes->arr)
                                         ->with('payer',$payer);
     }
 
@@ -71,21 +83,42 @@ class UserController extends Controller
     
         public function postDonate(\App\Http\Requests\createPackage $request)
         {
+            
             $id = Auth::id();
-                  $payer =  Payer::create([
-                    'user_id' => $id,
-                    'package_id' => $request->package,
-                    'status' => 0,
-                    'pairing_result' => 0,
-                    ]);
-                  
-               $package = Package::find($request->package); 
-               
-               
-               
-               
+            Payer::create([
+            'user_id' => $id,
+            'package_id' => $request->package,
+            'status' => 0,
+            'pairing_result' => 0,
+            ]);  
             notify()->flash("Package successfully selected","success",['text'=>'You will be sent an email as soon as you have been matched!']);
-            return redirect()->route('post.donate')->with('status',$this->arr[0]);
+            return redirect()->route('post.donate')->with('status',$this->handycodes->arr[0]);    
+              
+                
+                
+                
+//            $id = Auth::id();
+//            $package = Package::find($request->package); 
+//            //this will get the higest package id in the table 
+//            $pk= Payer::where('user_id', '=',  $id)->max('package_id'); 
+//            if($pk === null || $pk  <= $request->package ){
+//            $payer =  Payer::create([
+//            'user_id' => $id,
+//            'package_id' => $request->package,
+//            'status' => 0,
+//            'pairing_result' => 0,
+//            ]);  
+//            notify()->flash("Package successfully selected","success",['text'=>'You will be sent an email as soon as you have been matched!']);
+//            return redirect()->route('post.donate')->with('status',$this->handycodes->arr[0]);    
+//            }else{
+//            notify()->flash("Error","error",['text'=>'You cannot select a lower package than the one previous one!']);
+//            return redirect()->route('post.donate');    
+//            }         
+                
+                
+                
+
+
         }  
     
     

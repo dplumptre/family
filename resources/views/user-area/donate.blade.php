@@ -168,10 +168,10 @@
                                 <tbody>
                                     
                          @if($payer)  
-                         @foreach($payer as $p)
+                         @foreach($payer as $key => $p)
                         
                         <tr>
-                        <td class="text-center">1</td>
+                        <td class="text-center">{{$key +1}}</td>
                         <td class="text-center"> {{ $p->created_at }}</td>
                         <td class="text-center"> {{ $p->packages->name }}</td>
                         <td class="text-center">{{ number_format($p->packages->paying_amount) }}</td>
