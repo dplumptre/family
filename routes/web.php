@@ -62,7 +62,8 @@ Route::group(
     Route::get('update-details', 'UserController@updateDetails')->name('update-details');
     Route::get('outgoing', 'UserController@outgoing');
     Route::get('incoming', 'UserController@incoming');
-    Route::get('donate', 'UserController@donate');
+    Route::get('donate', 'UserController@donate')->name('donate');
+    Route::post('donate', 'UserController@postDonate')->name('post.donate');
 });
 
 
