@@ -10,25 +10,14 @@ use App\Abstracts\useful_functions;
 use Auth;
 
 
+
 class UserController extends Controller
 {
     //
 
-    public  $handycodes="";
     
 
-       function __construct() {
-           
-        /*
-         * created an abstract class useful funstions
-         * to put some codes that might be reusable 
-         * and we can use any time and instatiated it below
-         * so its available
-         * /
-         */
-        $this->handycodes = new useful_functions();
-
-    }
+       function __construct() {}
 
 
 
@@ -77,6 +66,9 @@ class UserController extends Controller
 
     public function donate()
     {
+        
+        
+        
         $id = Auth::id();
         $package =   Package::all();
         $payer   = Payer::with('packages')->where('user_id',$id)->orderBy('id', 'DESC')->get();
@@ -84,7 +76,7 @@ class UserController extends Controller
         //dd( $payer);
         
         return view('user-area/donate')->with('package',$package )
-                                        ->with('arr', $this->handycodes->arr)
+                                        ->with('arr', arr())
                                         ->with('payer',$payer);
     }
 
@@ -122,7 +114,7 @@ class UserController extends Controller
             'pairing_result' => 0,
             ]);  
             notify()->flash("Package successfully selected","success",['text'=>'You will be sent an email as soon as you have been matched!']);
-            return redirect()->route('post.donate')->with('status',$this->handycodes->arr[0]);    
+            return redirect()->route('post.donate')->with('status',arr()[0]);    
               
                 
                 
@@ -139,7 +131,7 @@ class UserController extends Controller
 //            'pairing_result' => 0,
 //            ]);  
 //            notify()->flash("Package successfully selected","success",['text'=>'You will be sent an email as soon as you have been matched!']);
-//            return redirect()->route('post.donate')->with('status',$this->handycodes->arr[0]);    
+//            return redirect()->route('post.donate')->with('status',arr()[0]);    
 //            }else{
 //            notify()->flash("Error","error",['text'=>'You cannot select a lower package than the one previous one!']);
 //            return redirect()->route('post.donate');    
