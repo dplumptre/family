@@ -10,15 +10,14 @@ use App\Abstracts\useful_functions;
 use Auth;
 
 
-
 class UserController extends Controller
 {
     //
 
-    
 
-       function __construct() {}
-
+    function __construct()
+    {
+    }
 
 
     public function index()
@@ -66,59 +65,29 @@ class UserController extends Controller
 
     public function donate()
     {
-        
-        
-        
         $id = Auth::id();
-        $package =   Package::all();
-        $payer   = Payer::with('packages')->where('user_id',$id)->orderBy('id', 'DESC')->get();
-        
-        //dd( $payer);
-        
-        return view('user-area/donate')->with('package',$package )
-                                        ->with('arr', arr())
-                                        ->with('payer',$payer);
+        $package = Package::all();
+        $payer = Payer::with('packages')->where('user_id', $id)->orderBy('id', 'DESC')->get();
+
+        return view('user-area/donate')->with('package', $package)
+            ->with('arr', arr())
+            ->with('payer', $payer);
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        public function postDonate(\App\Http\Requests\createPackage $request)
-        {
-            
-            $id = Auth::id();
-            Payer::create([
+
+    public function postDonate(\App\Http\Requests\createPackage $request)
+    {
+        $id = Auth::id();
+        Payer::create([
             'user_id' => $id,
             'package_id' => $request->package,
             'status' => 0,
             'pairing_result' => 0,
-            ]);  
-            notify()->flash("Package successfully selected","success",['text'=>'You will be sent an email as soon as you have been matched!']);
-            return redirect()->route('post.donate')->with('status',arr()[0]);    
-              
-                
-                
-                
+        ]);
+        notify()->flash("Package successfully selected", "success", ['text' => 'You will be sent an email as soon as you have been matched!']);
+        return redirect()->route('post.donate')->with('status', arr()[0]);
+
+
 //            $id = Auth::id();
 //            $package = Package::find($request->package); 
 //            //this will get the higest package id in the table 
@@ -136,15 +105,9 @@ class UserController extends Controller
 //            notify()->flash("Error","error",['text'=>'You cannot select a lower package than the one previous one!']);
 //            return redirect()->route('post.donate');    
 //            }         
-                
-                
-                
 
 
-        }  
-    
-    
-
+    }
 
 
     public function updateDetails()

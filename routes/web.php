@@ -11,12 +11,13 @@
 |
 */
 
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 Route::get('test', function(Request $request){
 
     dd(
-        \Illuminate\Support\Facades\Hash::check('secret', auth()->user()->getAuthPassword())
+        DB::table('roles')->select('name')->get()->toArray()
     );
 
 });
@@ -79,3 +80,10 @@ Route::name('contact')->get('contact', 'PagesController@contact');
 
 
 Route::get('/home', 'HomeController@index');
+Route::group(
+    ['prefix'=>'admin', 'middleware'=>'auth', 'namespace'=>'Admin'], function(){
+    //Route::get('/roles', ['uses'=>'AdminController@roleIndex', 'middleware'=>'roles', 'roles'=>['admin']]);
+    Route::get('/roles', ['uses'=>'AdminController@roleIndex',]);
+    Route::post('/roles', 'AdminController@postRole')->name('post.role');
+    Route::get('/api-tokens', 'AdminController@apiTokens');
+});
