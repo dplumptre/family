@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Package;
+use App\Models\Receiver;
+
 
 class PagesController extends Controller
 {
@@ -25,21 +27,21 @@ class PagesController extends Controller
 
     public function about()
     {
-        return view('pages.about');
         
+ return view('pages.about');
         
+//        
 //      User::create([
-//            'username' => 'dplumptre',
-//            'email' => 'dplumptre@yahoo.com',
+//            'username' => 'tim',
+//            'email' => 'tim@yahoo.com',
 //            'password' => bcrypt('password'),
 //        ]);
         
-//        
-//        Package::create([
-//            'name' => 'Gold',
-//            'paying_amount' => 20000,
-//            'receiving_amount' => 40000,
-//            'description' => "This is the Gold Package",
+//       
+//        Receiver::create([
+//            'user_id' => 5,
+//            'package_id' => 3,
+//            'status' => 0,
 //        ]);     
         
         

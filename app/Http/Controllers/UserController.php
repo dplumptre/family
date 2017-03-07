@@ -67,7 +67,7 @@ class UserController extends Controller
     {
         $id = Auth::id();
         $package = Package::all();
-        $payer = Payer::with('packages')->where('user_id', $id)->orderBy('id', 'DESC')->get();
+        $payer = Payer::with('packages')->where('user_id', $id)->oldest()->get();
 
         return view('user-area/donate')->with('package', $package)
             ->with('arr', arr())
