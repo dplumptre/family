@@ -40,7 +40,17 @@ class Payer extends Model
   
     
 
-    
+       public function scopeUpdatePayerAfterBeingPaired($query,$payer_id)
+    {   
+    /* updates the status of the payer that was paired from 0 to 1
+    *  dd(\App\Models\Payer::UpdatePayerAfterBeingPaired(10)); 
+    *  it returns true 
+    */   
+ 
+     return  $query->find($payer_id)->update(['status' => 1]);
+                  
+   
+    }  
     
     
     
