@@ -12,12 +12,14 @@
 */
 
 use App\Models\Role;
+use Carbon\Carbon;
+use App\Models\Payer;
 use Illuminate\Http\Request;
 
-Route::get('test', function(Request $request){
+Route::get('test', function(Request $request, \App\Lib\ProcessPairing $pairing){
 
     dd(
-        DB::table('roles')->select('name')->get()->toArray()
+        $pairing->getNextReceiver()->isEmpty()
     );
 
 });
