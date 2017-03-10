@@ -68,6 +68,24 @@ Route::group(
 });
 
 
+
+//Route::get('admin-area/', 'AdministratorController@index');
+Route::group(
+    ['prefix'=>'admin-area', 'middleware'=>'auth'], function(){
+    Route::get('/', 'AdministratorController@index')->name('admin-dashboard');
+});                 
+
+
+
+
+
+
+
+
+
+
+
+
 //Route::get('/', 'PagesController@home');
 Route::name('home')->get('/', 'PagesController@home');
 Route::name('about')->get('about', 'PagesController@about');

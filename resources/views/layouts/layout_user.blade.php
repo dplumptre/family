@@ -86,6 +86,7 @@
                             <a href="{{ route('dashboard') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Dashboard</span></a>
                         </li>
+                        
                         <li>
                             <a href="{{ URL::asset('user-area/profile') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Profile</span></a>
@@ -102,6 +103,17 @@
                             <a href="{{ URL::asset('user-area/outgoing') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Outgoing Money</span></a>
                         </li>
+                     
+                            
+                            @if($currentUser->roles[0]->type == "superadmin" || $currentUser->roles[0]->type == "admin")
+                               <li>
+                            <a href="{{ route('admin-dashboard') }}"><i class="si si-speedometer"></i><span
+                                        class="sidebar-mini-hide">Admin Dashboard</span></a>
+                          </li>
+                        @endif
+                        
+                                                
+  
 
 
                     </ul>
