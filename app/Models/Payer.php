@@ -51,5 +51,21 @@ class Payer extends Model
         return $query->where('id', $payer_id)->update(['status' => self::PROCESSING]);
     }
 
+    
+    
+    
+    
+    public function scopeGetMyPayerIdArrayThatHasBeenPaired($query, $user_id)
+    {
+       
+        $p = $query->where('user_id', $user_id)
+                ->where('status',self::PROCESSING)
+                ->pluck('id');
+        
+       return $p;
+    }
+    
+    
+    
 
 }

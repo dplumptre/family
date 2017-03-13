@@ -39,6 +39,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Payer');
     }
+    
+    
+        public function receivers()
+    {
+        return $this->hasMany('App\Models\Receiver');
+    }
 
 
     public function roles()
@@ -69,4 +75,18 @@ class User extends Authenticatable
             return true;
         return false;
     }
+    
+    
+     public function scopeGetUserByReceiverId($query,$receiver_id)
+    {
+           $p = $query->where('user_id', $user_id)
+                ->where('status',self::PROCESSING)
+                ->pluck('id');
+    }   
+    
+    
+    
+    
+    
+    
 }

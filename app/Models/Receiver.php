@@ -11,6 +11,12 @@ class Receiver extends Model
     const PROCESSING = 1;
     const COMPLETED = 2;
     protected $guarded = ['id'];
+    
+    
+        public function users()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 
     /**
      * created_at + 15days = today
@@ -40,4 +46,21 @@ class Receiver extends Model
         */
         return $query->where('id', $receiver_id)->update(['status' => self::PROCESSING]);
     }
+    
+    
+    
+    
+    
+    public function scopeGetMyReceiverIdArrayThatHasBeenPaired($query, $user_id)
+    {
+       
+        $r = $query->where('user_id', $user_id)
+                ->where('status',self::PROCESSING)
+                ->pluck('id');
+        
+       return $r;
+    }
+    
+    
+    
 }

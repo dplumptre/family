@@ -36,4 +36,35 @@ class Pair extends Model
     }
 
 
+    
+    
+    
+    
+    public function scopeGetMyPairByPayerId($query,$arrayOfPayer)
+    {
+       
+        $p = $query->whereIn('payer_id',  $arrayOfPayer)
+                ->get();
+        
+       return $p;
+    }
+        
+        
+        
+        
+       
+    public function scopeGetMyPairByReceiverId($query,$arrayOfReceiver)
+    {
+       
+        $r = $query->whereIn('receiver_id', $arrayOfReceiver)
+                ->get();
+        
+       return $r;
+    } 
+    
+    
+    
+    
+    
+    
 }

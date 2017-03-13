@@ -33,18 +33,18 @@
                     
                     
 
-                    <!-- Dynamic Table Full Pagination -->
-                    <div class="">
-                        <div class="block-header">
-                          <!--  <h3 class="block-title">Dynamic Table <small>Full pagination</small></h3> -->
-                        </div>
+        <!-- Dynamic Table Full Pagination -->
+        <div class="">
+        <div class="block-header">
+        <!--  <h3 class="block-title">Dynamic Table <small>Full pagination</small></h3> -->
+        </div>
                         <div class="table-responsive">
                             <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality initialized in js/pages/base_tables_datatables.js -->
                             <table class="table-responsive table table-bordered table-striped  js-dataTable-full-pagination">
                                 <thead>
                                     <tr>
                                         <th class="text-center"></th>
-                                        <th class="text-center">Total</th>`
+                                        <th class="text-center">Total</th>
                                         <th class="text-center">Payment Date</th>
                                          <th class="text-center">Receipt</th>
                                         <th class="text-center" style="width: 15%;">Status</th>
@@ -52,37 +52,83 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if($getPair !== NULL)
+                                    @foreach($getPair as $key => $p)        
+                                    <?php  $r =\App\Models\Payer::find( $p->payer_id);  ?>
                                     <tr>
-                                        <td class="text-center">1</td>
-                                      <td class="text-center">17,000</td>
-                                        <td class="text-center"> 17/jan/2017</td>
-                                         <td class="text-center">image</td>
-                                          <td class="text-center">    <span class="label label-danger">Pending / completed</span></td>
-                                        <td class="text-center">
-                                            <span class="label label-danger">My Donor</span>
-                                        </td>
-                                    </tr>
-
-
+                                    <td class="text-center"> {{ $key + 1 }} </td>
+                                    <td class="text-center">{{ number_format($p->amount) }}</td>
+                                    <td class="text-center"> {{ $p->elapse_time }}</td>
+                                    <td class="text-center">{{ $p->image }}</td>
+                                    <td class="text-center"><button type="button" class="btn btn-danger btn-sm">Confirm </button></td>
+                                    <td class="text-center">
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="{{'#mymodal1'.$r->user_id }}">Donor</button>
+                                    </td>
+                                    </tr>   
+                                    @endforeach          
+                                    @endif 
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                    <!-- END Dynamic Table Full Pagination -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
 
-                    
-                    
-                    
-                    
-                    
-               
-                    
-                    
-                    
+
+                <!--          MODAL BEGINS              -->                     
+                                @if($getPair !== NULL)  
+                                @foreach($getPair as $key => $p)        
+                                <?php     $r =\App\Models\Payer::find( $p->payer_id); ?>
+                <div class="modal fade" id="{{ 'mymodal1'.$r->user_id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Donor's Details</h4>
+                      </div>
+                      <div class="modal-body">
+                                <?php    $u = \App\Models\User::with('userDetail')->where('id',$r->user_id)->first(); ?>
+                         <table class="table table-responsive table-striped">
+                              <thead>
+                                  <tr>
+                                      <th></th>
+                                      <th></th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td><h5>Full Name</h5></td>
+                                      <td>{{ strToUpper($u->userDetail->firstname) }} {{ strToUpper($u->userDetail->lastname)  }}</td>
+                                  </tr>
+                                  <tr>
+                                      <td><h5>Phone</h5> </td>
+                                      <td> {{ $u->userDetail->phone  }}</td>
+                                  </tr>
+                              </tbody>
+                          </table>  
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <!-- END Page Content -->
-            </main>
-            <!-- END Main Container -->
+                @endforeach 
+                @endif                       
+                 <!--          MODAL ENDS              -->                       
+                        
+                        
+    </div>
+    <!-- END Dynamic Table Full Pagination -->
+    </div>
+    <!-- END Page Content -->
+    </main>
+    <!-- END Main Container -->
 
             
             

@@ -5,7 +5,9 @@ use App\Http\Requests\ChangePassword;
 use App\Http\Requests\createPackage;
 use App\Http\Requests\UpdateProfile;
 use App\Models\Package;
+use App\Models\Pair;
 use App\Models\Payer;
+use App\Models\Receiver;
 use App\Abstracts\useful_functions;
 use Auth;
 
@@ -51,15 +53,30 @@ class UserController extends Controller
     }
 
 
-    public function outgoing()
+    public function outgoing(Pair $pair,  Payer $payer , Auth $auth)
     {
-        return view('user-area/outgoing');
+        //basicalling getting the person i am pairing with and will be paying to
+        $payerid_array = $payer->GetMyPayerIdArrayThatHasBeenPaired($auth::user()->id);
+        if($payerid_array){
+        $p = $pair->GetMyPairByPayerId($payerid_array);
+        }
+        if(!$p->count()){// if im not paired yet dont send anything and dont gimme error
+        $p = null;
+        }
+        return view('user-area/outgoing')->with('getPair',$p);
     }
 
 
-    public function incoming()
+    public function incoming(Pair $pair, Receiver $receiver, Auth $auth)
     {
-        return view('user-area/incoming');
+         $receiverid_array = $receiver->GetMyReceiverIdArrayThatHasBeenPaired($auth::user()->id);
+        if($receiverid_array){
+        $p = $pair->GetMyPairByReceiverId($receiverid_array);
+        }
+        if(!$p->count()){// if im not paired yet dont send anything and dont gimme error
+        $p = null;
+        }  
+        return view('user-area/incoming')->with('getPair',$p);
     }
 
 

@@ -87,7 +87,7 @@ class ProcessPairing
     public function doPair()
     {
         //loop over payer model to do the insert.
-        $amount = Package::find($this->receiverModel->package_id)->receiving_amount;
+        $amount = Package::find($this->receiverModel->package_id)->paying_amount;
 
         DB::transaction(function () use ($amount) {
 
