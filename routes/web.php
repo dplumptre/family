@@ -63,10 +63,12 @@ Route::group(
     Route::get('change-password', 'UserController@changePassword')->name('change.password');
     Route::post('change-password', 'UserController@postChangePassword')->name('post.change.password');
     Route::get('update-details', 'UserController@updateDetails')->name('update-details');
-    Route::get('outgoing', 'UserController@outgoing');
+    Route::get('outgoing', 'UserController@outgoing')->name('outgoing');
     Route::get('incoming', 'UserController@incoming');
     Route::get('donate', 'UserController@donate')->name('donate');
     Route::post('donate', 'UserController@postDonate')->name('post.donate');
+    Route::get('upload/{id}', 'UserController@upload')->name('upload');
+    Route::post('upload', 'UserController@postupload')->name('post.upload');
 });
 
 

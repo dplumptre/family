@@ -49,6 +49,10 @@
     <link rel="stylesheet" id="css-theme" href="/assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <link rel="stylesheet" id="css-main" href="{{ URL::asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('fancybox/jquery.fancybox-1.3.4.css') }}" />
+    
+    
+    
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
@@ -253,7 +257,7 @@
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
 
 
-<script src="/assets/js/core/jquery.min.js"></script>
+<script src="{{ URL::asset('assets/js/core/jquery.min.js') }}"></script>
 <script src="/assets/js/core/bootstrap.min.js"></script>
 <script src="/assets/js/core/jquery.slimscroll.min.js"></script>
 <script src="/assets/js/core/jquery.scrollLock.min.js"></script>
@@ -262,13 +266,47 @@
 <script src="/assets/js/core/jquery.placeholder.min.js"></script>
 <script src="/assets/js/core/js.cookie.min.js"></script>
 <script src="/assets/js/app.js"></script>
-@yield('scripts')
-@include('includes.notify')
+
 
 <!-- Page JS Plugins -->
 <script src="/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-
 <!-- Page JS Code -->
 <script src="/assets/js/pages/base_tables_datatables.js"></script>
+@yield('scripts')
+@include('includes.notify')
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="{{ URL::asset('fancybox/jquery.fancybox-1.3.4.pack.js') }}"></script>
+
+
+<script>
+    
+    $(document).ready(function() {
+
+	/* This is basic - uses default settings */
+	
+	$("a#single_image").fancybox();
+	
+	/* Using custom settings */
+	
+	$("a#inline").fancybox({
+		'hideOnContentClick': true
+	});
+
+	/* Apply fancybox to multiple items */
+	
+	$("a.group").fancybox({
+		'transitionIn'	:	'elastic',
+		'transitionOut'	:	'elastic',
+		'speedIn'		:	600, 
+		'speedOut'		:	200, 
+		'overlayShow'	:	false
+	});
+	
+});
+    
+</script>             
+
 </body>
 </html>

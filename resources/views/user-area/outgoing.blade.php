@@ -28,6 +28,7 @@
                 <div class="content">
                   
                     
+         
                     
 
                     <!-- Dynamic Table Full Pagination -->
@@ -63,12 +64,21 @@
                                             <td class="text-center"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="{{'#mymodal1'.$r->user_id }}">Payment Details</button></td>
                                             <td class="text-center">{{ number_format($p->amount) }}</td>
                                             <td class="text-center">{{ $u->userDetail->phone }}</td>
-                                            <td class="text-center"> <a href="#">upload</a></td>
+                                            <td class="text-center"> 
+                                            <a href="{{ route('upload',['id' => $p->id]) }}">upload/edit</a>
+                                            
+                                            @if($p->image !== 'example.jpg')
+                                            <a id="single_image"  href="{{ URL::asset('assets/images/pics/'.$p->image) }}" title="" >  
+                                            <img alt='' style="width: 90px;height: 30px" class="img-thumbnail img-responsive img-customer" 
+                                            border='0' src="{{ URL::asset('assets/images/thumb/'.$p->image) }}" />
+                                            </a> 
+                                            @endif
+                                            </td>
                                             <td class="text-center text-danger"><strong>
                                             {{ $p->elapse_time }}
                                             </strong></td>
                                             <td class="text-center">
-                                            <button type="button" class="btn btn-danger btn-sm">I,ve Paid </button>
+                                           <button type="button" class="btn btn-danger btn-sm">I,ve Paid </button>
                                             </td>
                                             </tr>                          
                                     @endforeach 

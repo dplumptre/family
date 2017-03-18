@@ -59,7 +59,14 @@
                                     <td class="text-center"> {{ $key + 1 }} </td>
                                     <td class="text-center">{{ number_format($p->amount) }}</td>
                                     <td class="text-center"> {{ $p->elapse_time }}</td>
-                                    <td class="text-center">{{ $p->image }}</td>
+                                    <td class="text-center">
+                                    @if($p->image !== 'example.jpg')
+                                    <a id="single_image"  href="{{ URL::asset('assets/images/pics/'.$p->image) }}" title="" >  
+                                    <img alt='' style="width: 90px;height: 30px" class="img-thumbnail img-responsive img-customer" 
+                                    border='0' src="{{ URL::asset('assets/images/thumb/'.$p->image) }}" />
+                                    </a> 
+                                    @endif    
+                                    </td>
                                     <td class="text-center"><button type="button" class="btn btn-danger btn-sm">Confirm </button></td>
                                     <td class="text-center">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="{{'#mymodal1'.$r->user_id }}">Donor</button>
