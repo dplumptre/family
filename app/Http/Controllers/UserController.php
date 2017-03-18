@@ -9,10 +9,9 @@ use App\Models\Pair;
 use App\Models\Payer;
 use App\Models\Receiver;
 use App\Http\Requests\uploadRequest;
-use App\Abstracts\useful_functions;
+use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 use Auth;
-
 
 class UserController extends Controller
 {
@@ -26,7 +25,6 @@ class UserController extends Controller
 
     function __construct()
     {
-
     }
 
 

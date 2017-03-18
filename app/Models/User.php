@@ -39,9 +39,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Payer');
     }
-    
-    
-        public function receivers()
+
+
+    public function receivers()
     {
         return $this->hasMany('App\Models\Receiver');
     }
@@ -71,22 +71,18 @@ class User extends Authenticatable
 
     public function hasRole($role)
     {
-        if ( $this->roles()->where('type', $role)->first() )
+        if ($this->roles()->where('type', $role)->first())
             return true;
         return false;
     }
-    
-    
-     public function scopeGetUserByReceiverId($query,$receiver_id)
+
+
+    public function scopeGetUserByReceiverId($query, $receiver_id)
     {
-           $p = $query->where('user_id', $user_id)
-                ->where('status',self::PROCESSING)
-                ->pluck('id');
-    }   
-    
-    
-    
-    
-    
-    
+        $p = $query->where('user_id', $user_id)
+            ->where('status', self::PROCESSING)
+            ->pluck('id');
+    }
+
+
 }
