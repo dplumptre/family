@@ -1,28 +1,20 @@
 <?php
 
-use App\User;
-use Illuminate\Support\Facades\Auth;
+function arr()
+{
+
+    return [
+        0 => 'pending',
+        1 => 'processing',
+        2 => 'completed'
+    ];
+
+}
 
 
-
-        
-
-            function arr(){
-
-            return [
-            0 => 'pending',
-            1 =>'processing',
-            2 =>'completed'
-            ];
-
-            }
-            
-            
-            
-            
 function current_link($link, $request)
 {
-    if ( $link == $request )
+    if ($link == $request)
         echo "active";
 }
 

@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 
 Route::get('test', function(Request $request, \App\Lib\ProcessPairing $pairing){
 
+    return view('test');
     dd(
         $pairing->getNextReceiver()->isEmpty()
     );

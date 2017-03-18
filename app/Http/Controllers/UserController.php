@@ -53,30 +53,30 @@ class UserController extends Controller
     }
 
 
-    public function outgoing(Pair $pair,  Payer $payer , Auth $auth)
+    public function outgoing(Pair $pair, Payer $payer, Auth $auth)
     {
         //basicalling getting the person i am pairing with and will be paying to
         $payerid_array = $payer->GetMyPayerIdArrayThatHasBeenPaired($auth::user()->id);
-        if($payerid_array){
-        $p = $pair->GetMyPairByPayerId($payerid_array);
+        if ($payerid_array) {
+            $p = $pair->GetMyPairByPayerId($payerid_array);
         }
-        if(!$p->count()){// if im not paired yet dont send anything and dont gimme error
-        $p = null;
+        if (!$p->count()) {// if im not paired yet dont send anything and dont gimme error
+            $p = null;
         }
-        return view('user-area/outgoing')->with('getPair',$p);
+        return view('user-area/outgoing')->with('getPair', $p);
     }
 
 
     public function incoming(Pair $pair, Receiver $receiver, Auth $auth)
     {
-         $receiverid_array = $receiver->GetMyReceiverIdArrayThatHasBeenPaired($auth::user()->id);
-        if($receiverid_array){
-        $p = $pair->GetMyPairByReceiverId($receiverid_array);
+        $receiverid_array = $receiver->GetMyReceiverIdArrayThatHasBeenPaired($auth::user()->id);
+        if ($receiverid_array) {
+            $p = $pair->GetMyPairByReceiverId($receiverid_array);
         }
-        if(!$p->count()){// if im not paired yet dont send anything and dont gimme error
-        $p = null;
-        }  
-        return view('user-area/incoming')->with('getPair',$p);
+        if (!$p->count()) {// if im not paired yet dont send anything and dont gimme error
+            $p = null;
+        }
+        return view('user-area/incoming')->with('getPair', $p);
     }
 
 
