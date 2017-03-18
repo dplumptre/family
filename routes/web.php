@@ -64,12 +64,13 @@ Route::group(
     Route::get('change-password', 'UserController@changePassword')->name('change.password');
     Route::post('change-password', 'UserController@postChangePassword')->name('post.change.password');
     Route::get('update-details', 'UserController@updateDetails')->name('update-details');
-    Route::get('outgoing', 'UserController@outgoing');
+    Route::get('outgoing', 'UserController@outgoing')->name('outgoing');
     Route::get('incoming', 'UserController@incoming');
     Route::get('donate', 'UserController@donate')->name('donate');
     Route::post('donate', 'UserController@postDonate')->name('post.donate');
+    Route::get('upload/{id}', 'UserController@upload')->name('upload');
+    Route::post('upload', 'UserController@postupload')->name('post.upload');
 });
-
 
 
 //Route::get('admin-area/', 'AdministratorController@index');
@@ -77,17 +78,6 @@ Route::group(
     ['prefix'=>'admin-area', 'middleware'=>'auth'], function(){
     Route::get('/', 'AdministratorController@index')->name('admin-dashboard');
 });                 
-
-
-
-
-
-
-
-
-
-
-
 
 //Route::get('/', 'PagesController@home');
 Route::name('home')->get('/', 'PagesController@home');
@@ -97,8 +87,6 @@ Route::name('faq')->get('faq', 'PagesController@faq');
 Route::name('contact')->get('contact', 'PagesController@contact');
 //Route::name('login')->get('login', 'PagesController@login');
 //Route::name('register')->get('register', 'PagesController@register');
-
-
 
 Route::get('/home', 'HomeController@index');
 Route::group(

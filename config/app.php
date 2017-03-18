@@ -179,6 +179,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        /*
+         * imvention image
+         */
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -228,6 +232,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        /*
+         * INVENTION IMAGE
+         */
+        'Image' => Intervention\Image\Facades\Image::class,
 
         /*
          * Package Facades
