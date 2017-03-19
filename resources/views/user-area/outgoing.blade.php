@@ -56,7 +56,7 @@
                                     @foreach($getPair as $key => $p)              
                                     <?php                               
                                     $r =\App\Models\Receiver::find( $p->receiver_id);
-                                    $user = \App\Models\User::with('userDetail')->where('id',$r->user_id)->get();
+                                    $user =  \App\Models\User::with('userDetail')->where('id',$r->user_id)->get();
                                     ?> @foreach($user as $keyuser => $u)    
                                             <tr>
                                             <td class="text-center">{{ $key + 1 }}</td>

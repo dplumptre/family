@@ -70,6 +70,8 @@ class UserController extends Controller
         }else{
         $p = null;
         }
+        
+        
         return view('user-area/outgoing')->with('getPair',$p);
     }
 
