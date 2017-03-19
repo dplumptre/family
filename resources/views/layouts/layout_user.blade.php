@@ -47,12 +47,10 @@
     <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" id="css-main" href="{{ URL::asset('assets/css/oneui.css') }}">
     <link rel="stylesheet" id="css-theme" href="/assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
     <link rel="stylesheet" id="css-main" href="{{ URL::asset('assets/css/custom.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('fancybox/jquery.fancybox-1.3.4.css') }}" />
-    
-    
-    
+    <link rel="stylesheet" type="text/css" href="{{ URL::asset('fancybox/jquery.fancybox-1.3.4.css') }}"/>
+
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> -->
@@ -90,7 +88,7 @@
                             <a href="{{ route('dashboard') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Dashboard</span></a>
                         </li>
-                        
+
                         <li>
                             <a href="{{ URL::asset('user-area/profile') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Profile</span></a>
@@ -107,17 +105,14 @@
                             <a href="{{ URL::asset('user-area/outgoing') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Outgoing Money</span></a>
                         </li>
-                     
-                            
-                            @if($currentUser->roles[0]->type == "superadmin" || $currentUser->roles[0]->type == "admin")
-                               <li>
-                            <a href="{{ route('admin-dashboard') }}"><i class="si si-speedometer"></i><span
-                                        class="sidebar-mini-hide">Admin Dashboard</span></a>
-                          </li>
+
+
+                        @if($currentUser->hasAnyRole(["superadmin","admin"]))
+                            <li>
+                                <a href="{{ route('admin-dashboard') }}"><i class="si si-speedometer"></i><span
+                                            class="sidebar-mini-hide">Admin Dashboard</span></a>
+                            </li>
                         @endif
-                        
-                                                
-  
 
 
                     </ul>
@@ -137,7 +132,8 @@
             <li>
                 <div class="btn-group">
                     <button class="btn btn-default btn-image dropdown-toggle" data-toggle="dropdown" type="button">
-                        <img src="{{ URL::asset('assets/img/avatars/avatar10.jpg') }}" alt="Avatar"> {{$currentUser->username}}
+                        <img src="{{ URL::asset('assets/img/avatars/avatar10.jpg') }}"
+                             alt="Avatar"> {{$currentUser->username}}
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -145,7 +141,7 @@
                         <li>
                             <a tabindex="-1" href="{{ URL::asset('user-area/profile') }}">
                                 <i class="si si-user pull-right"></i>
-                               Profile
+                                Profile
                             </a>
                         </li>
                         <li>
@@ -193,8 +189,8 @@
 
 
     <!-- Main Container -->
-    @yield('content')
-            <!-- END Main Container -->
+@yield('content')
+<!-- END Main Container -->
 
 
     <!-- Footer -->
@@ -281,32 +277,31 @@
 
 
 <script>
-    
-    $(document).ready(function() {
 
-	/* This is basic - uses default settings */
-	
-	$("a#single_image").fancybox();
-	
-	/* Using custom settings */
-	
-	$("a#inline").fancybox({
-		'hideOnContentClick': true
-	});
+    $(document).ready(function () {
 
-	/* Apply fancybox to multiple items */
-	
-	$("a.group").fancybox({
-		'transitionIn'	:	'elastic',
-		'transitionOut'	:	'elastic',
-		'speedIn'		:	600, 
-		'speedOut'		:	200, 
-		'overlayShow'	:	false
-	});
-	
-});
-    
-</script>             
+        /* This is basic - uses default settings */
 
+        $("a#single_image").fancybox();
+
+        /* Using custom settings */
+
+        $("a#inline").fancybox({
+            'hideOnContentClick': true
+        });
+
+        /* Apply fancybox to multiple items */
+
+        $("a.group").fancybox({
+            'transitionIn': 'elastic',
+            'transitionOut': 'elastic',
+            'speedIn': 600,
+            'speedOut': 200,
+            'overlayShow': false
+        });
+
+    });
+
+</script>
 </body>
 </html>

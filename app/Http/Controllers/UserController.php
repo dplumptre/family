@@ -9,10 +9,9 @@ use App\Models\Pair;
 use App\Models\Payer;
 use App\Models\Receiver;
 use App\Http\Requests\uploadRequest;
-use App\Abstracts\useful_functions;
+use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 use Auth;
-
 
 class UserController extends Controller
 {
@@ -22,11 +21,10 @@ class UserController extends Controller
     const PENDING = 0;
     const PROCESSING = 1;
     const COMPLETED = 2;
-            
-            
-                function __construct()
+
+
+    function __construct()
     {
-              
     }
 
 
@@ -61,78 +59,73 @@ class UserController extends Controller
     }
 
 
-    public function outgoing(Pair $pair,  Payer $payer , Auth $auth)
+    public function outgoing(Pair $pair, Payer $payer, Auth $auth)
     {
         //basicalling getting the person i am pairing with and will be paying to
-        $payerid_array =  auth()->user()->payers()->where('status',self::PROCESSING)->pluck('id'); 
-        if($payerid_array){
-        $p = $pair->whereIn('payer_id', $payerid_array)->get();
-        }else{
-        $p = null;
+        $payerid_array = auth()->user()->payers()->where('status', self::PROCESSING)->pluck('id');
+        if ($payerid_array) {
+            $p = $pair->whereIn('payer_id', $payerid_array)->get();
+        } else {
+            $p = null;
         }
-        
-        
-        return view('user-area/outgoing')->with('getPair',$p);
+         return view('user-area/outgoing')->with('getPair',$p);
     }
 
 
     public function incoming(Pair $pair, Receiver $receiver, Auth $auth)
     {
-
-        $receiverid_array = auth()->user()->receivers()->where('status',self::PROCESSING)->pluck('id');         
-        if($receiverid_array){
-        $p = $pair->whereIn('receiver_id',$receiverid_array)->get();
-        }else{
-        $p = null;
-        }  
-        return view('user-area/incoming')->with('getPair',$p);
+        $receiverid_array = auth()->user()->receivers()->where('status', self::PROCESSING)->pluck('id');
+        if ($receiverid_array) {
+            $p = $pair->whereIn('receiver_id', $receiverid_array)->get();
+        } else {
+            $p = null;
+        }
+        return view('user-area/incoming')->with('getPair', $p);
     }
 
-    
-    
+
     public function upload($pair_id)
     {
         return view('user-area/upload')->with('pair_id', $pair_id);
     }
 
-    
-        public function postupload(uploadRequest $request)
+
+    public function postupload(uploadRequest $request)
     {
-        
-             $image = $request->file('file');
-             $pair_id = $request->get('pair_id');
-            
-            
-            $p =  Pair::find($pair_id);
-            $delthumb_path = 'assets/images/thumb/'.$p->image;
-            $delnormal_path = 'assets/images/pics/'.$p->image;            
+
+        $image = $request->file('file');
+        $pair_id = $request->get('pair_id');
 
 
-            
-            if($p->image !== 'example.jpg'){
-             unlink($delthumb_path);    
-             unlink($delnormal_path); 
-            }           
-            
-                   /* change name */
-            $filename = arrageImageName($image->getClientOriginalName());  
-            $thumb_path = 'assets/images/thumb/'.$filename;
-            $normal_path = 'assets/images/pics/'.$filename;              
-            Pair::where('id',$pair_id)->update(['image' => $filename]);
-             /* 
-              * Declearing path
-              * make sure you chmod 777 the dir below 
-              * or you will get error daying "Can't write image data to path "
-              *  */
+        $p = Pair::find($pair_id);
+        $delthumb_path = 'assets/images/thumb/' . $p->image;
+        $delnormal_path = 'assets/images/pics/' . $p->image;
 
-            
-            $thumb = Image::make($image->getRealPath())->resize(90, 90)->sharpen(15)->save($thumb_path);
-            $normalimage = Image::make($image->getRealPath())->save( $normal_path);  
-            
+
+        if ($p->image !== 'example.jpg') {
+            unlink($delthumb_path);
+            unlink($delnormal_path);
+        }
+
+        /* change name */
+        $filename = arrageImageName($image->getClientOriginalName());
+        $thumb_path = 'assets/images/thumb/' . $filename;
+        $normal_path = 'assets/images/pics/' . $filename;
+        Pair::where('id', $pair_id)->update(['image' => $filename]);
+        /*
+         * Declearing path
+         * make sure you chmod 777 the dir below
+         * or you will get error daying "Can't write image data to path "
+         *  */
+
+
+        $thumb = Image::make($image->getRealPath())->resize(90, 90)->sharpen(15)->save($thumb_path);
+        $normalimage = Image::make($image->getRealPath())->save($normal_path);
+
         notify()->flash("image successfully updated", "success", ['text' => 'Go ahead and click the i,ve paid button']);
-        return redirect()->route('outgoing');  
+        return redirect()->route('outgoing');
     }
-    
+
     public function donate()
     {
         $id = Auth::id();

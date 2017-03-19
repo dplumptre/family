@@ -16,26 +16,30 @@ use Carbon\Carbon;
 use App\Models\Payer;
 use Illuminate\Http\Request;
 
-Route::get('test', function(Request $request, \App\Lib\ProcessPairing $pairing){
+Route::get('test', function (Request $request, \App\Lib\ProcessPairing $pairing) {
 
-    dd(
-        $pairing->getNextReceiver()->isEmpty()
-    );
+    return view('test');
+//    dd(
+//        \App\Models\User::with('userDetail')->where('id', 9)->get()
+//    );
 
 });
-
-
-
 /*
  * AUTH ROUTE
  */
 Auth::routes();
-
+Route::get('logout', function () {
+    if (auth()->user()):
+        Auth::logout();
+        notify()->flash('Logged Out', 'success', ['text' => 'You have been logged out successfully']);
+    endif;
+    return redirect()->route('login');
+});
 /*
  * Login routes
  */
 Route::group(
-    ['prefix'=>'user'], function(){
+    ['prefix' => 'user'], function () {
 
     Route::name('user.login')->get('login', 'SessionsController@create')->middleware('guest');
     Route::name('post.login')->post('login', 'SessionsController@store')->middleware('guest');
@@ -56,7 +60,7 @@ Route::group(
  */
 Route::get('dashboard', 'UserController@index');
 Route::group(
-    ['prefix'=>'user-area', 'middleware'=>'auth'], function(){
+    ['prefix' => 'user-area', 'middleware' => 'auth'], function () {
     Route::get('/', 'UserController@index')->name('dashboard');
     Route::get('profile', 'UserController@profile')->name('profile');
     Route::post('profile', 'UserController@postProfile')->name('post.profile');
@@ -72,23 +76,11 @@ Route::group(
 });
 
 
-
 //Route::get('admin-area/', 'AdministratorController@index');
 Route::group(
-    ['prefix'=>'admin-area', 'middleware'=>'auth'], function(){
-    Route::get('/', 'AdministratorController@index')->name('admin-dashboard');
-});                 
-
-
-
-
-
-
-
-
-
-
-
+    ['prefix' => 'admin-area', 'middleware' => ['auth', 'roles']], function () {
+    Route::get('/', ['uses' => 'AdministratorController@index', 'roles' => ['superadmin', 'admin']])->name('admin-dashboard');
+});
 
 //Route::get('/', 'PagesController@home');
 Route::name('home')->get('/', 'PagesController@home');
@@ -99,13 +91,12 @@ Route::name('contact')->get('contact', 'PagesController@contact');
 //Route::name('login')->get('login', 'PagesController@login');
 //Route::name('register')->get('register', 'PagesController@register');
 
-
-
 Route::get('/home', 'HomeController@index');
+
 Route::group(
-    ['prefix'=>'admin', 'middleware'=>'auth', 'namespace'=>'Admin'], function(){
+    ['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin'], function () {
     //Route::get('/roles', ['uses'=>'AdminController@roleIndex', 'middleware'=>'roles', 'roles'=>['admin']]);
-    Route::get('/roles', ['uses'=>'AdminController@roleIndex',]);
+    Route::get('/roles', ['uses' => 'AdminController@roleIndex',]);
     Route::post('/roles', 'AdminController@postRole')->name('post.role');
     Route::get('/api-tokens', 'AdminController@apiTokens');
 });
