@@ -2,7 +2,9 @@
 @inject('carbon', 'Carbon\Carbon')
 
 @section('content')
-
+<?php
+$dateElements=[];
+?>
 
     <!-- Main Container -->
     <main id="main-container">
@@ -80,15 +82,21 @@
                                         </td>
                                         <td><strong>
                                                 {{--{{ $p->elapse_time }}--}}
-                                                <div id="clockdiv{{$loop->parent->iteration}}">
-                                                    <span class="label label-info">Days: <span class="days"></span></span>
-                                                    <span class="label label-info">Hrs: <span class="hours"></span></span>
-                                                    <span class="label label-info">Mins: <span class="minutes"></span></span>
-                                                    <span class="label label-info">Secs: <span class="seconds"></span></span>
-                                                </div>
-                                                <?php
-                                                    $dateElements[] = ['div'=>"clockdiv{$loop->parent->iteration}", 'elapse_time'=>$p->elapse_time];
-                                                ?>
+                                                @if ( $p->elapse_time > $carbon->now()->format('Y-m-d H:i:s') )
+                                                    @php
+                                                        $dateElements[] = ['div'=>"clockdiv{$loop->parent->iteration}", 'elapse_time'=>$p->elapse_time];
+                                                    @endphp
+                                                    <div id="clockdiv{{$loop->parent->iteration}}">
+                                                        <span class="label label-info">Days: <span class="days"></span></span>
+                                                        <span class="label label-info">Hrs: <span class="hours"></span></span>
+                                                        <span class="label label-info">Mins: <span class="minutes"></span></span>
+                                                        <span class="label label-info">Secs: <span class="seconds"></span></span>
+                                                    </div>
+                                                @else
+                                                    <div>
+                                                        <span class="label label-danger">Time expired</span>
+                                                    </div>
+                                                @endif
                                             </strong></td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-danger btn-sm">I,ve Paid</button>
@@ -168,8 +176,10 @@
 @section('scripts')
 <script src="/js/clock-countdown.js" type="text/javascript"></script>
 <script>
+@if(count($dateElements)>0)
 @foreach($dateElements as $el)
 initializeClock('{{$el['div']}}', '{{$el['elapse_time']}}', '{{$carbon->now()}}')
 @endforeach
+@endif
 </script>
 @endsection
