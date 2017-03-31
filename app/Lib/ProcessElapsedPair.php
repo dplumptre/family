@@ -59,11 +59,14 @@ class ProcessElapsedPair
 
                     //update payer.pairing_result = 1
                     //trigger event(PairTimeElapsed($elapsedPairRow))
-                    $this->updatePairingResult($elapsedPairRow->payer_id);
+                    $this->updateOldPairingResult($elapsedPairRow->payer_id);
 
                     //Pair new payer with existing pairRow
                     //trigger event(MemberPaired($newPayer))
                     $this->updatePairWithPayer($elapsedPairRow, $newPayer);
+
+                    //update new payer.status = 1
+                    $this->updateNewPayer($newPayer);
                 });
             } else {
                 //no new payer in row.
@@ -71,10 +74,16 @@ class ProcessElapsedPair
         }
     }
 
-    private function updatePairingResult($payer_id)
+    private function updateOldPairingResult($payer_id)
     {
         $this->payer->updateFailedPairingStatus($payer_id);
         //event(PairTimeElapsed($payer_id))
+    }
+
+    private function updateNewPayer($payerRow)
+    {
+        $payerRow->status = 1;
+        $payerRow->save();
     }
 
     private function updatePairWithPayer($pairRow, $payer)
