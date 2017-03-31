@@ -8,12 +8,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <meta name="description"
-          content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="description"content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="/assets/img/favicons/favicon.png">
@@ -277,6 +276,53 @@
 
 
 <script>
+$(document).ready(function(){
+ 
+$('.mark').hide();
+$('*[class^="mark"]').hide();
+});
+
+
+
+  
+ function paid(pair,payer)
+{
+ 
+ //alert(sel +" "+p);
+
+ $('.mark'+pair).show();
+ 
+ 
+    $.ajax(
+        {
+        url: 'http://family.dev/user-area/ogaidonpay',
+        type: 'POST',
+        //dataType:'JSON',
+        data: {'pair_id': pair, 'payer_id': payer}, // takes care of getting input value
+        success: function (data) {
+        $('#holla').html(data);
+           console.log(data);
+        },
+        error: function (response) {
+       console.log("error:" + response.responseText);
+        }
+
+
+        });
+        
+} 
+    
+    
+    
+
+
+
+
+
+
+
+
+
 
     $(document).ready(function () {
 
@@ -302,6 +348,14 @@
 
     });
 
+</script>
+<script type="text/javascript">
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 </script>
 </body>
 </html>

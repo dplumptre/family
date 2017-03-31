@@ -89,7 +89,7 @@
            </div>
         <div class="form-group">
             <div class="col-xs-12">
-                <button class="btn btn-warning" type="submit"><i class="fa fa-check push-5-r"></i> Begin </button>
+                <button class="btn btn-warning" onclick="return confirm('Are you sure you are ready and have the funds to donate ?');" type="submit"><i class="fa fa-check push-5-r"></i> Begin </button>
             </div>
         </div>
     </form>    </div>
@@ -100,8 +100,7 @@
                     
                     
                     
-                    
-                    
+                   
                     
                     
                     

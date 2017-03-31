@@ -67,7 +67,17 @@
                                     </a> 
                                     @endif    
                                     </td>
-                                    <td class="text-center"><button type="button" class="btn btn-danger btn-sm">Confirm </button></td>
+                                    <td class="text-center"><form  action="{{ route('post.incoming') }}" method="POST">{{ csrf_field() }} 
+                                <input type="hidden" value="<?php echo $p->id?>" name="pair_id"/>
+                                <input name="r_id" type="hidden" value="<?php echo $p->receiver_status ?>" />
+                            <button type="submit" class="btn btn-danger btn-sm">Confirm
+                                @if($p->receiver_status == 2)
+                                <span>  <i class="fa fa-check"></i></span>
+                                @endif
+                            </button> 
+                            </form>                                         
+                                 </td>   
+                                    
                                     <td class="text-center">
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="{{'#mymodal1'.$r->user_id }}">Donor</button>
                                     </td>

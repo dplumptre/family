@@ -8,10 +8,12 @@ use App\Models\Package;
 use App\Models\Pair;
 use App\Models\Payer;
 use App\Models\Receiver;
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests\uploadRequest;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 use Auth;
+use Illuminate\Support\Facades\Request;
 
 class UserController extends Controller
 {
@@ -59,10 +61,36 @@ class UserController extends Controller
     }
 
 
+        public function postOut()
+    {
+
+          $payer_id= Input::get('payer_id');   
+          $pair_id= Input::get('pair_id');          
+          Payer::where('id',$payer_id)->update(['status'=> self::COMPLETED]);
+          Pair::where('id', $pair_id)->update(['payer_status' => self::COMPLETED]);  
+ 
+      return redirect()->route('outgoing');
+    
+    }
+    
+    
+         public function postIn()
+    {
+          $r_id= Input::get('r_id');
+          $pair_id= Input::get('pair_id');   
+          Pair::where('id', $pair_id)->update(['receiver_status' => self::COMPLETED]);  
+          Receiver::where('id',$r_id)->update(['status'=> self::COMPLETED]);
+          return redirect()->route('incoming');
+    
+    }   
+    
+    
+    
+    
     public function outgoing(Pair $pair, Payer $payer, Auth $auth)
     {
         //basicalling getting the person i am pairing with and will be paying to
-        $payerid_array = auth()->user()->payers()->where('status', self::PROCESSING)->pluck('id');
+        $payerid_array = auth()->user()->payers()->where('status', '>', self::PENDING)->pluck('id');
         if ($payerid_array) {
             $p = $pair->whereIn('payer_id', $payerid_array)->get();
         } else {
@@ -74,7 +102,7 @@ class UserController extends Controller
 
     public function incoming(Pair $pair, Receiver $receiver, Auth $auth)
     {
-        $receiverid_array = auth()->user()->receivers()->where('status', self::PROCESSING)->pluck('id');
+        $receiverid_array = auth()->user()->receivers()->where('status','>', self::PENDING)->pluck('id');
         if ($receiverid_array) {
             $p = $pair->whereIn('receiver_id', $receiverid_array)->get();
         } else {

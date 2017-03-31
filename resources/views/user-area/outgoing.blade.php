@@ -33,7 +33,7 @@ $dateElements=[];
                         <div class="block-header">
                           <!--  <h3 class="block-title">Dynamic Table <small>Full pagination</small></h3> -->
                         </div>
-
+                        <div id="holla"></div>
                 <div class="table-responsive">
                     <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality initialized in js/pages/base_tables_datatables.js -->
                     <table class="text-uppercase table-responsive table table-bordered table-striped  js-dataTable-full-pagination">
@@ -96,10 +96,18 @@ $dateElements=[];
                                                         <span class="label label-danger">Time expired</span>
                                                     </div>
                                                 @endif
-                                            </strong></td>
-                                        <td class="text-center">
-                                            <button type="button" class="btn btn-danger btn-sm">I,ve Paid</button>
-                                        </td>
+                                            </strong>
+                                    </td>
+                                <td class="text-center">
+                            <form  action="{{ route('post.outgoing') }}" method="POST">{{ csrf_field() }}
+                                <input type="hidden" value="<?php echo $p->id?>" name="pair_id"/><input name="payer_id" type="hidden" value="<?php echo $p->payer_id?>" />
+                            <button type="submit" class="btn btn-danger btn-sm">I,ve Paid
+                                @if($p->payer_status == 2)
+                                <span>  <i class="fa fa-check"></i></span>
+                                @endif
+                            </button> 
+                            </form>                                            
+                              </td>
                                     </tr>
                                 @endforeach
                             @endforeach
