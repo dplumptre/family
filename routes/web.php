@@ -11,18 +11,15 @@
 |
 */
 
+
+use App\Models\Pair;
 use App\Models\Role;
 use Carbon\Carbon;
 use App\Models\Payer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-Route::get('test', function (Request $request, \App\Lib\ProcessPairing $pairing) {
-
-    return view('test');
-//    dd(
-//        \App\Models\User::with('userDetail')->where('id', 9)->get()
-//    );
-
+Route::get('test', function (Request $request, \App\Lib\ProcessPairing $pairing, \App\Lib\ProcessElapsedPair $elapsedPair) {
 });
 /*
  * AUTH ROUTE

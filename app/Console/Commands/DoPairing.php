@@ -14,7 +14,7 @@ class DoPairing extends Command
      *
      * @var string
      */
-    protected $signature = 'familyapp:pair';
+    protected $signature = 'app:pair';
 
     /**
      * The console command description.

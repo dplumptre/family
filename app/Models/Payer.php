@@ -18,9 +18,15 @@ class Payer extends Model
     protected $fillable = ['status', 'pairing_result', 'user_id', 'package_id'];
 
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+
+    public function pairs()
+    {
+        return $this->hasMany(Pair::class, 'payer_id', 'id');
     }
 
 
@@ -58,8 +64,33 @@ class Payer extends Model
         $p = $query->where('user_id', $user_id)
             ->where('status', self::PROCESSING)
             ->pluck('id');
-
         return $p;
+    }
+
+
+    public static function findNextPayer($package_id)
+    {
+        return self::select()
+            ->where('package_id', $package_id)
+            ->where('status', self::PENDING)
+            ->where('pairing_result', self::PENDING)
+            ->oldest()
+            //->toSql()
+            ->first()
+        ;
+    }
+
+
+    public static function updateFailedPairingStatus($id)
+    {
+        if (is_array($id)) {
+            foreach ($id as $_id) {
+                self::where('id', $id)->update(['pairing_result' => 1]);
+            }
+            return;
+        }
+        self::where('id', $id)->update(['pairing_result' => 1]);
+        return;
     }
 
 

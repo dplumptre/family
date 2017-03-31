@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Pair extends Model
 {
@@ -12,6 +13,11 @@ class Pair extends Model
 
     protected $guarded = ['id'];
 
+
+    public function payer()
+    {
+        return $this->belongsTo(Payer::class, 'payer_id');
+    }
 
     public function scopePairReceiverToPayer($query, $payer_id, $receiver_id, $amount, $payer_status, $receiver_status, $status, $elapse_time)
     {
@@ -31,8 +37,6 @@ class Pair extends Model
             'elapse_time' => $elapse_time
 
         ]);
-
-
     }
 
 
@@ -55,5 +59,17 @@ class Pair extends Model
         return $r;
     }
 
+
+    public static function elapsedPairRows()
+    {
+        return self::select()
+            ->where(DB::raw("TIMESTAMPDIFF(MINUTE, NOW(), elapse_time)"), '<=', 0)
+            ->where('payer_status', 1)
+            ->where('receiver_status', 1)
+            ->with('payer')
+            //->toSql()
+            ->get()
+            ;
+    }
 
 }
