@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 function arr()
 {
 
@@ -108,5 +110,11 @@ function arrageImageName($imagename)
 }
 
 
-    
- 
+
+if ( !function_exists('now') )
+{
+    function now()
+    {
+        return Carbon::now();
+    }
+}

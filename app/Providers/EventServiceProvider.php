@@ -21,6 +21,16 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\PasswordChangeSuccess'
         ],
 
+        'App\Events\Pairing\MemberPaired' => [
+            'App\Listeners\Pairing\MemberPairedSuccess'
+        ],
+
+        'App\Events\Pairing\PairTimeElapsed' => [
+            'App\Listeners\Pairing\TimeElapsed'
+        ],
+
+
+
     ];
 
     /**
