@@ -61,32 +61,28 @@ class UserController extends Controller
     }
 
 
-        public function postOut()
+    public function postOut()
     {
+        $payer_id = Input::get('payer_id');
+        $pair_id = Input::get('pair_id');
+        Payer::where('id', $payer_id)->update(['status' => self::COMPLETED]);
+        Pair::where('id', $pair_id)->update(['payer_status' => self::COMPLETED]);
 
-          $payer_id= Input::get('payer_id');   
-          $pair_id= Input::get('pair_id');          
-          Payer::where('id',$payer_id)->update(['status'=> self::COMPLETED]);
-          Pair::where('id', $pair_id)->update(['payer_status' => self::COMPLETED]);  
- 
-      return redirect()->route('outgoing');
-    
+        return redirect()->route('outgoing');
     }
-    
-    
-         public function postIn()
+
+
+    public function postIn()
     {
-          $r_id= Input::get('r_id');
-          $pair_id= Input::get('pair_id');   
-          Pair::where('id', $pair_id)->update(['receiver_status' => self::COMPLETED]);  
-          Receiver::where('id',$r_id)->update(['status'=> self::COMPLETED]);
-          return redirect()->route('incoming');
-    
-    }   
-    
-    
-    
-    
+        $r_id = Input::get('r_id');
+        $pair_id = Input::get('pair_id');
+        Pair::where('id', $pair_id)->update(['receiver_status' => self::COMPLETED]);
+        Receiver::where('id', $r_id)->update(['status' => self::COMPLETED]);
+        return redirect()->route('incoming');
+
+    }
+
+
     public function outgoing(Pair $pair, Payer $payer, Auth $auth)
     {
         //basicalling getting the person i am pairing with and will be paying to
@@ -96,13 +92,13 @@ class UserController extends Controller
         } else {
             $p = null;
         }
-         return view('user-area/outgoing')->with('getPair',$p);
+        return view('user-area/outgoing')->with('getPair', $p);
     }
 
 
     public function incoming(Pair $pair, Receiver $receiver, Auth $auth)
     {
-        $receiverid_array = auth()->user()->receivers()->where('status','>', self::PENDING)->pluck('id');
+        $receiverid_array = auth()->user()->receivers()->where('status', '>', self::PENDING)->pluck('id');
         if ($receiverid_array) {
             $p = $pair->whereIn('receiver_id', $receiverid_array)->get();
         } else {

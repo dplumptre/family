@@ -11,9 +11,9 @@ class Receiver extends Model
     const PROCESSING = 1;
     const COMPLETED = 2;
     protected $guarded = ['id'];
-    
-    
-        public function users()
+
+
+    public function users()
     {
         return $this->belongsTo('App\Models\User');
     }
@@ -32,9 +32,7 @@ class Receiver extends Model
         return $query->where('status', self::PENDING)
             ->oldest()
             ->limit(1)
-            //->toSql()
-            ->first()
-            ;
+            ->first();
     }
 
 
@@ -46,21 +44,22 @@ class Receiver extends Model
         */
         return $query->where('id', $receiver_id)->update(['status' => self::PROCESSING]);
     }
-    
-    
-    
-    
-    
+
+
     public function scopeGetMyReceiverIdArrayThatHasBeenPaired($query, $user_id)
     {
-       
         $r = $query->where('user_id', $user_id)
-                ->where('status',self::PROCESSING)
-                ->pluck('id');
-        
-       return $r;
+            ->where('status', self::PROCESSING)
+            ->pluck('id');
+        return $r;
     }
-    
-    
-    
+
+
+    public function completedReceivers()
+    {
+        $last_admin_receiver = $this->select()->whereIn('id', config('family.admin_receivers'))->latest()->first();
+        $last_receiver_row = $this->select()->latest()->first();
+    }
+
+
 }

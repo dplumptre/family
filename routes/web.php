@@ -19,7 +19,8 @@ use App\Models\Payer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-Route::get('test', function (Request $request, \App\Lib\ProcessPairing $pairing, \App\Lib\ProcessElapsedPair $elapsedPair) {
+Route::get('test', function (\App\Lib\MakePayerReceiver $makePayerReceiver) {
+    dd($makePayerReceiver->getCompletedPayers()[0]->finishPayer());
 });
 /*
  * AUTH ROUTE

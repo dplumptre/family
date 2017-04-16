@@ -74,10 +74,10 @@ class Payer extends Model
             ->where('package_id', $package_id)
             ->where('status', self::PENDING)
             ->where('pairing_result', self::PENDING)
+            ->where('finished', self::PENDING)
             ->oldest()
             //->toSql()
-            ->first()
-        ;
+            ->first();
     }
 
 
@@ -91,6 +91,32 @@ class Payer extends Model
         }
         self::where('id', $id)->update(['pairing_result' => 1]);
         return;
+    }
+
+    /**
+     * @return mixed
+     * Completed payers are payers who have successfully paid to their receivers
+     * and are ready to be made receivers
+     */
+    public function completedPayers()
+    {
+        return $this->select()
+            ->where('status', self::COMPLETED)//status = 2
+            ->where('pairing_result', self::PENDING)//pairing_result = 0
+            ->where('finished', self::PENDING)//finished=0
+            ->get();
+    }
+
+    /**
+     * method to mark a completed payer to a receiver
+     */
+    public function finishPayer()
+    {
+        if ( $this->status == 2 && $this->pairing_result == 0 && $this->finished == 0)
+        {
+            $this->finished = 1;
+            $this->save();
+        }
     }
 
 

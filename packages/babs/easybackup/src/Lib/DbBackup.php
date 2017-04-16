@@ -29,7 +29,7 @@ class DbBackup
         $result = exec($command, $output);
         //dd(file_exists($backupFile));
         // zip file.
-        $this->zip->add($backupFile);
+        $this->zip->add($backupFile, $this->getFilename());
         $this->zip->store($this->getZipFilename());
         unlink($backupFile);
     }
@@ -68,7 +68,6 @@ class DbBackup
         if (substr($filePath, - 1) != '/')
             $filePath = $filePath . '/';
 
-        dd($filePath);
         return $filePath;
     }
 

@@ -2,24 +2,24 @@
 
 namespace App\Console\Commands;
 
-use App\Lib\ProcessElapsedPair;
+use App\Lib\MakePayerReceiver;
 use Illuminate\Console\Command;
 
-class UpdateElapsedPayers extends Command
+class MakeCompletedPayerReceiver extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:update-pair';
+    protected $signature = 'app:make-payers-receivers';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update the status of a pairing.';
+    protected $description = 'This command is used to make completed payers receivers.';
 
     /**
      * Create a new command instance.
@@ -34,11 +34,11 @@ class UpdateElapsedPayers extends Command
     /**
      * Execute the console command.
      *
-     * @param ProcessElapsedPair $processElapsedPair
+     * @param MakePayerReceiver $makePayerReceiver
      * @return mixed
      */
-    public function handle(ProcessElapsedPair $processElapsedPair)
+    public function handle(MakePayerReceiver $makePayerReceiver)
     {
-        $processElapsedPair->processElapsedPairRows();
+        $makePayerReceiver->makeCompletedPayersReceivers();
     }
 }
