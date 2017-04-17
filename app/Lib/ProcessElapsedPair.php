@@ -36,11 +36,17 @@ class ProcessElapsedPair
         $this->pair = $pair;
         $this->payer = $payer;
         $this->elapsedPairRows = $this->pair->elapsedPairRows();
+        $this->getElapsedPairRows();
     }
 
 
     public function getElapsedPairRows()
     {
+        if ( count($this->elapsedPairRows) > 0 )
+            $this->haveElapsedPairRow();
+        else
+            $this->noElapsedPairRow();
+
         return $this->elapsedPairRows;
     }
 
@@ -56,7 +62,6 @@ class ProcessElapsedPair
             if ( $newPayer )
             {
                 DB::transaction(function() use($elapsedPairRow, $newPayer){
-
                     //update payer.pairing_result = 1
                     //trigger event(PairTimeElapsed($elapsedPairRow))
                     $this->updateOldPairingResult($elapsedPairRow->payer_id);
@@ -67,9 +72,12 @@ class ProcessElapsedPair
 
                     //update new payer.status = 1
                     $this->updateNewPayer($newPayer);
+
+                    $this->pairUpdated($elapsedPairRow->id, $elapsedPairRow->payer_id);
                 });
             } else {
                 //no new payer in row.
+                $this->noNewPayerForElapsedRow($elapsedPairRow->id);
             }
         }
     }
@@ -88,14 +96,47 @@ class ProcessElapsedPair
 
     private function updatePairWithPayer($pairRow, $payer)
     {
+        $pair_expire = config_path('family.pair_expire')?: 7 ;
+
         $pairRow->payer_id = $payer->id;
         $pairRow->image = 'example.jpg';
         $pairRow->payer_status = 1;
         $pairRow->receiver_status = 1;
         $pairRow->status = 1;
-        $pairRow->elapse_time = Carbon::now()->addHours(48)->format('Y-m-d H:i:s');
+        $pairRow->elapse_time = Carbon::now()->addHours($pair_expire)->format('Y-m-d H:i:s');
         $pairRow->save();
 
         //event(\App\Events\Pairing\MemberPaired($payer))
     }
+
+###################################################
+# outputs
+###################################################
+    private function haveElapsedPairRow()
+    {
+        echo $this->now() . ': Elapsed pair row present' . PHP_EOL;
+    }
+
+
+    private function now()
+    {
+        return Carbon::now()->format('Y-m-d H:i:s');
+    }
+
+    private function noNewPayerForElapsedRow($id)
+    {
+        echo $this->now() . ": No payer for elapsed pair row $id" . PHP_EOL;
+    }
+
+    private function pairUpdated($id, $payer)
+    {
+        echo $this->now() . ": Pair row updated $id. defaulted payer: $payer" . PHP_EOL;
+    }
+
+    private function noElapsedPairRow()
+    {
+        echo $this->now() . ": No Elapsed row yet." . PHP_EOL;
+    }
+
+
 }

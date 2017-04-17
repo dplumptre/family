@@ -12,4 +12,16 @@ return [
 
     ],
 
+    'admin_receivers' => [
+        '19', '21'
+    ],
+
+    'pair' => [
+        'frequency' => 'weekly',
+        'when' => 'mondays',
+        'start' => '9:00',
+        'end' => '15:00',
+    ],
+
+    'pair_expire' => 7, //in hours
 ];

@@ -58,6 +58,7 @@ class ProcessPairing
         $receiver = $this->receiver->getNextReceiverInQueue();
         if ($receiver->exists()) {
             $this->receiverModel = $receiver;
+            $this->receiverFoundQueue();
             return true;
         }
         $this->noReceiverInQueue();
@@ -88,9 +89,10 @@ class ProcessPairing
     {
         //loop over payer model to do the insert.
         $amount = Package::find($this->receiverModel->package_id)->paying_amount;
+        $pair_expire = config('family.pair_expire') ?:7;
 
-        DB::transaction(function () use ($amount) {
-
+        DB::transaction(function () use ($amount, $pair_expire) {
+            //mamke sure u're not processing the receiver more than once
             if (!$this->pair->find($this->receiverModel->id)) {
 
                 foreach ($this->payerModel as $row):
@@ -102,7 +104,7 @@ class ProcessPairing
                         self::PROCESSING,
                         self::PROCESSING,
                         self::PROCESSING,
-                        Carbon::now()->addHours(48)->format('Y-m-d H:i:s')
+                        Carbon::now()->addHours($pair_expire)->format('Y-m-d H:i:s')
                     );
 
                     //update payer status
@@ -128,23 +130,38 @@ class ProcessPairing
         $this->receiver->updateReceiverAfterPairing($receiver_id);
     }
 
+####################################################
+# Methods for Logs
+####################################################
+
+    private function receiverFoundQueue()
+    {
+        echo $this->now() . ': 1 receiver to be processed' . PHP_EOL;
+        //event(ReceiverInQueue)
+    }
+
 
     private function noReceiverInQueue()
     {
-        echo 'no receiver in queue';
+        echo $this->now() . ': no receiver in queue' . PHP_EOL;
         //event(NoReceiverInQueue)
     }
 
     private function noPayersInQueue()
     {
-        echo 'no payers in queue';
+        echo $this->now() . ': no payers in queue' . PHP_EOL;
         //event(NoPayersInQueue)
     }
 
     private function onePayerInQueue()
     {
-        echo 'one payer in queue';
+        echo $this->now() . ': 1 payer in queue' . PHP_EOL;
         //event(OnePayerInQueue)
+    }
+
+    private function now()
+    {
+        return Carbon::now()->format('Y-m-d H:i:s');
     }
 
 }
