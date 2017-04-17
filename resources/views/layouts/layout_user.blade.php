@@ -74,9 +74,9 @@
                         <i class="fa fa-times"></i>
                     </button>
 
-                    <a class="h5 text-white" href="index.html">
-                        <i class="fa fa-circle-o-notch text-primary"></i> <span class="h4 font-w600 sidebar-mini-hide">ne</span>
-                    </a>
+        <a class="h5" href="{{ URL::asset('/user-area/dashboard') }}">
+            <img class="img-responsive" src="/assets/img/logo.png" alt="Family Life Club logo" >
+        </a>
                 </div>
                 <!-- END Side Header -->
 

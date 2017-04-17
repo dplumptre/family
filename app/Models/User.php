@@ -28,6 +28,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    
+    private $fakeusers = 60;
 
     public function userDetail()
     {
@@ -83,6 +85,15 @@ class User extends Authenticatable
             ->where('status', self::PROCESSING)
             ->pluck('id');
     }
+    
+    
+    public function allUsers()
+   {
+            
+       $users=  self::count();    
+       return $allusers = $users + $this->fakeusers;
+    }
+    
 
 
 }

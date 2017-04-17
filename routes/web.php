@@ -88,6 +88,7 @@ Route::name('about')->get('about', 'PagesController@about');
 Route::name('news')->get('news', 'PagesController@news');
 Route::name('faq')->get('faq', 'PagesController@faq');
 Route::name('contact')->get('contact', 'PagesController@contact');
+Route::name('post.contact')->post('contact', 'PagesController@postcontact');
 //Route::name('login')->get('login', 'PagesController@login');
 //Route::name('register')->get('register', 'PagesController@register');
 

@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>OneUI - Admin Dashboard Template &amp; UI Framework</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <meta name="description"
           content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
@@ -47,8 +47,7 @@
             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
                 <div class="push-30-t push-50 animated fadeIn">
                     <div class="text-center">
-                        <i class="fa fa-2x fa-circle-o-notch text-primary"></i>
-
+                 @include('layouts.partials.logo')
                         <p class="text-muted push-15-t">Welcome, Please Login</p>
                     </div>
                     @include('layouts.partials.errors', ['header'=>false])
@@ -88,13 +87,17 @@
                             </div>
                         </div>
                     </form>
-                    <hr class="hr-text" data-content="OR">
-                    <button class="btn btn-block btn-primary push-10" type="button">
+                    <hr class="hr-text" data-content="">
+                    
+                   Not a member yet? click <a class="h5" href="{{ URL::asset('/register') }}">
+                       <i>here</i> 
+</a>to register
+<!--                    <button class="btn btn-block btn-primary push-10" type="button">
                         <i class="fa fa-facebook pull-left"></i> Login with Facebook
                     </button>
                     <button class="btn btn-block btn-danger push-10" type="button">
                         <i class="fa fa-google-plus pull-left"></i> Login with Google+
-                    </button>
+                    </button>-->
                 </div>
             </div>
         </div>
@@ -104,7 +107,7 @@
 
 <!-- Login Footer -->
 <div class="pulldown push-30-t text-center animated fadeInUp">
-    <small class="text-muted"><span class="js-year-copy"></span> &copy; OneUI 3.1</small>
+    <small class="text-muted"><span class="js-year-copy"></span> &copy;{{ config('app.name', 'Laravel') }}</small>
 </div>
 <!-- END Login Footer -->
 

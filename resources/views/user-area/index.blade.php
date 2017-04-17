@@ -26,11 +26,10 @@
                 <div class="block block-rounded">
                     <div class="block-content block-content-full">
                         <div class="text-muted">
-                            <small><i class="si si-calendar"></i> Today</small>
+                            <small><i class="si si-calendar"></i> ALL TIME</small>
                         </div>
-                        <div class="font-s12 font-w700">Unq Visitors</div>
-                        <a class="h2 font-w300 text-primary" href="base_comp_charts.html" data-toggle="countTo"
-                           data-to="480950"></a>
+                        <div class="font-s12 font-w700">All Users</div>
+                        <a class="h2 font-w300 text-primary" ></a>{{ $allusers }}
                     </div>
                 </div>
             </div>
@@ -55,6 +54,17 @@
                         <div class="font-s12 font-w700">Earnings</div>
                         <a class="h2 font-w300 text-primary" href="base_comp_charts.html" data-toggle="countTo"
                            data-to="148000" data-before="$"></a>
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6084522876241496"
+     data-ad-slot="2088421046"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
                     </div>
                 </div>
             </div>
@@ -84,11 +94,41 @@
                                         data-action-mode="demo"><i class="si si-refresh"></i></button>
                             </li>
                         </ul>
-                        <h3 class="block-title">Earnings in $</h3>
+                        <h3 class="block-title">Earnings Status $</h3>
                     </div>
 
                     <div class="block-content text-center">
+                            <table class="table-responsive table table-bordered table-striped  js-dataTable-full-pagination">
+                                <thead>
+                                    <tr>
+                                           <th class="text-center" style="width: 10%;"> s/n</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Package Chosen</th>
+                                         <th class="text-center">&#8358; Amount</th>                 
+                                        <th class="text-center" style="width: 10%;">Status</th>
+                                     
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                         @if($payer)  
+                         @foreach($payer as $key => $p)
+                        
+                        <tr>
+                        <td class="text-center">{{$key +1}}</td>
+                        <td class="text-center"> {{ $p->created_at }}</td>
+                        <td class="text-center"> {{ $p->packages->name }}</td>
+                        <td class="text-center">{{ number_format($p->packages->paying_amount) }}</td>
+                        <td class="text-center">   <span class="label label-danger">{{ $arr[$p->status] }} <!--Pending / completed --></span>   </td>
+                        </tr>
+                            @endforeach
+                            @endif
+                            
 
+
+
+                                </tbody>
+                            </table>
                     </div>
                 </div>
             </div>

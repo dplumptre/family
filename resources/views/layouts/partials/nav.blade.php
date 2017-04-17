@@ -52,8 +52,8 @@
 
 <ul class="nav-header pull-left">
     <li class="header-content">
-        <a class="h5" href="index.html">
-            <img src="/assets/img/logo.png" alt="Family Life Club logo" style="width: 200px;">
+        <a class="h5" href="{{ URL::asset('/') }}">
+            <img class="img-responsive" src="/assets/img/logo.png" alt="Family Life Club logo" >
         </a>
     </li>
 </ul>

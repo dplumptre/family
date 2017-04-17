@@ -53,7 +53,7 @@
                 <div class="push-30-t push-20 animated fadeIn">
                     <!-- Register Title -->
                     <div class="text-center">
-                        <i class="fa fa-2x fa-circle-o-notch text-primary"></i>
+                      @include('layouts.partials.logo')
 
                         <h1 class="h3 push-10-t">Create Account</h1>
                     </div>
@@ -142,6 +142,13 @@
                         </div>
                     </form>
                     <!-- END Register Form -->
+                    
+                    
+                                        <hr class="hr-text" data-content="">
+                    
+                   Already a member ? click <a class="h5" href="{{ URL::asset('/login') }}">
+                       <i>here</i> 
+</a>to togin
                 </div>
             </div>
         </div>
@@ -151,7 +158,7 @@
 
 <!-- Register Footer -->
 <div class="pulldown push-30-t text-center animated fadeInUp">
-    <small class="text-muted"><span class="js-year-copy"></span> &copy; OneUI 3.1</small>
+    <small class="text-muted"><span class="js-year-copy"></span> {{ config('app.name', 'Laravel') }}</small>
 </div>
 <!-- END Register Footer -->
 

@@ -11,6 +11,20 @@
                 <!-- Page Header -->
                 <div class="content bg-gray-lighter">
                     <div class="row items-push">
+                    
+<div style="margin: 15px 0px; padding: 10px 0px;text-align: center;background: #efefef">
+ <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive -->
+    <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-6084522876241496"
+    data-ad-slot="2088421046"
+    data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>           
+
+    </div>                         
                         <div class="col-sm-7">
                             <h1 class="page-heading">
                                 Incoming Money 
@@ -70,7 +84,7 @@
                                     <td class="text-center"><form  action="{{ route('post.incoming') }}" method="POST">{{ csrf_field() }} 
                                 <input type="hidden" value="<?php echo $p->id?>" name="pair_id"/>
                                 <input name="r_id" type="hidden" value="<?php echo $p->receiver_status ?>" />
-                            <button type="submit" class="btn btn-danger btn-sm">Confirm
+                            <button type="submit" onclick="return confirm('Are you sure ?');" class="btn btn-danger btn-sm">Confirm
                                 @if($p->receiver_status == 2)
                                 <span>  <i class="fa fa-check"></i></span>
                                 @endif

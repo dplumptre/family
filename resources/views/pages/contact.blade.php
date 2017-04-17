@@ -22,25 +22,21 @@
                 <!-- Section Content -->
                 <div class="row items-push push-50-t push-30">
                     <div class="col-md-6 col-md-offset-3">
-                        <form class="form-horizontal" action="frontend_contact.html" method="post">
+                        
+  @include('layouts.partials.errors')
+                        <form class="form-horizontal" action="{{ route('post.contact')}}" method="post"> {{csrf_field()}}
                             <div class="form-group">
-                                <div class="col-xs-6">
+                                <div class="col-xs-12">
                                     <div class="form-material form-material-primary">
-                                        <input class="form-control" type="text" id="frontend-contact-firstname" name="frontend-contact-firstname" placeholder="Enter your firstname..">
-                                        <label for="frontend-contact-firstname">Firstname</label>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="form-material form-material-primary">
-                                        <input class="form-control" type="text" id="frontend-contact-lastname" name="frontend-contact-lastname" placeholder="Enter your lastname..">
-                                        <label for="frontend-contact-lastname">Lastname</label>
+                                        <input class="form-control" type="text" id="frontend-contact-firstname" name="name" placeholder="Enter your firstname..">
+                                        <label for="frontend-contact-firstname">Full Name</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <div class="form-material form-material-primary">
-                                        <input class="form-control" type="email" id="frontend-contact-email" name="frontend-contact-email" placeholder="Enter your email..">
+                                        <input class="form-control" type="email" id="frontend-contact-email" name="email" placeholder="Enter your email..">
                                         <label for="frontend-contact-email">Email</label>
                                     </div>
                                 </div>
@@ -48,11 +44,10 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <div class="form-material form-material-primary">
-                                        <select class="form-control" id="frontend-contact-subject" name="frontend-contact-subject" size="1">
-                                            <option value="1">Support</option>
-                                            <option value="2">Billing</option>
-                                            <option value="3">Management</option>
-                                            <option value="4">Feature Request</option>
+                                        <select class="form-control" id="frontend-contact-subject" name="subject" size="1">
+                                            <option value="Support">Support</option>
+                                            <option value="Billing">Billing</option>
+                                            <option value="Management">Management</option>
                                         </select>
                                         <label for="frontend-contact-subject">Where?</label>
                                     </div>
@@ -61,7 +56,7 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <div class="form-material form-material-primary">
-                                        <textarea class="form-control" id="frontend-contact-msg" name="frontend-contact-msg" rows="7" placeholder="Enter your message.."></textarea>
+                                        <textarea class="form-control" id="frontend-contact-msg" name="message" rows="7" placeholder="Enter your message.."></textarea>
                                         <label for="frontend-contact-msg">Message</label>
                                     </div>
                                 </div>

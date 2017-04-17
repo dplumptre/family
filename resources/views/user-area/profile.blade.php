@@ -176,7 +176,7 @@
                                         <div class="col-xs-12">
                                             <button class="btn btn-sm btn-primary" type="submit"><i
                                                         class="fa fa-arrow-right push-5-r"></i> Update details
-                                            </button>
+                                            </button><br /><br /><br /><br />
                                         </div>
                                     </div>
                                 </form>
@@ -184,7 +184,27 @@
                         </div>
                     </div>
                 </div>
-            </div>
+              </div>
+            
+       
+            
+                    
+<div style="margin: 50px 0px; padding: 20px 0px;text-align: center;background: #C7C6C8">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- responsive -->
+    <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-6084522876241496"
+    data-ad-slot="2088421046"
+    data-ad-format="auto"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>               
+
+    </div>    
+            
+            
+           
         </div>
     </main>
 
