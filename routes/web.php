@@ -73,7 +73,12 @@ Route::group(
     Route::post('donate', 'UserController@postDonate')->name('post.donate');
     Route::get('upload/{id}', 'UserController@upload')->name('upload');
     Route::post('upload', 'UserController@postupload')->name('post.upload');
+    Route::get('news', 'UserController@news')->name('newz');
+    Route::post('news', 'UserController@postNews')->name('post.news'); 
+    Route::delete('news/{id}', 'UserController@destroyNews')->name('del.newz');
+    Route::get('view-news/{id}', 'UserController@viewNews')->name('viewnewz');   
     
+  Route::get('dashboard-admin', 'UserController@dashboardAdmin')->name('dashboard-admin');
 });
 
 

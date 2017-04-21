@@ -10,11 +10,13 @@ use App\Models\Payer;
 use App\Models\Receiver;
 use Illuminate\Support\Facades\Input;
 use App\Http\Requests\uploadRequest;
+use App\Http\Requests\NewsRequest;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 use Auth;
 use Illuminate\Support\Facades\Request;
 use App\Models\User;
+use App\Models\Newz;
 
 class UserController extends Controller
 {
@@ -26,11 +28,13 @@ class UserController extends Controller
     const COMPLETED = 2;
     
     private $users ;
+    private $news;
 
 
-    function __construct(User $users)
+    function __construct(User $users , Newz $news)
     {
         $this->users = $users;
+        $this->news = $news;
     }
 
 
@@ -40,17 +44,61 @@ class UserController extends Controller
         $id = Auth::id();
         $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result',0)->oldest()->get();
         return view('user-area/index') ->with('arr', arr())
+                                       ->with('news',$this->news->all())
                                        ->with('allusers',$this->users->allUsers())
                                        ->with('payer', $payer);
     }
 
-
+    
+    
+    
+    
+     public function dashboardAdmin()
+    {
+        return view('user-area/dashboard-admin');
+    }   
+    
+    public function news()
+    {
+        $news = $this->news->all();
+        return view('user-area/news')->with('news',$news);
+    }
+ 
+      public function viewNews($id)
+    {
+        $news = $this->news->find($id);
+        return view('user-area/view-news')->with('news',$news);
+    }
+    
+    
+    public function postNews(NewsRequest $request)
+    {
+        $id = Auth::id();
+         $this->news->create([
+        'title' => $request->title,
+        'slug_title' => str_slug($request->title),  
+        'picture'=>'example.jpg',     
+        'body' => $request->body,
+        'user_id'=>  $id   
+        ]);
+        return redirect()->route('post.news');        
+    }    
+   
+    public function destroyNews($id)
+    {
+    $news = $this->news->find($id);
+    $news->delete();
+    return redirect()->route('newz');
+    }
+    
     public function profile()
     {
         return view('user-area/profile');
     }
 
 
+  
+    
     public function postProfile(UpdateProfile $request)
     {
         $request->save();

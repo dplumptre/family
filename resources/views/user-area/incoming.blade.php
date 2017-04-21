@@ -81,7 +81,7 @@
                                     </a> 
                                     @endif    
                                     </td>
-                                    <td class="text-center"><form  action="{{ route('post.incoming') }}" method="POST">{{ csrf_field() }} 
+                                    <td class="text-center"><form  action="{{  secure_url('user-area/incoming') }}" method="POST">{{ csrf_field() }} 
                                 <input type="hidden" value="<?php echo $p->id?>" name="pair_id"/>
                                 <input name="r_id" type="hidden" value="<?php echo $p->receiver_status ?>" />
                             <button type="submit" onclick="return confirm('Are you sure ?');" class="btn btn-danger btn-sm">Confirm

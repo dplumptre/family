@@ -122,7 +122,7 @@ $dateElements=[];
                                             </strong>
                                     </td>
                                 <td class="text-center">
-                            <form  action="{{ route('post.outgoing') }}" method="POST">{{ csrf_field() }}
+                            <form  action="{{  secure_url('user-area/outgoing') }}" method="POST">{{ csrf_field() }}
                                 <input type="hidden" value="<?php echo $p->id?>" name="pair_id"/><input name="payer_id" type="hidden" value="<?php echo $p->payer_id?>" />
                             <button type="submit" onclick="return confirm('Are you sure ?');" class="btn btn-danger btn-sm">I,ve Paid
                                 @if($p->payer_status == 2)

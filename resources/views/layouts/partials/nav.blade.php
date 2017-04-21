@@ -30,9 +30,9 @@
     <li>
     <a class="{{current_link('about', $request->path())}}" href="{{route('about')}}">About</a>
     </li>
-    <li>
-    <a class="{{current_link('news', $request->path())}}" href="{{route('news')}}">News</a>
-    </li>
+<!--    <li>
+    <a class="{{-- current_link('news', $request->path())}}" href="{{route('news') --}}">News</a>
+    </li>-->
     <li>
     <a class="{{current_link('faq', $request->path())}}" href="{{route('faq')}}">Faq</a>
     </li>
