@@ -23,7 +23,7 @@
                 <div class="row items-push push-50-t push-30">
                     <div class="col-md-6 col-md-offset-3">
                         @include('layouts.partials.errors')
-                        <form class="form-horizontal" action="{{route('post.register')}}" method="post">
+                        <form class="form-horizontal" action="{{  secure_url('register') }}" method="post">
                             {{csrf_field()}}
                             <div class="form-group">
                                 <div class="col-xs-12">

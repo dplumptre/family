@@ -94,6 +94,11 @@ class User extends Authenticatable
        return $allusers = $users + $this->fakeusers;
     }
     
-
+    public function latestUsers()
+   {
+            
+       $latestusers =  self::latest()->first();    
+       return $latestusers->username;
+    }
 
 }

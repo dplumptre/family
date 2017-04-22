@@ -38,6 +38,7 @@ class PagesController extends Controller
                             ->where('status',1)->select('amount')->get();
               if( empty($amount_paid )){  $amount_paid = 0; }
         return view('pages.home')->with('allusers',$this->users->allUsers())
+                                 ->with('latestusers',  $this->users->latestUsers())
                                   ->with('amount_paid',$amount_paid);
     }
 

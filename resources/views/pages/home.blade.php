@@ -93,7 +93,7 @@
                                         <td><strong></strong> AUTO ASSIGN</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>&#X20A6 10,000</strong> <br />RETURN INVESTMENT</td>
+                                        <td><strong>&#X20A6 40,000</strong> <br />RETURN INVESTMENT</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -214,8 +214,8 @@
                             <div class="font-w600 text-uppercase text-gray ">Accounts Today</div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="h1 text-gray  push-5" data-toggle="countTo" data-to="3890" data-after="">3890</div>
-                            <div class="font-w600 text-uppercase text-gray ">Products</div>
+                            <div class="h1 text-gray  push-5"  data-to="{{ $latestusers }}" data-after="">{{ $latestusers }}</div>
+                            <div class="font-w600 text-uppercase text-gray ">Newest Member</div>
                         </div>
                         <div class="col-sm-4">
                         <?php
@@ -227,7 +227,7 @@
                         $sum+= $value->amount;
                         }}
                         ?>
-                        <div class="h1 text-gray  push-5" data-toggle="countTo" data-to="{{ $sum}}" data-after=""> {{ $sum }}</div>
+                        <div class="h1 text-gray  push-5"  data-to="{{ number_format($sum) }}" data-after=""> {{ number_format($sum) }}</div>
                         <div class="font-w600 text-uppercase text-gray ">( &#8358; ) Amount Received By Users</div>      
                         </div>
                     </div>
@@ -254,7 +254,8 @@
                                 <i class="fa fa-fw fa-star"></i>
                                 <i class="fa fa-fw fa-star"></i>
                             </div>
-                            <div class="h4 text-white-op push-5">Professional design in a reliable UI framework! A pure joy to work with!</div>
+                            <div class="h4 text-white-op push-5">Buf wealth is a great platform. It affords every participants a good opportunity at 
+generating good income online. A trial will convince you!</div>
                             <div class="h6 text-gray">- Jennifer Jerome</div>
                         </div>
                         <div class="col-sm-4 animated fadeIn" data-toggle="appear" data-offset="-150" data-timeout="150">
@@ -266,7 +267,8 @@
                                 <i class="fa fa-fw fa-star"></i>
                                 <i class="fa fa-fw fa-star"></i>
                             </div>
-                            <div class="h4 text-white-op push-5">Awesome support! Our Web Application looks and works great!</div>
+                            <div class="h4 text-white-op push-5">Buf wealth is one of the best platforms i have been part of. with all the help from other participants,
+i have been able to benefit immensely from the available package!</div>
                             <div class="h6 text-gray">- Jonathan Ferrar</div>
                         </div>
                         <div class="col-sm-4 animated fadeIn" data-toggle="appear" data-offset="-150" data-timeout="300">

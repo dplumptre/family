@@ -22,64 +22,59 @@
     <div class="content content-narrow">
         <!-- Stats -->
         <div class="row text-uppercase">
-            <div class="col-xs-6 col-sm-3">
-                <div class="block block-rounded">
-                    <div class="block-content block-content-full">
+        
+                <div class="col-xs-6 col-sm-3">
+                        <div class="block block-rounded">
+                        <div class="block-content block-content-full">
                         <div class="text-muted">
-                            <small><i class="si si-calendar"></i> ALL TIME</small>
+                        <small><i class="si si-calendar"></i> All Users</small>
                         </div>
-                        <div class="font-s12 font-w700">All Users</div>
+                        <div class="font-s12 font-w700"></div>
                         <a class="h2 font-w300 text-primary" ></a>{{ $allusers }}
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <div class="block block-rounded">
-                    <div class="block-content block-content-full">
-                        <div class="text-muted">
-                            <small><i class="si si-calendar"></i> Today</small>
                         </div>
-                        <div class="font-s12 font-w700">Prd Sales</div>
-                        <a class="h2 font-w300 text-primary" href="base_comp_charts.html" data-toggle="countTo"
-                           data-to="495"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <div class="block block-rounded">
-                    <div class="block-content block-content-full">
-                        <div class="text-muted">
-                            <small><i class="si si-calendar"></i> Today</small>
                         </div>
-                        <div class="font-s12 font-w700">Earnings</div>
-                        <a class="h2 font-w300 text-primary" href="base_comp_charts.html" data-toggle="countTo"
-                           data-to="148000" data-before="$"></a>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- responsive -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-6084522876241496"
-     data-ad-slot="2088421046"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-                    </div>
                 </div>
-            </div>
-            <div class="col-xs-6 col-sm-3">
-                <div class="block block-rounded">
-                    <div class="block-content block-content-full">
+                <div class="col-xs-6 col-sm-3">
+                        <div class="block block-rounded">
+                        <div class="block-content block-content-full">
                         <div class="text-muted">
-                            <small><i class="si si-calendar"></i> Today</small>
+                        <small><i class="si si-calendar"></i> Date</small>
                         </div>
-                        <div class="font-s12 font-w700">Average Sale</div>
+                        <div class="font-s12 font-w700"></div>
+                        <a class="h2 font-w300 text-primary"></a>{{ date(" Y / m / d") }}
+                        </div>
+                        </div>
+                </div>      
+
+                <div class="col-xs-12 col-sm-6">
+                        <div class="block block-rounded">
+                        <div class="block-content block-content-full" style="padding: 25px 0px;">
+                        <div class="text-muted">
+
+                        </div>
+                        <div class="font-s12 font-w700"></div>
                         <a class="h2 font-w300 text-primary" href="base_comp_charts.html" data-toggle="countTo"
-                           data-to="299" data-before="$"></a>
-                    </div>
-                </div>
-            </div>
+                        data-to="148000" data-before="$"></a>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                        <!-- responsive -->
+                        <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-6084522876241496"
+                        data-ad-slot="2088421046"
+                        data-ad-format="auto"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                        </div>
+                        </div>
+                </div>            
+            
+            
+            
+
+            
+            
         </div>
         <!-- END Stats -->
 
@@ -94,7 +89,7 @@
                                         data-action-mode="demo"><i class="si si-refresh"></i></button>
                             </li>
                         </ul>
-                        <h3 class="block-title">Earnings Status $</h3>
+                        <h3 class="block-title"> Status </h3>
                     </div>
 
                     <div class="block-content text-center">
@@ -145,114 +140,43 @@
                                         data-action-mode="demo"><i class="si si-refresh"></i></button>
                             </li>
                         </ul>
-                        <h3 class="block-title"> Updates</h3>
+                        <h3 class="block-title"> Latest News</h3>
                     </div>
                     <div class="block-content">
                         <ul class="list list-timeline pull-t">
-                            <!-- Twitter Notification -->
-                            <li>
-                                <div class="list-timeline-time">12 hrs ago</div>
-                                <i class="fa fa-twitter list-timeline-icon bg-info"></i>
 
-                                <div class="list-timeline-content">
-                                    <p class="font-w600">+ 1150 Followers</p>
-
-                                    <p class="font-s13">You’re getting more and more followers, keep it up!</p>
-                                </div>
-                            </li>
-                            <!-- END Twitter Notification -->
-
-                            <!-- Generic Notification -->
-                            <li>
-                                <div class="list-timeline-time">4 hrs ago</div>
-                                <i class="fa fa-briefcase list-timeline-icon bg-city"></i>
-
-                                <div class="list-timeline-content">
-                                    <p class="font-w600">+ 3 New Products were added!</p>
-
-                                    <p class="font-s13">Congratulations!</p>
-                                </div>
-                            </li>
-                            <!-- END Generic Notification -->
 
                             <!-- System Notification -->
+
+                            
+                            
+                            
+                            @if($news)  
+                            @foreach($news as $key => $p)
                             <li>
-                                <div class="list-timeline-time">1 day ago</div>
+                                <div class="list-timeline-time">{{ $p->created_at }}</div>
                                 <i class="fa fa-check list-timeline-icon bg-success"></i>
 
                                 <div class="list-timeline-content">
-                                    <p class="font-w600">Database backup completed!</p>
+                                    <p class="font-w600">{{ $p->title }}!</p>
+                                    <p >{{ substr( strtolower($p->body),0,200) }}</p>
 
-                                    <p class="font-s13">Download the <a href="javascript:void(0)">latest backup</a>.</p>
+                                    <p class="font-s13">Read <a href="{{url('user-area/view-news/'.$p->id )}}"> more</a>.</p>
                                 </div>
                             </li>
-                            <!-- END System Notification -->
-
-                            <!-- Facebook Notification -->
-                            <li>
-                                <div class="list-timeline-time">3 hrs ago</div>
-                                <i class="fa fa-facebook list-timeline-icon bg-default"></i>
-
-                                <div class="list-timeline-content">
-                                    <p class="font-w600">+ 290 Page Likes</p>
-
-                                    <p class="font-s13">This is great, keep it up!</p>
-                                </div>
-                            </li>
-                            <!-- END Facebook Notification -->
-
-                            <!-- Social Notification -->
-                            <li>
-                                <div class="list-timeline-time">2 days ago</div>
-                                <i class="fa fa-user-plus list-timeline-icon bg-modern"></i>
-
-                                <div class="list-timeline-content">
-                                    <p class="font-w600">+ 3 Friend Requests</p>
-                                    <ul class="nav-users push-10-t push">
-                                        <li>
-                                            <a href="base_pages_profile.html">
-                                                <img class="img-avatar" src="assets/img/avatars/avatar11.jpg" alt="">
-                                                <i class="fa fa-circle text-success"></i> Ethan Howard
-                                                <div class="font-w400 text-muted">
-                                                    <small>Graphic Designer</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="base_pages_profile.html">
-                                                <img class="img-avatar" src="assets/img/avatars/avatar6.jpg" alt="">
-                                                <i class="fa fa-circle text-warning"></i> Lisa Gordon
-                                                <div class="font-w400 text-muted">
-                                                    <small>Photographer</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="base_pages_profile.html">
-                                                <img class="img-avatar" src="assets/img/avatars/avatar16.jpg" alt="">
-                                                <i class="fa fa-circle text-danger"></i> Walter Fox
-                                                <div class="font-w400 text-muted">
-                                                    <small>UI Designer</small>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <!-- END Social Notification -->
-
-                            <!-- System Notification -->
-                            <li class="push-5">
-                                <div class="list-timeline-time">1 week ago</div>
-                                <i class="fa fa-cog list-timeline-icon bg-primary-dark"></i>
-
-                                <div class="list-timeline-content">
-                                    <p class="font-w600">System updated to v2.02</p>
-
-                                    <p class="font-s13">Check the complete changelog at the <a
-                                                href="javascript:void(0)">activity page</a>.</p>
-                                </div>
-                            </li>
+                            @endforeach
+                            @endif          
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                           
                             <!-- END System Notification -->
                         </ul>
                     </div>

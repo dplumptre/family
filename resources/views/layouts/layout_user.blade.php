@@ -15,23 +15,23 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-    <link rel="shortcut icon" href="/assets/img/favicons/favicon.png">
+    <link rel="shortcut icon" href="{{ secure_asset('assets/img/favicons/favicon.png') }}">
 
-    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="/assets/img/favicons/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-16x16.png') }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-32x32.png') }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-96x96.png') }}" sizes="96x96">
+    <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-160x160.png') }}" sizes="160x160">
+    <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-192x192.png') }}" sizes="192x192">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="/assets/img/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/assets/img/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-180x180.png') }}">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
@@ -41,14 +41,14 @@
 
 
     <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{ URL::asset('assets/js/plugins/datatables/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('assets/js/plugins/datatables/jquery.dataTables.min.css') }}">
     <!-- Bootstrap and OneUI CSS framework -->
-    <link rel="stylesheet" href="{{ URL::asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" id="css-main" href="{{ URL::asset('assets/css/oneui.css') }}">
-    <link rel="stylesheet" id="css-theme" href="/assets/css/style.css">
+    <link rel="stylesheet" href="{{ secure_asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" id="css-main" href="{{ secure_asset('assets/css/oneui.css') }}">
+    <link rel="stylesheet" id="css-theme" href="{{ secure_asset('/assets/css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
-    <link rel="stylesheet" id="css-main" href="{{ URL::asset('assets/css/custom.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('fancybox/jquery.fancybox-1.3.4.css') }}"/>
+    <link rel="stylesheet" id="css-main" href="{{ secure_asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ secure_asset('fancybox/jquery.fancybox-1.3.4.css') }}"/>
 
 
     <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
@@ -74,8 +74,8 @@
                         <i class="fa fa-times"></i>
                     </button>
 
-        <a class="h5" href="{{ URL::asset('/user-area/dashboard') }}">
-            <img class="img-responsive" src="/assets/img/logo.png" alt="Family Life Club logo" >
+        <a class="h5" href="{{ secure_asset('/user-area/dashboard') }}">
+            <img class="img-responsive" src="{{ secure_asset('/assets/img/logo.png') }}" alt="Family Life Club logo" >
         </a>
                 </div>
                 <!-- END Side Header -->
@@ -89,28 +89,33 @@
                         </li>
 
                         <li>
-                            <a href="{{ URL::asset('user-area/profile') }}"><i class="si si-speedometer"></i><span
+                            <a href="{{ secure_asset('user-area/profile') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Profile</span></a>
                         </li>
                         <li>
-                            <a href="{{ URL::asset('user-area/donate') }}"><i class="si si-speedometer"></i><span
+                            <a href="{{ secure_asset('user-area/donate') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Make a Donation</span></a>
                         </li>
                         <li>
-                            <a href="{{ URL::asset('user-area/incoming') }}"><i class="si si-speedometer"></i><span
+                            <a href="{{ secure_asset('user-area/incoming') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Incoming Money</span></a>
                         </li>
                         <li>
-                            <a href="{{ URL::asset('user-area/outgoing') }}"><i class="si si-speedometer"></i><span
+                            <a href="{{ secure_asset('user-area/outgoing') }}"><i class="si si-speedometer"></i><span
                                         class="sidebar-mini-hide">Outgoing Money</span></a>
                         </li>
 
 
                         @if($currentUser->hasAnyRole(["superadmin","admin"]))
+                             <li>
+                                <a href="{{ secure_asset('user-area/news') }}"><i class="si si-speedometer"></i><span
+                                            class="sidebar-mini-hide">News</span></a>
+                            </li>                          
                             <li>
-                                <a href="{{ route('admin-dashboard') }}"><i class="si si-speedometer"></i><span
+                                <a href="{{ secure_asset('user-area/dashboard-admin') }}"><i class="si si-speedometer"></i><span
                                             class="sidebar-mini-hide">Admin Dashboard</span></a>
                             </li>
+                         
                         @endif
 
 
@@ -131,31 +136,31 @@
             <li>
                 <div class="btn-group">
                     <button class="btn btn-default btn-image dropdown-toggle" data-toggle="dropdown" type="button">
-                        <img src="{{ URL::asset('assets/img/avatars/avatar10.jpg') }}"
+                        <img src="{{ secure_asset('assets/img/avatars/avatar10.jpg') }}"
                              alt="Avatar"> {{$currentUser->username}}
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
 
                         <li>
-                            <a tabindex="-1" href="{{ URL::asset('user-area/profile') }}">
+                            <a tabindex="-1" href="{{ secure_asset('user-area/profile') }}">
                                 <i class="si si-user pull-right"></i>
                                 Profile
                             </a>
                         </li>
                         <li>
-                            <a tabindex="-1" href="{{route('change.password')}}">
+                            <a tabindex="-1" href="{{ secure_asset('user-area/change-password') }}">
                                 <i class="si si-user pull-right"></i> Change Password
                             </a>
                         </li>
 
 
                         <li>
-                            <a tabindex="-1" href="{{route('logout')}}"
+                            <a tabindex="-1" href="{{ secure_asset('logout')}}"
                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 <i class="si si-logout pull-right"></i>Log out
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ secure_asset('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                         </li>
@@ -252,27 +257,27 @@
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
 
 
-<script src="{{ URL::asset('assets/js/core/jquery.min.js') }}"></script>
-<script src="/assets/js/core/bootstrap.min.js"></script>
-<script src="/assets/js/core/jquery.slimscroll.min.js"></script>
-<script src="/assets/js/core/jquery.scrollLock.min.js"></script>
-<script src="/assets/js/core/jquery.appear.min.js"></script>
-<script src="/assets/js/core/jquery.countTo.min.js"></script>
-<script src="/assets/js/core/jquery.placeholder.min.js"></script>
-<script src="/assets/js/core/js.cookie.min.js"></script>
-<script src="/assets/js/app.js"></script>
+<script src="{{ secure_asset('assets/js/core/jquery.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/core/bootstrap.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/core/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/core/jquery.scrollLock.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/core/jquery.appear.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/core/jquery.countTo.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/core/jquery.placeholder.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/core/js.cookie.min.js') }}"></script>
+<script src="{{ secure_asset('assets/js/app.js') }}"></script>
 
 
 <!-- Page JS Plugins -->
-<script src="/assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ secure_asset('assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <!-- Page JS Code -->
-<script src="/assets/js/pages/base_tables_datatables.js"></script>
+<script src="{{ secure_asset('assets/js/pages/base_tables_datatables.js') }}"></script>
 @yield('scripts')
 @include('includes.notify')
 
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script type="text/javascript" src="{{ URL::asset('fancybox/jquery.fancybox-1.3.4.pack.js') }}"></script>
+<script type="text/javascript" src="{{ secure_asset('fancybox/jquery.fancybox-1.3.4.pack.js') }}"></script>
 
 
 <script>

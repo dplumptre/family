@@ -64,7 +64,7 @@
                         <div class="block-content">
                           @include('layouts.partials.errors')  
                             
-                          <form class="form-horizontal push-10-t push-10" action="{{route('post.upload')}}" enctype="multipart/form-data" method="post" >
+                          <form class="form-horizontal push-10-t push-10" action="{{  secure_url('user-area/upload') }}" enctype="multipart/form-data" method="post" >
         {{csrf_field()}}
      <div class="row">
             <div class="col-sm-7">

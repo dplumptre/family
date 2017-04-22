@@ -91,7 +91,7 @@
                             </div>
                             <div class="block-content bg-gray-light">
                                 @include('layouts.partials.errors')
-                                <form class="form-horizontal push-5-t" action="{{route('post.profile')}}" method="post">
+                                <form class="form-horizontal push-5-t" action="{{  secure_url('user-area/profile') }}" method="post">
                                     {{csrf_field()}}
                                     <div class="form-group">
                                         <div class="col-xs-6{{$errors->has('firstname')?' has-error':''}}">

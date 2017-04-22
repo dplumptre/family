@@ -27,7 +27,7 @@
                             </div>
                             <div class="block-content">
                                 @include('layouts.partials.errors')
-                                <form class="form-horizontal push-5-t" action="{{route('post.change.password')}}" method="post">
+                                <form class="form-horizontal push-5-t" action="{{  secure_url('user-area/change-password') }}" method="post">
                                     {{csrf_field()}}
 
                                     <div class="form-group">
