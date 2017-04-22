@@ -5,7 +5,6 @@ namespace App\Console;
 use App\Console\Commands\DoPairing;
 use App\Console\Commands\MakeCompletedPayerReceiver;
 use App\Console\Commands\UpdateElapsedPayers;
-use App\Lib\MakePayerReceiver;
 use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -36,25 +35,18 @@ class Kernel extends ConsoleKernel
 
         //pair payers to a receiver
         $schedule->command('app:pair')
-            ->mondays()
-            ->everyFiveMinutes()
-            ->timezone('Africa/Lagos')
-            ->between('9:00', '23:00')
+            ->hourly()
             ->appendOutputTo(storage_path('commands/pairing-output.txt'));
 
         //update elapsed pair
         $schedule->command('app:update-pair')
-            ->everyThirtyMinutes()
-            ->timezone('Africa/Lagos')
-            ->appendOutputTo(storage_path('commands/update-pair.txt'))
-        ;
+            ->everyFiveMinutes()
+            ->appendOutputTo(storage_path('commands/update-pair.txt'));
 
         //make successful payers receivers
-        $schedule->command('app:make-payers-receivers')
+        $schedule->command('app:make-receivers')
             ->everyFiveMinutes()
-            ->timezone('Africa/Lagos')
-            ->appendOutputTo('commands/receivers.txt')
-            ;
+            ->appendOutputTo('commands/receivers.txt');
     }
 
     /**

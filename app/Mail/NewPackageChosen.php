@@ -1,25 +1,27 @@
 <?php
 
-namespace App\Mail\Payer;
+namespace App\Mail;
 
+use App\Models\Package;
 use App\Models\Payer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class PayerPaired extends Mailable
+class NewPackageChosen extends Mailable
 {
     use Queueable, SerializesModels;
     /**
-     * @var Payer
+     * @var Package
      */
-    private $payer;
+    public $payer;
 
     /**
      * Create a new message instance.
      *
      * @param Payer $payer
+     * @internal param Package $package
      */
     public function __construct(Payer $payer)
     {
@@ -34,6 +36,8 @@ class PayerPaired extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from( config('family.emails.support') )
+            ->subject('Package Accepted.')
+            ->markdown('emails.user.new-package-chosen');
     }
 }

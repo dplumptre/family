@@ -1,6 +1,13 @@
 <?php
 
 use Carbon\Carbon;
+use Spatie\Html\Html;
+
+
+function html(): Html
+{
+    return app(Html::class);
+}
 
 function arr()
 {

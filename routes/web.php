@@ -12,15 +12,11 @@
 */
 
 
-use App\Models\Pair;
-use App\Models\Role;
-use Carbon\Carbon;
-use App\Models\Payer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\AutomatedReceiver;
+use App\Models\Receiver;
 
-Route::get('test', function (\App\Lib\MakePayerReceiver $makePayerReceiver) {
-    dd($makePayerReceiver->getCompletedPayers()[0]->finishPayer());
+Route::get('test', function (AutomatedReceiver $automatedReceiver, Receiver $receiver) {
+
 });
 /*
  * AUTH ROUTE

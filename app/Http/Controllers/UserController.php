@@ -24,8 +24,8 @@ class UserController extends Controller
     const PENDING = 0;
     const PROCESSING = 1;
     const COMPLETED = 2;
-    
-    private $users ;
+
+    private $users;
 
 
     function __construct(User $users)
@@ -35,13 +35,13 @@ class UserController extends Controller
 
 
     public function index()
-    { 
-         
+    {
+
         $id = Auth::id();
-        $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result',0)->oldest()->get();
-        return view('user-area/index') ->with('arr', arr())
-                                       ->with('allusers',$this->users->allUsers())
-                                       ->with('payer', $payer);
+        $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result', 0)->oldest()->get();
+        return view('user-area/index')->with('arr', arr())
+            ->with('allusers', $this->users->allUsers())
+            ->with('payer', $payer);
     }
 
 
@@ -96,9 +96,9 @@ class UserController extends Controller
         //basicalling getting the person i am pairing with and will be paying to
         $payerid_array = auth()->user()->payers()->where('status', '>', self::PENDING)->pluck('id');
         if ($payerid_array) {
-        $p = $pair->whereIn('payer_id', $payerid_array)->get();
+            $p = $pair->whereIn('payer_id', $payerid_array)->get();
         } else {
-        $p = null;
+            $p = null;
         }
 
         return view('user-area/outgoing')->with('getPair', $p);
@@ -109,9 +109,9 @@ class UserController extends Controller
     {
         $receiverid_array = auth()->user()->receivers()->where('status', '>', self::PENDING)->pluck('id');
         if ($receiverid_array) {
-        $p = $pair->whereIn('receiver_id', $receiverid_array)->get();
+            $p = $pair->whereIn('receiver_id', $receiverid_array)->get();
         } else {
-        $p = null;
+            $p = null;
         }
         return view('user-area/incoming')->with('getPair', $p);
     }
@@ -163,23 +163,24 @@ class UserController extends Controller
     {
         $id = Auth::id();
         $package = Package::all();
-        $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result',0)->oldest()->get();
+        $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result', 0)->oldest()->get();
 
         return view('user-area/donate')->with('package', $package)
-        ->with('arr', arr())
-        ->with('payer', $payer);
+            ->with('arr', arr())
+            ->with('payer', $payer);
     }
 
 
-    public function postDonate(\App\Http\Requests\createPackage $request)
+    public function postDonate(createPackage $request)
     {
         $id = Auth::id();
-        Payer::create([
-        'user_id' => $id,
-        'package_id' => $request->package,
-        'status' => 0,
-        'pairing_result' => 0,
+        $payer = Payer::create([
+            'user_id' => $id,
+            'package_id' => $request->package,
+            'status' => 0,
+            'pairing_result' => 0,
         ]);
+
         notify()->flash("Package successfully selected", "success", ['text' => 'You will be sent an email as soon as you have been matched!']);
         return redirect()->route('post.donate')->with('status', arr()[0]);
 
