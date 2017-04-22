@@ -37,9 +37,9 @@
           href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
 
     <link rel="stylesheet" href="{{ secure_asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" id="css-main" href="/assets/css/oneui.css">
+    <link rel="stylesheet" id="css-main" href="{{ secure_asset('assets/css/oneui.css') }}">
     {{--<link rel="stylesheet" id="css-theme" href="/assets/css/themes/flat.min.css">--}}
-    <link rel="stylesheet" id="css-theme" href="/assets/css/style.css">
+    <link rel="stylesheet" id="css-theme" href="{{ secure_asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     {{--<link rel="stylesheet" id="css-main" href="{{ secure_asset('assets/css/custom.css') }}">--}}
     <script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>

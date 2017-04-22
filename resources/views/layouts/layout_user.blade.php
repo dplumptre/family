@@ -149,18 +149,18 @@
                             </a>
                         </li>
                         <li>
-                            <a tabindex="-1" href="{{route('change.password')}}">
+                            <a tabindex="-1" href="{{ secure_asset('user-area/change-password') }}">
                                 <i class="si si-user pull-right"></i> Change Password
                             </a>
                         </li>
 
 
                         <li>
-                            <a tabindex="-1" href="{{route('logout')}}"
+                            <a tabindex="-1" href="{{ secure_asset('logout')}}"
                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 <i class="si si-logout pull-right"></i>Log out
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ secure_asset('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                         </li>
