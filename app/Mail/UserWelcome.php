@@ -33,8 +33,7 @@ class UserWelcome extends Mailable
      */
     public function build()
     {
-        return $this->from( config('family.emails.support') )
-                    ->subject('Welcome to ' . config('app.name'))
+        return $this->subject('Welcome to ' . config('app.name'))
                     ->markdown('emails.user.welcome');
     }
 }

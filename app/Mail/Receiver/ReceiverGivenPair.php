@@ -34,8 +34,7 @@ class ReceiverGivenPair extends Mailable
      */
     public function build()
     {
-        return $this->from( config('family.emails.support') )
-            ->subject('You have now Donors')
+        return $this->subject('You have now Donors')
             ->markdown('emails.user.receiver-given-pair');
     }
 }

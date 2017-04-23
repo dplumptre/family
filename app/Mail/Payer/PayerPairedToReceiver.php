@@ -34,8 +34,7 @@ class PayerPairedToReceiver extends Mailable
      */
     public function build()
     {
-        return $this->from( config('family.emails.support') )
-            ->subject('You Have a new Recipient')
+        return $this->subject('You Have a new Recipient')
             ->markdown('emails.user.payer-paired');
     }
 }

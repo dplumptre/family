@@ -73,6 +73,7 @@ class RegisterController extends Controller
         $user_role = Role::where('type', 'user')->first();
         $user->roles()->attach($member_role);
         $user->roles()->attach($user_role);
+
         return $user;
     }
 }

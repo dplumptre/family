@@ -90,8 +90,9 @@
                                 <h3 class="block-title">Edit Details</h3>
                             </div>
                             <div class="block-content bg-gray-light">
-                                @include('layouts.partials.errors')
-                                <form class="form-horizontal push-5-t" action="{{  secure_url('user-area/profile') }}" method="post">
+
+                                <form class="form-horizontal push-5-t" action="{{  secure_url('user-area/profile') }}"
+                                      method="post">
                                     {{csrf_field()}}
                                     <div class="form-group">
                                         <div class="col-xs-6{{$errors->has('firstname')?' has-error':''}}">
@@ -99,12 +100,24 @@
                                             <input class="form-control" type="text" id="firstname"
                                                    name="firstname" placeholder="Enter your firstname.."
                                                    value="{{old('firstname')?:(!empty($currentUser->userDetail->firstname)?$currentUser->userDetail->firstname:'')}}">
+
+                                            @if ($errors->has('firstname'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('firstname') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                         <div class="col-xs-6{{$errors->has('lastname')?' has-error':''}}">
                                             <label for="lastname">Lastname</label>
                                             <input class="form-control" type="text" id="lastname"
                                                    name="lastname" placeholder="Enter your lastname.."
                                                    value="{{old('lastname')?:(!empty($currentUser->userDetail->lastname)?$currentUser->userDetail->lastname:'')}}">
+
+                                            @if ($errors->has('lastname'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('lastname') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -115,6 +128,12 @@
                                             <input class="form-control" type="text" id="phone"
                                                    name="phone" placeholder="Enter your phone number.."
                                                    value="{{old('phone')?:(!empty($currentUser->userDetail->phone)?$currentUser->userDetail->phone:'')}}">
+
+                                            @if ($errors->has('phone'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('phone') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -126,11 +145,18 @@
                                                 @include('includes.banks')
                                             </select>
                                         </div>
+
                                         <div class="col-xs-6{{$errors->has('account_name')?' has-error':''}}">
                                             <label for="account_name">Account Name</label>
                                             <input class="form-control" type="text" id="account_name"
                                                    name="account_name" placeholder="Account Name"
                                                    value="{{old('account_name')?:(!empty($currentUser->userDetail->account_name)?$currentUser->userDetail->account_name:'')}}">
+
+                                            @if ($errors->has('account_name'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('account_name') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -140,7 +166,15 @@
                                             <input class="form-control" type="text" id="account_number"
                                                    name="account_number" placeholder="Account Number" maxlength="10"
                                                    value="{{old('account_number')?:(!empty($currentUser->userDetail->account_number)?$currentUser->userDetail->account_number:'')}}">
+
+                                            @if ($errors->has('account_number'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('account_number') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
+
+
                                         <div class="col-xs-6{{$errors->has('account_type')?' has-error':''}}">
                                             <label for="account_type">Account Type</label>
                                             <select name="account_type" id="account_type" class="form-control">
@@ -176,7 +210,8 @@
                                         <div class="col-xs-12">
                                             <button class="btn btn-sm btn-primary" type="submit"><i
                                                         class="fa fa-arrow-right push-5-r"></i> Update details
-                                            </button><br /><br /><br /><br />
+                                            </button>
+                                            <br/><br/><br/><br/>
                                         </div>
                                     </div>
                                 </form>
@@ -184,27 +219,24 @@
                         </div>
                     </div>
                 </div>
-              </div>
-            
-       
-            
-                    
-<div style="margin: 50px 0px; padding: 20px 0px;text-align: center;background: #C7C6C8">
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <!-- responsive -->
-    <ins class="adsbygoogle"
-    style="display:block"
-    data-ad-client="ca-pub-6084522876241496"
-    data-ad-slot="2088421046"
-    data-ad-format="auto"></ins>
-    <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>               
+            </div>
 
-    </div>    
-            
-            
-           
+
+            <div style="margin: 50px 0px; padding: 20px 0px;text-align: center;background: #C7C6C8">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- responsive -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-6084522876241496"
+                     data-ad-slot="2088421046"
+                     data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+
+            </div>
+
+
         </div>
     </main>
 

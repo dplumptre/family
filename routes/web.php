@@ -14,6 +14,8 @@
 
 use App\Models\AutomatedReceiver;
 use App\Models\Receiver;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('test', function (AutomatedReceiver $automatedReceiver, Receiver $receiver) {
 

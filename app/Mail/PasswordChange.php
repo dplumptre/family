@@ -34,8 +34,7 @@ class PasswordChange extends Mailable
      */
     public function build()
     {
-        return $this->from(config('family.emails.password-change'))
-            ->subject('Password Change Request')
+        return $this->subject('Password Change Request')
             ->markdown('emails.user.password-change');
     }
 }

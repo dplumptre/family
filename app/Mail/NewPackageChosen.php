@@ -36,8 +36,7 @@ class NewPackageChosen extends Mailable
      */
     public function build()
     {
-        return $this->from( config('family.emails.support') )
-            ->subject('Package Accepted.')
+        return $this->subject('Package Accepted.')
             ->markdown('emails.user.new-package-chosen');
     }
 }

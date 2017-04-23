@@ -27,10 +27,10 @@ class UpdateProfile extends FormRequest
         return [
             'firstname' => 'required|string|min:3|max:20',
             'lastname' => 'required|string|min:3|max:20',
-            'phone' => ['regex:/^(\+?)(234)(7|8|9)\d{9}/'],
+            'phone' => ['regex:/^(\+)(234)(7|8|9)\d{9}/', 'unique:user_details'],
             'bank_name' => ['required', Rule::in(array_keys(banks()))],
             'account_name' => 'required|string',
-            'account_number' => 'required|digits:10',
+            'account_number' => 'required|digits:10|unique:user_details',
             'account_type' => ['required', Rule::in(['savings', 'current'])],
             'bank_branch' => 'string',
         ];
@@ -40,7 +40,8 @@ class UpdateProfile extends FormRequest
     public function messages()
     {
         return [
-            'phone.regex' => 'Please use +2348123456789 format for Phone Number',
+            'phone.regex' => 'Invalid Phone number format. Use +2348....',
+            'phone.unique' => 'This Phone number has been used for another account',
         ];
     }
 
