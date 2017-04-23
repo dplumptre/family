@@ -8,11 +8,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <meta name="description"content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="description"
+          content="OneUI - Admin Dashboard Template &amp; UI Framework created by pixelcave and published on Themeforest">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="{{ secure_asset('assets/img/favicons/favicon.png') }}">
@@ -20,24 +21,35 @@
     <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-16x16.png') }}" sizes="16x16">
     <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-32x32.png') }}" sizes="32x32">
     <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-96x96.png') }}" sizes="96x96">
-    <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-160x160.png') }}" sizes="160x160">
-    <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-192x192.png') }}" sizes="192x192">
+    <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-160x160.png') }}"
+          sizes="160x160">
+    <link rel="icon" type="image/png" href="{{ secure_asset('/assets/img/favicons/favicon-192x192.png') }}"
+          sizes="192x192">
 
-    <link rel="apple-touch-icon" sizes="57x57" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-57x57.png') }}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-60x60.png') }}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-72x72.png') }}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-76x76.png') }}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-114x114.png') }}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-120x120.png') }}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-144x144.png') }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-152x152.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-180x180.png') }}">
+    <link rel="apple-touch-icon" sizes="57x57"
+          href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60"
+          href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72"
+          href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76"
+          href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120"
+          href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144"
+          href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152"
+          href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180"
+          href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-180x180.png') }}">
     <!-- END Icons -->
 
     <!-- Stylesheets -->
     <!-- Web fonts -->
     <link rel="stylesheet"
-          href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
 
 
     <!-- Page JS Plugins CSS -->
@@ -74,9 +86,10 @@
                         <i class="fa fa-times"></i>
                     </button>
 
-        <a class="h5" href="{{ secure_asset('/user-area/dashboard') }}">
-            <img class="img-responsive" src="{{ secure_asset('/assets/img/logo.png') }}" alt="Family Life Club logo" >
-        </a>
+                    <a class="h5" href="{{ secure_asset('/user-area/dashboard') }}">
+                        <img class="img-responsive" src="{{ secure_asset('/assets/img/logo.png') }}"
+                             alt="Family Life Club logo">
+                    </a>
                 </div>
                 <!-- END Side Header -->
 
@@ -107,15 +120,16 @@
 
 
                         @if($currentUser->hasAnyRole(["superadmin","admin"]))
-                             <li>
+                            <li>
                                 <a href="{{ secure_asset('user-area/news') }}"><i class="si si-speedometer"></i><span
                                             class="sidebar-mini-hide">News</span></a>
-                            </li>                          
+                            </li>
                             <li>
-                                <a href="{{ secure_asset('user-area/dashboard-admin') }}"><i class="si si-speedometer"></i><span
+                                <a href="{{ secure_asset('user-area/dashboard-admin') }}"><i
+                                            class="si si-speedometer"></i><span
                                             class="sidebar-mini-hide">Admin Dashboard</span></a>
                             </li>
-                         
+
                         @endif
 
 
@@ -160,7 +174,8 @@
                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 <i class="si si-logout pull-right"></i>Log out
                             </a>
-                            <form id="logout-form" action="{{ secure_asset('logout') }}" method="POST" style="display: none;">
+                            <form id="logout-form" action="{{ secure_asset('logout') }}" method="POST"
+                                  style="display: none;">
                                 {{ csrf_field() }}
                             </form>
                         </li>
@@ -276,58 +291,43 @@
 @include('includes.notify')
 
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script type="text/javascript" src="{{ secure_asset('fancybox/jquery.fancybox-1.3.4.pack.js') }}"></script>
 
 
 <script>
-$(document).ready(function(){
- 
-$('.mark').hide();
-$('*[class^="mark"]').hide();
-});
+    $(document).ready(function () {
+
+        $('.mark').hide();
+        $('*[class^="mark"]').hide();
+    });
 
 
+    function paid(pair, payer) {
 
-  
- function paid(pair,payer)
-{
- 
- //alert(sel +" "+p);
+        //alert(sel +" "+p);
 
- $('.mark'+pair).show();
- 
- 
-    $.ajax(
-        {
-        url: 'http://family.dev/user-area/ogaidonpay',
-        type: 'POST',
-        //dataType:'JSON',
-        data: {'pair_id': pair, 'payer_id': payer}, // takes care of getting input value
-        success: function (data) {
-        $('#holla').html(data);
-           console.log(data);
-        },
-        error: function (response) {
-       console.log("error:" + response.responseText);
-        }
+        $('.mark' + pair).show();
 
 
-        });
-        
-} 
-    
-    
-    
+        $.ajax(
+                {
+                    url: 'https://family.dev/user-area/ogaidonpay',
+                    type: 'POST',
+                    //dataType:'JSON',
+                    data: {'pair_id': pair, 'payer_id': payer}, // takes care of getting input value
+                    success: function (data) {
+                        $('#holla').html(data);
+                        console.log(data);
+                    },
+                    error: function (response) {
+                        console.log("error:" + response.responseText);
+                    }
 
 
+                });
 
-
-
-
-
-
-
+    }
 
     $(document).ready(function () {
 
@@ -356,11 +356,11 @@ $('*[class^="mark"]').hide();
 </script>
 <script type="text/javascript">
 
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 </script>
 </body>
 </html>

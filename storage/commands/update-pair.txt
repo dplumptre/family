@@ -1,3 +1,16 @@
 2017-04-23 00:00:19: No Elapsed row yet.
 2017-04-23 00:05:13: No Elapsed row yet.
 2017-04-23 00:10:21: No Elapsed row yet.
+2017-04-23 00:15:10: No Elapsed row yet.
+2017-04-23 00:20:10: No Elapsed row yet.
+2017-04-23 00:25:08: No Elapsed row yet.
+2017-04-23 00:30:10: No Elapsed row yet.
+2017-04-23 00:35:08: No Elapsed row yet.
+2017-04-23 00:40:08: No Elapsed row yet.
+2017-04-23 00:45:09: No Elapsed row yet.
+2017-04-23 00:50:10: No Elapsed row yet.
+2017-04-23 00:55:07: No Elapsed row yet.
+2017-04-23 01:00:10: No Elapsed row yet.
+2017-04-23 01:05:09: No Elapsed row yet.
+2017-04-23 01:10:09: No Elapsed row yet.
+2017-04-23 01:15:10: No Elapsed row yet.

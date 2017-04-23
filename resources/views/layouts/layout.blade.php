@@ -34,7 +34,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('/assets/img/favicons/apple-touch-icon-180x180.png') }}">
 
     <link rel="stylesheet"
-          href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
 
     <link rel="stylesheet" href="{{ secure_asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" id="css-main" href="{{ secure_asset('assets/css/oneui.css') }}">
