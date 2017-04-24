@@ -2,29 +2,29 @@
 
 namespace App\Mail\Payer;
 
-use App\Models\Payer;
+use App\Models\Pair;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class PayerPaired extends Mailable
+class PayerPairedToReceiver extends Mailable
 {
     use Queueable, SerializesModels;
     /**
-     * @var Payer
+     * @var Pair
      */
-    private $payer;
+    public $pair;
 
     /**
      * Create a new message instance.
      *
-     * @param Payer $payer
+     * @param Pair $pair
      */
-    public function __construct(Payer $payer)
+    public function __construct(Pair $pair)
     {
         //
-        $this->payer = $payer;
+        $this->pair = $pair;
     }
 
     /**
@@ -34,6 +34,7 @@ class PayerPaired extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->subject('You Have a new Recipient')
+            ->markdown('emails.user.payer-paired');
     }
 }

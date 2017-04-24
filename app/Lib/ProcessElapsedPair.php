@@ -62,6 +62,8 @@ class ProcessElapsedPair
             if ( $newPayer )
             {
                 DB::transaction(function() use($elapsedPairRow, $newPayer){
+
+                    $defaulter = $elapsedPairRow->payer_id;
                     //update payer.pairing_result = 1
                     //trigger event(PairTimeElapsed($elapsedPairRow))
                     $this->updateOldPairingResult($elapsedPairRow->payer_id);
@@ -73,7 +75,7 @@ class ProcessElapsedPair
                     //update new payer.status = 1
                     $this->updateNewPayer($newPayer);
 
-                    $this->pairUpdated($elapsedPairRow->id, $elapsedPairRow->payer_id);
+                    $this->pairUpdated($elapsedPairRow->id, $defaulter);
                 });
             } else {
                 //no new payer in row.
@@ -96,14 +98,14 @@ class ProcessElapsedPair
 
     private function updatePairWithPayer($pairRow, $payer)
     {
-        $pair_expire = config_path('family.pair_expire')?: 7 ;
+        $pair_expire_min = config_path('family.pair_expire_minutes')?: 6 * 60 ;
 
         $pairRow->payer_id = $payer->id;
         $pairRow->image = 'example.jpg';
         $pairRow->payer_status = 1;
         $pairRow->receiver_status = 1;
         $pairRow->status = 1;
-        $pairRow->elapse_time = Carbon::now()->addHours($pair_expire)->format('Y-m-d H:i:s');
+        $pairRow->elapse_time = Carbon::now()->addMinutes($pair_expire_min)->format('Y-m-d H:i:s');
         $pairRow->save();
 
         //event(\App\Events\Pairing\MemberPaired($payer))

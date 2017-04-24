@@ -1,29 +1,30 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Receiver;
 
-use App\Models\User;
+use App\Models\Receiver;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserWelcome extends Mailable
+class ReceiverGivenPair extends Mailable
 {
     use Queueable, SerializesModels;
     /**
-     * @var User
+     * @var Receiver
      */
-    public $user;
+    public $receiver;
 
     /**
      * Create a new message instance.
      *
-     * @param User $user
+     * @param Receiver $receiver
      */
-    public function __construct(User $user)
+    public function __construct(Receiver $receiver)
     {
-        $this->user = $user;
+        //
+        $this->receiver = $receiver;
     }
 
     /**
@@ -33,7 +34,7 @@ class UserWelcome extends Mailable
      */
     public function build()
     {
-        return $this->subject('Welcome to ' . config('app.name'))
-                    ->markdown('emails.user.welcome');
+        return $this->subject('You have now Donors')
+            ->markdown('emails.user.receiver-given-pair');
     }
 }

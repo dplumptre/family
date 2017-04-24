@@ -13,6 +13,8 @@ class Pair extends Model
 
     protected $guarded = ['id'];
 
+    protected $dates = ['created_at', 'updated_at', 'elapse_time'];
+
 
     public function payer()
     {
@@ -21,10 +23,6 @@ class Pair extends Model
 
     public function scopePairReceiverToPayer($query, $payer_id, $receiver_id, $amount, $payer_status, $receiver_status, $status, $elapse_time)
     {
-        /*
-        *   example    dd(\App\Models\Pair::PairReceiverToPayment(10,2));
-        *
-        */
         return $query->create([
 
             'payer_id' => $payer_id,
@@ -35,7 +33,6 @@ class Pair extends Model
             'receiver_status' => $receiver_status,
             'status' => $status,
             'elapse_time' => $elapse_time
-
         ]);
     }
 

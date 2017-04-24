@@ -26,12 +26,12 @@ class UserController extends Controller
     const PENDING = 0;
     const PROCESSING = 1;
     const COMPLETED = 2;
-    
-    private $users ;
+
+    private $users;
     private $news;
 
 
-    function __construct(User $users , Newz $news)
+    function __construct(User $users, Newz $news)
     {
         $this->users = $users;
         $this->news = $news;
@@ -39,66 +39,64 @@ class UserController extends Controller
 
 
     public function index()
-    { 
-         
+    {
         $id = Auth::id();
-        $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result',0)->oldest()->get();
-        return view('user-area/index') ->with('arr', arr())
-                                       ->with('news',$this->news->all())
-                                       ->with('allusers',$this->users->allUsers())
-                                       ->with('payer', $payer);
+        $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result', 0)->oldest()->get();
+        return view('user-area/index')->with('arr', arr())
+            ->with('news', $this->news->all())
+            ->with('allusers', $this->users->allUsers())
+            ->with('payer', $payer);
     }
 
-    
-    
-    
-    
-     public function dashboardAdmin()
+
+    public function dashboardAdmin()
     {
         return view('user-area/dashboard-admin');
-    }   
-    
+    }
+
+
     public function news()
     {
         $news = $this->news->all();
-        return view('user-area/news')->with('news',$news);
+        return view('user-area/news')->with('news', $news);
     }
- 
-      public function viewNews($id)
+
+
+    public function viewNews($id)
     {
         $news = $this->news->find($id);
-        return view('user-area/view-news')->with('news',$news);
+        return view('user-area/view-news')->with('news', $news);
     }
-    
-    
+
+
     public function postNews(NewsRequest $request)
     {
         $id = Auth::id();
-         $this->news->create([
-        'title' => $request->title,
-        'slug_title' => str_slug($request->title),  
-        'picture'=>'example.jpg',     
-        'body' => $request->body,
-        'user_id'=>  $id   
+        $this->news->create([
+            'title' => $request->title,
+            'slug_title' => str_slug($request->title),
+            'picture' => 'example.jpg',
+            'body' => $request->body,
+            'user_id' => $id
         ]);
-        return redirect()->route('post.news');        
-    }    
-   
+        return redirect()->route('post.news');
+    }
+
+
     public function destroyNews($id)
     {
-    $news = $this->news->find($id);
-    $news->delete();
-    return redirect()->route('newz');
+        $news = $this->news->find($id);
+        $news->delete();
+        return redirect()->route('newz');
     }
-    
+
+
     public function profile()
     {
         return view('user-area/profile');
     }
 
 
-  
-    
     public function postProfile(UpdateProfile $request)
     {
         $request->save();
@@ -110,6 +108,7 @@ class UserController extends Controller
     {
         return view('user-area.change-password');
     }
+
 
     public function postChangePassword(ChangePassword $request)
     {
@@ -139,14 +138,15 @@ class UserController extends Controller
 
     }
 
+
     public function outgoing(Pair $pair, Payer $payer, Auth $auth)
     {
         //basicalling getting the person i am pairing with and will be paying to
         $payerid_array = auth()->user()->payers()->where('status', '>', self::PENDING)->pluck('id');
         if ($payerid_array) {
-        $p = $pair->whereIn('payer_id', $payerid_array)->get();
+            $p = $pair->whereIn('payer_id', $payerid_array)->get();
         } else {
-        $p = null;
+            $p = null;
         }
 
         return view('user-area/outgoing')->with('getPair', $p);
@@ -157,9 +157,9 @@ class UserController extends Controller
     {
         $receiverid_array = auth()->user()->receivers()->where('status', '>', self::PENDING)->pluck('id');
         if ($receiverid_array) {
-        $p = $pair->whereIn('receiver_id', $receiverid_array)->get();
+            $p = $pair->whereIn('receiver_id', $receiverid_array)->get();
         } else {
-        $p = null;
+            $p = null;
         }
         return view('user-area/incoming')->with('getPair', $p);
     }
@@ -207,50 +207,31 @@ class UserController extends Controller
         return redirect()->route('outgoing');
     }
 
+
     public function donate()
     {
         $id = Auth::id();
         $package = Package::all();
-        $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result',0)->oldest()->get();
+        $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result', 0)->oldest()->get();
 
         return view('user-area/donate')->with('package', $package)
-        ->with('arr', arr())
-        ->with('payer', $payer);
+            ->with('arr', arr())
+            ->with('payer', $payer);
     }
 
 
-    public function postDonate(\App\Http\Requests\createPackage $request)
+    public function postDonate(createPackage $request)
     {
         $id = Auth::id();
-        Payer::create([
-        'user_id' => $id,
-        'package_id' => $request->package,
-        'status' => 0,
-        'pairing_result' => 0,
+        $payer = Payer::create([
+            'user_id' => $id,
+            'package_id' => $request->package,
+            'status' => 0,
+            'pairing_result' => 0,
         ]);
+
         notify()->flash("Package successfully selected", "success", ['text' => 'You will be sent an email as soon as you have been matched!']);
         return redirect()->route('post.donate')->with('status', arr()[0]);
-
-
-//            $id = Auth::id();
-//            $package = Package::find($request->package); 
-//            //this will get the higest package id in the table 
-//            $pk= Payer::where('user_id', '=',  $id)->max('package_id'); 
-//            if($pk === null || $pk  <= $request->package ){
-//            $payer =  Payer::create([
-//            'user_id' => $id,
-//            'package_id' => $request->package,
-//            'status' => 0,
-//            'pairing_result' => 0,
-//            ]);  
-//            notify()->flash("Package successfully selected","success",['text'=>'You will be sent an email as soon as you have been matched!']);
-//            return redirect()->route('post.donate')->with('status',arr()[0]);    
-//            }else{
-//            notify()->flash("Error","error",['text'=>'You cannot select a lower package than the one previous one!']);
-//            return redirect()->route('post.donate');    
-//            }         
-
-
     }
 
 

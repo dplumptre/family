@@ -102,7 +102,7 @@ class Payer extends Model
     {
         return $this->select()
             ->where('status', self::COMPLETED)//status = 2
-            ->where('pairing_result', self::PENDING)//pairing_result = 0
+            ->where('pairing_result', self::PENDING)//pairing_result = 0(good) 1(failed pair)
             ->where('finished', self::PENDING)//finished=0
             ->get();
     }

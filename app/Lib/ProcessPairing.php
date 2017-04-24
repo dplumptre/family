@@ -70,13 +70,14 @@ class ProcessPairing
     {
         $payers = $this->payer->getNextPayersInQueue($this->receiverModel->package_id);
 
-        if (!$payers) {
+        if ($payers->count() == 0) {
             $this->noPayersInQueue();
             return null;
         }
 
         if ($payers->count() == 2) {
             $this->payerModel = $payers;
+            dd($this->payerModel);
             return true;
         }
 
@@ -89,9 +90,9 @@ class ProcessPairing
     {
         //loop over payer model to do the insert.
         $amount = Package::find($this->receiverModel->package_id)->paying_amount;
-        $pair_expire = config('family.pair_expire') ?:7;
+        $pem = config('family.pair_expire_minutes') ?: 6 * 60;
 
-        DB::transaction(function () use ($amount, $pair_expire) {
+        DB::transaction(function () use ($amount, $pem) {
             //mamke sure u're not processing the receiver more than once
             if (!$this->pair->find($this->receiverModel->id)) {
 
@@ -104,16 +105,21 @@ class ProcessPairing
                         self::PROCESSING,
                         self::PROCESSING,
                         self::PROCESSING,
-                        Carbon::now()->addHours($pair_expire)->format('Y-m-d H:i:s')
+                        Carbon::now()->addMinutes($pem)->format('Y-m-d H:i:s')
                     );
 
                     //update payer status
                     $this->updatePayerStatus($row->id);
 
+                    //trigger event for the new pairing
+                    //event(PayerPaired($row));
+
                 endforeach;
+
+                //update receiver status
+                $this->updateReceiverStatus($this->receiverModel->id);
             }
-            //update receiver status
-            $this->updateReceiverStatus($this->receiverModel->id);
+
         });
 
     }

@@ -2,28 +2,31 @@
 
 namespace App\Mail;
 
-use App\Models\User;
+use App\Models\Package;
+use App\Models\Payer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserWelcome extends Mailable
+class NewPackageChosen extends Mailable
 {
     use Queueable, SerializesModels;
     /**
-     * @var User
+     * @var Package
      */
-    public $user;
+    public $payer;
 
     /**
      * Create a new message instance.
      *
-     * @param User $user
+     * @param Payer $payer
+     * @internal param Package $package
      */
-    public function __construct(User $user)
+    public function __construct(Payer $payer)
     {
-        $this->user = $user;
+        //
+        $this->payer = $payer;
     }
 
     /**
@@ -33,7 +36,7 @@ class UserWelcome extends Mailable
      */
     public function build()
     {
-        return $this->subject('Welcome to ' . config('app.name'))
-                    ->markdown('emails.user.welcome');
+        return $this->subject('Package Accepted.')
+            ->markdown('emails.user.new-package-chosen');
     }
 }

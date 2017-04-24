@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Lib\MakePayerReceiver;
+use App\Lib\MakeReceiver;
 use Illuminate\Console\Command;
 
 class MakeCompletedPayerReceiver extends Command
@@ -12,7 +13,7 @@ class MakeCompletedPayerReceiver extends Command
      *
      * @var string
      */
-    protected $signature = 'app:make-payers-receivers';
+    protected $signature = 'app:make-receivers';
 
     /**
      * The console command description.
@@ -34,11 +35,12 @@ class MakeCompletedPayerReceiver extends Command
     /**
      * Execute the console command.
      *
-     * @param MakePayerReceiver $makePayerReceiver
+     * @param MakeReceiver $makeReceiver
      * @return mixed
+     * @internal param MakePayerReceiver $makePayerReceiver
      */
-    public function handle(MakePayerReceiver $makePayerReceiver)
+    public function handle(MakeReceiver $makeReceiver)
     {
-        $makePayerReceiver->makeCompletedPayersReceivers();
+        $makeReceiver->processQueue();
     }
 }

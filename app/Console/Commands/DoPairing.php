@@ -44,17 +44,22 @@ class DoPairing extends Command
         //1, get the next receiver
         $receiver = $pairing->getNextReceiver();
 
-        if ( $receiver == null )
-            return;
+        //while we have a receiver
+        while ($receiver !== null) {
 
-        //2. get the next two payers with the same package_id as receiver in 1
-        $payers = $pairing->getNextPayers();
+            //get two payers
+            $payers = $pairing->getNextPayers();
 
-        //if we get null, we exit. it means we have one payer or no payer
-        if ( $payers == null )
-            return;
+            if ($payers != null) {
+                $pairing->doPair();
+                //get next receiver to keep loop going or stop.
+                $receiver = $pairing->getNextReceiver();
+            }
+            else
+            {
+                $receiver = null;
+            }
 
-        //we have 2 payers, do the pairing
-        $pairing->doPair();
+        }
     }
 }

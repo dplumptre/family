@@ -12,8 +12,12 @@ return [
 
     ],
 
+    'messages' => [
+
+    ],
+
     'admin_receivers' => [
-        '19', '21'
+        19, 21, 22, 25
     ],
 
     'pair' => [
@@ -23,5 +27,10 @@ return [
         'end' => '15:00',
     ],
 
-    'pair_expire' => 7, //in hours
+    'pair_expire' => 7*60, //in hours to minutes
+
+    'pair_expire_minutes' => 5,
+
+    'max_receivers_before_admin' => 5,
+
 ];

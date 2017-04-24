@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Receiver extends Model
 {
@@ -17,6 +18,14 @@ class Receiver extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+
 
     /**
      * created_at + 15days = today
@@ -55,10 +64,23 @@ class Receiver extends Model
     }
 
 
-    public function completedReceivers()
+    public function normalReceiversCount()
     {
-        $last_admin_receiver = $this->select()->whereIn('id', config('family.admin_receivers'))->latest()->first();
-        $last_receiver_row = $this->select()->latest()->first();
+        $last_admin = $this->select()
+            ->whereIn('user_id', config('family.admin_receivers'))
+            ->latest()
+            ->limit(1)
+            //->toSql()
+            ->first()->id
+        ;
+        $last_receiver = $this->select()->latest()->first()->id;
+
+        $counter = $this->where([
+            ['id', '>', $last_admin],
+            ['id', '<=', $last_receiver]
+        ])->get();
+
+        return $counter->count();
     }
 
 
