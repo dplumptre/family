@@ -4,7 +4,7 @@ use Carbon\Carbon;
 use Spatie\Html\Html;
 
 
-function html(): Html
+function html()
 {
     return app(Html::class);
 }
