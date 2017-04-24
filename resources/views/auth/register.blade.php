@@ -130,9 +130,7 @@
                                 @endif
                             </div>
                             <div class="col-xs-5 col-sm-4">
-                                <div class="font-s13 text-right push-5-t">
-                                    <a href="#" data-toggle="modal" data-target="#modal-terms">View Terms</a>
-                                </div>
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -163,7 +161,7 @@
 <!-- END Register Footer -->
 
 <!-- Terms Modal -->
-<div class="modal fade" id="modal-terms" tabindex="-1" role="dialog" aria-hidden="true">
+<!--<div class="modal fade" id="modal-terms" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-popout">
         <div class="modal-content">
             <div class="block block-themed block-transparent remove-margin-b">
@@ -210,7 +208,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 <!-- END Terms Modal -->
 
 <!-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js -->
