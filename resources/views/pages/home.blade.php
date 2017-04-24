@@ -256,10 +256,10 @@
                             </div>
                             <div class="h4 text-white-op push-5">Buf wealth is a great platform. It affords every participants a good opportunity at 
 generating good income online. A trial will convince you!</div>
-                            <div class="h6 text-gray">- Jennifer Jerome</div>
+                            <div class="h6 text-gray">- Omolade Kolajo</div>
                         </div>
                         <div class="col-sm-4 animated fadeIn" data-toggle="appear" data-offset="-150" data-timeout="150">
-                            <img class="img-avatar img-avatar-thumb" src="assets/img/avatars/Jonathan_Ferrar_tn.jpg" alt="">
+                            <img class="img-avatar img-avatar-thumb" src="assets/img/avatars/ww.jpeg" alt="">
                             <div class="text-warning push-10-t push-15">
                                 <i class="fa fa-fw fa-star"></i>
                                 <i class="fa fa-fw fa-star"></i>
@@ -269,10 +269,10 @@ generating good income online. A trial will convince you!</div>
                             </div>
                             <div class="h4 text-white-op push-5">Buf wealth is one of the best platforms i have been part of. with all the help from other participants,
 i have been able to benefit immensely from the available package!</div>
-                            <div class="h6 text-gray">- Jonathan Ferrar</div>
+                            <div class="h6 text-gray">- Dapo Alakija</div>
                         </div>
                         <div class="col-sm-4 animated fadeIn" data-toggle="appear" data-offset="-150" data-timeout="300">
-                            <img class="img-avatar img-avatar-thumb" src="assets/img/avatars/Xhou_Ta_tn.jpg" alt="">
+                            <img class="img-avatar img-avatar-thumb" src="assets/img/avatars/www.jpeg" alt="">
                             <div class="text-warning push-10-t push-15">
                                 <i class="fa fa-fw fa-star"></i>
                                 <i class="fa fa-fw fa-star"></i>
@@ -281,7 +281,7 @@ i have been able to benefit immensely from the available package!</div>
                                 <i class="fa fa-fw fa-star"></i>
                             </div>
                             <div class="h4 text-white-op push-5">I  highly recommend Bufwealth for anyone trying to make extra income</div>
-                            <div class="h6 text-gray">- Xhou Ta</div>
+                            <div class="h6 text-gray">- Toyosi Salako</div>
                         </div>
                     </div>
                     <!-- END Section Content -->
