@@ -49,11 +49,12 @@ class PagesController extends Controller
       
  return view('pages.about');
         
-//        
-//      User::create([
-//            'username' => 'tim',
-//            'email' => 'tim@yahoo.com',
-//            'password' => bcrypt('password'),
+        
+// Package::create([
+//            'name' => 'Bronze',
+//            'paying_amount' => 20000,
+//            'receiving_amount' => 20000,
+//            'description' => "This is the beginner package"
 //        ]);
         
 //       
