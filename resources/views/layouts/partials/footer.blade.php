@@ -57,8 +57,7 @@
                 
             </div>
             <div class="pull-left">
-                <a class="font-w600" href="#" target="_blank">BUFWEALTH</a> &copy; <span
-                        class="js-year-copy"></span>
+                <a class="font-w600" href="#" target="_blank">BUFWEALTH</a> &copy; 2017
             </div>
         </div>
         <!-- END Copyright Info -->
