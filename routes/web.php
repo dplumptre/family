@@ -56,7 +56,7 @@ Route::group(
  */
 Route::get('dashboard', 'UserController@index');
 Route::group(
-    ['prefix' => 'user-area', 'middleware' => 'auth'], function () {
+    ['prefix' => 'user-area', 'middleware' => ['auth']], function () {
     Route::get('/', 'UserController@index')->name('dashboard');
     Route::get('profile', 'UserController@profile')->name('profile');
     Route::post('profile', 'UserController@postProfile')->name('post.profile');

@@ -35,6 +35,8 @@ class UserController extends Controller
     {
         $this->users = $users;
         $this->news = $news;
+
+        $this->middleware('update.profile')->except(['index', 'profile']);
     }
 
 
