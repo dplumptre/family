@@ -27,10 +27,10 @@ class UpdateProfile extends FormRequest
         return [
             'firstname' => 'required|string|min:3|max:20',
             'lastname' => 'required|string|min:3|max:20',
-            'phone' => ['regex:/^(\+)(234)(7|8|9)\d{9}/', 'unique:user_details'],
+            'phone' => ['regex:/^(\+)(234)(7|8|9)\d{9}/', Rule::unique('user_details')->ignore($this->user()->userDetail->id)],
             'bank_name' => ['required', Rule::in(array_keys(banks()))],
             'account_name' => 'required|string',
-            'account_number' => 'required|digits:10|unique:user_details',
+            'account_number' => ['required', 'digits:10', Rule::unique('user_details')->ignore($this->user()->userDetail->id)],
             'account_type' => ['required', Rule::in(['savings', 'current'])],
             'bank_branch' => 'string',
         ];
