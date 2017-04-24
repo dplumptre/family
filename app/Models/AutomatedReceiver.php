@@ -9,6 +9,12 @@ class AutomatedReceiver extends Model
     protected $table = 'automated_receivers';
 
 
+    public function getAll()
+    {
+        return $this->select(['id'])->get();
+    }
+
+
     protected function getTotalPosition()
     {
         return $this->all()->count();

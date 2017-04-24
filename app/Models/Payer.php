@@ -118,6 +118,4 @@ class Payer extends Model
             $this->save();
         }
     }
-
-
 }

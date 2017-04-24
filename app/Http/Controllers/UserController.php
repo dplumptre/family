@@ -32,10 +32,7 @@ class UserController extends Controller
 
     function __construct()
     {
-
-
-        $this->middleware('update.profile')->except(['index', 'profile']);
-
+        $this->middleware('update.profile')->except(['index', 'profile', 'postProfile']);
     }
 
 

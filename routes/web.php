@@ -18,7 +18,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('test', function (AutomatedReceiver $automatedReceiver, Receiver $receiver) {
-
+    dd(
+        auth()->user()->userDetail
+    );
 });
 /*
  * AUTH ROUTE
