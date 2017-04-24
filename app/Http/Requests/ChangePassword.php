@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Events\PasswordChanged;
 use App\Listeners\PasswordChange;
 use App\Listeners\PasswordChangeSuccess;
 use Illuminate\Foundation\Http\FormRequest;
@@ -53,6 +54,7 @@ class ChangePassword extends FormRequest
 
     protected function passwordChanged()
     {
+        event(new PasswordChanged($this->user()));
         notify()->flash('Password changed', 'success');
     }
 
