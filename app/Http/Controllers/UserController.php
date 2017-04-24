@@ -27,24 +27,22 @@ class UserController extends Controller
     const PROCESSING = 1;
     const COMPLETED = 2;
 
-    private $users;
-    private $news;
 
 
-    function __construct(User $users, Newz $news)
+
+    function __construct()
     {
-        $this->users = $users;
-        $this->news = $news;
+
     }
 
 
-    public function index()
+    public function index(User $users,Newz $news)
     {
         $id = Auth::id();
         $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result', 0)->oldest()->get();
         return view('user-area/index')->with('arr', arr())
-            ->with('news', $this->news->all())
-            ->with('allusers', $this->users->allUsers())
+            ->with('news', $news::latest()->get())
+            ->with('allusers', $users->allUsers())
             ->with('payer', $payer);
     }
 
@@ -55,24 +53,24 @@ class UserController extends Controller
     }
 
 
-    public function news()
+    public function news(Newz $news)
     {
-        $news = $this->news->all();
+        $news = $news::all();
         return view('user-area/news')->with('news', $news);
     }
 
 
-    public function viewNews($id)
+    public function viewNews($id,Newz $news)
     {
-        $news = $this->news->find($id);
+        $news = $news::find($id);
         return view('user-area/view-news')->with('news', $news);
     }
 
 
-    public function postNews(NewsRequest $request)
+    public function postNews(NewsRequest $request,Newz $news)
     {
         $id = Auth::id();
-        $this->news->create([
+       $news::create([
             'title' => $request->title,
             'slug_title' => str_slug($request->title),
             'picture' => 'example.jpg',
@@ -83,9 +81,9 @@ class UserController extends Controller
     }
 
 
-    public function destroyNews($id)
+    public function destroyNews($id,Newz $news)
     {
-        $news = $this->news->find($id);
+        $news = $news::find($id);
         $news->delete();
         return redirect()->route('newz');
     }

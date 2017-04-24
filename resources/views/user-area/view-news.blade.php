@@ -38,7 +38,7 @@
 
                     <div class="block-content " style="padding: 30px 20px">
                                  
-                          {{ nl2br($news->body) }}
+                          {{ $news->body }}
                           
                           <br /><br />
                           
