@@ -82,6 +82,7 @@ class MakeReceiver
                         $this->adminReceiverSlotted($nextAdmin->user_id);
                     }
                     //process the normal receiver.
+                    //$this->receiver->makeCompletedPayerReceiver($completedPayer)
                     $this->receiver->create([
                         'user_id' => $completedPayer->user_id,
                         'package_id' => $completedPayer->package_id,

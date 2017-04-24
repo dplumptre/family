@@ -24,16 +24,23 @@ class UpdateProfile extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'firstname' => 'required|string|min:3|max:20',
             'lastname' => 'required|string|min:3|max:20',
-            'phone' => ['regex:/^(\+)(234)(7|8|9)\d{9}/', Rule::unique('user_details')->ignore($this->user()->userDetail->id)],
+            'phone' => ['regex:/^(\+)(234)(7|8|9)\d{9}/', ],
             'bank_name' => ['required', Rule::in(array_keys(banks()))],
             'account_name' => 'required|string',
-            'account_number' => ['required', 'digits:10', Rule::unique('user_details')->ignore($this->user()->userDetail->id)],
+            'account_number' => ['required', 'digits:10', ],
             'account_type' => ['required', Rule::in(['savings', 'current'])],
             'bank_branch' => 'string',
         ];
+
+        if ($this->userDetail()):
+            $rules['phone'] = Rule::unique('user_details')->ignore($this->user()->userDetail->id);
+            $rules['account_number'] = Rule::unique('user_details')->ignore($this->user()->userDetail->id);
+        endif;
+
+        return $rules;
     }
 
 
@@ -68,5 +75,10 @@ class UpdateProfile extends FormRequest
     private function updated()
     {
         notify()->flash('User Details updated', 'success', ['text' => 'Your details have been updated successfully']);
+    }
+
+    private function userDetail()
+    {
+        return $this->user()->userDetail;
     }
 }

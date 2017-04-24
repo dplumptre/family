@@ -26,7 +26,6 @@ class Receiver extends Model
     }
 
 
-
     /**
      * created_at + 15days = today
      * @param \Illuminate\Database\Eloquent\Builder $query
