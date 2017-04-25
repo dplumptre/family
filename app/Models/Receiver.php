@@ -26,6 +26,21 @@ class Receiver extends Model
     }
 
 
+    
+    public function pairs()
+    {
+        return $this->hasMany(Pair::class);
+    }
+    
+    
+    
+    public function packages()
+    {
+        return $this->belongsTo('App\Models\Package', 'package_id');
+    }
+
+    
+    
     /**
      * created_at + 15days = today
      * @param \Illuminate\Database\Eloquent\Builder $query

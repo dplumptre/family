@@ -82,7 +82,7 @@ class PagesController extends Controller
 
     public function postcontact(contactRequest $request)
     {
-       Mail::to('batman@batcave.io')->send(new contactMail($contactDetails));
+       Mail::to('support@bufwealth.com')->send(new contactMail($contactDetails));
        return redirect()->route('post.contact');
     }
     

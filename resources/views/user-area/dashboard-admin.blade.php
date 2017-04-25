@@ -1,101 +1,143 @@
+@extends('layouts.layout_user')
 
-          @extends('layouts.layout_user')
+@section('content')
 
-@section('content')      
-            
 
-            
+        <!-- Main Container -->
+<main id="main-container">
+    <!-- Page Header -->
+    <div class="content bg-gray-lighter">
+        <div class="row items-push">
+            <div class="col-sm-7">
+                <h1 class="page-heading">
+                    Dashboard admin
+                </h1>
+            </div>
 
-            <!-- Main Container -->
-            <main id="main-container">
-                <!-- Page Header -->
-                <div class="content bg-gray-lighter">
-                    <div class="row items-push">
-                        <div class="col-sm-7">
-                            <h1 class="page-heading">
-                                Admin Accounts
-                            </h1>
-                        </div>
-                     <!--   <div class="col-sm-5 text-right hidden-xs">
-                            <ol class="breadcrumb push-10-t">
-                                <li>Tables</li>
-                                <li><a class="link-effect" href="">DataTables</a></li>
-                            </ol>
-                        </div> -->
+        </div>
+    </div>
+    <!-- END Page Header -->
+
+    <!-- Page Content -->
+    <div class="content content-narrow">
+       
+
+        <!-- Dashboard Charts -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="block block-rounded block-opt-refresh-icon8">
+                    <div class="block-header">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="refresh_toggle"
+                                        data-action-mode="demo"><i class="si si-refresh"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">Payment Received</h3>
                     </div>
-                </div>
-                <!-- END Page Header -->
 
-                <!-- Page Content -->
-                <div class="content">
-                  
-                    
-                    
-                    
-
-                    <!-- Dynamic Table Full Pagination -->
-                    <div class="">
-                        <div class="block-header">
-                          <!--  <h3 class="block-title">Dynamic Table <small>Full pagination</small></h3> -->
-                        </div>
-                        <div class="table-responsive">
-                            <!-- DataTables init on table by adding .js-dataTable-full-pagination class, functionality initialized in js/pages/base_tables_datatables.js -->
-                            <table class="table-responsive table table-bordered table-striped  js-dataTable-full-pagination">
+                        <div class="block-content ">
+                                                               <table class="table-responsive table table-bordered table-striped  js-dataTable-full-pagination">
                                 <thead>
                                     <tr>
-                                        <th class="text-center"></th>
-                                        <th>Receiver</th>`
-                                        <th class="text-center">Payment Details</th>
-                                         <th class="text-center">(N)Amount</th>
-                                          <th class="text-center">Mobile</th>
-                                          <th class="text-center">Upload Attachment</th>
-                                        <th class="text-center" style="width: 15%;">Status</th>
-                                        <th class="text-center" style="width: 10%;">Actions</th>
+                                           <th class="text-center" style="width: 10%;"> s/n</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Amount</th> 
+                                  
                                     </tr>
                                 </thead>
                                 <tbody>
+                                   
+                        @if($payment)  
+                        <?php
+                        $sum =0;
+                        ?>
+                        @foreach($payment as $p)
+                        @foreach($p->pairs as $key => $p)
+                        <tr>
+                        <td class="text-center"> {{$key +1}}</td>
+                        <td class="text-center"> {{ $p->created_at }}</td>
+                        <td class="text-center"> &#X20A6 {{ number_format($p->amount) }}</td>
+                        </tr>
+                        <?php
+                           $sum += $p->amount;
+                        ?>
+                         @endforeach
+                        @endforeach
+                                <p style="font-weight: bold"> Total: &#X20A6 {{ number_format($sum) }} </p>
+                        
+                        @endif
+                            
+
+
+
+                                </tbody>
+                            </table> 
+
+                        </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+
+                <!-- News -->
+                <div class="block">
+                    <div class="block-header">
+                        <ul class="block-options">
+                            <li>
+                                <button type="button" data-toggle="block-option" data-action="refresh_toggle"
+                                        data-action-mode="demo"><i class="si si-refresh"></i></button>
+                            </li>
+                        </ul>
+                        <h3 class="block-title">Failed Payers</h3>
+                    </div>
+                    <div class="block-content">
+                                           <table class="table-responsive table table-bordered table-striped  js-dataTable-full-pagination">
+                                <thead>
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="font-w600">Amy Hunter</td>
-                                        <td class="text-center"><button class="btn btn-xs btn-default danger" type="button" data-toggle="Bank Details" title="Edit Client"><i class="fa fa-pencil"></i> Details</button></td>
-                                         <td class="text-center">17,000</td>
-                                          <td class="text-center">081857575756</td>
-                                          <td class="text-center"> <a href="#">upload</a></td>
-                                        <td class="text-center">
-                                            <span class="label label-danger">Pending / completed</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                           <span class="label label-danger"> Paid  / scheduled</span></div>
-                                        </td>
+                                           <th class="text-center" style="width: 10%;"> s/n</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Username</th> 
+                                        <th class="text-center">Email</th>
+                                  
                                     </tr>
+                                </thead>
+                                <tbody>
+                                   
+                        @if($fp)  
+                        @foreach($fp as $key => $p)
+                        <tr>
+                        <td class="text-center">{{$key +1}}</td>
+                        <td class="text-center"> {{ $p->created_at }}</td>
+                        <td class="text-center"> {{ $p->user->username }}</td>
+                        <td class="text-center">  {{ $p->user->email }}  
+                        </td>
+                        </tr>
+                        @endforeach
+                        @endif
+                            
+
 
 
                                 </tbody>
                             </table>
-                        </div>
                     </div>
-                    <!-- END Dynamic Table Full Pagination -->
-
-                    
-                    
-                    
-                    
-                    
-               
-                    
-                    
-                    
                 </div>
-                <!-- END Page Content -->
-            </main>
-            <!-- END Main Container -->
+                <!-- END News -->
 
-            
-            
-    
-            
-                @endsection
+            </div>
+        </div>
+        <!-- END Dashboard Charts -->
+
+
+    </div>
+    <!-- END Page Content -->
+</main>
+<!-- END Main Container -->
+
+
+@endsection
             
             
             
