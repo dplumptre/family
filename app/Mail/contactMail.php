@@ -19,9 +19,20 @@ class contactMail extends Mailable
 
     private $details;
     
-    public function __construct($contactDetails)
+    private $name ;
+    private $email;
+    private $subject;
+    private $message ;
+    
+    public function __construct($request)
     {
-        $this->details = $contactDetails;
+        
+        
+        $this->name = $request->get('name');
+        $this->email = $request->get('email');
+        $this->subject = $request->get('subject');
+        $this->message = $request->get('message');
+        
     }
 
     /**
@@ -31,7 +42,7 @@ class contactMail extends Mailable
      */
     public function build()
     {
-           return $this->subject($this->details->subject . config('app.name'))
+           return $this->subject($this->subject . config('app.name'))
                     ->markdown('emails.page.contact');
     }
 }
