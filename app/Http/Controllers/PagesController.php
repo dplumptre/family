@@ -84,7 +84,7 @@ class PagesController extends Controller
 
     public function postcontact(contactRequest $request)
     {
-       Mail::to('support@bufwealth.com')->send(new contactMail($request->all()));
+       Mail::to('support@bufwealth.com')->send(new contactMail($request));
        notify()->flash("Your message has been successfully sent", "success", ['text' => 'You will be be contacted within the next 24 hrs!']);
        return redirect()->route('post.contact');
     }
