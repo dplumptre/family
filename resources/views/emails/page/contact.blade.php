@@ -5,7 +5,13 @@ The details of the contact form below.
 
 @component('mail::panel')
 
-{{ $details }}
+{{ $details->name }}
+
+{{ $details->email }}
+
+{{ $details->subject }}
+
+{{ $details->message }}
 
 
 Thanks,<br>

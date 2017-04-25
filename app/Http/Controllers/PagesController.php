@@ -11,6 +11,8 @@ use App\Models\Receiver;
 use App\Http\Requests\contactRequest;
 use Illuminate\Mail\Mailable;
 use App\Mail\contactMail;
+use Illuminate\Support\Facades\Mail;
+
 
 class PagesController extends Controller
 {
@@ -82,7 +84,8 @@ class PagesController extends Controller
 
     public function postcontact(contactRequest $request)
     {
-       Mail::to('support@bufwealth.com')->send(new contactMail($contactDetails));
+       Mail::to('support@bufwealth.com')->send(new contactMail($request->all()));
+       notify()->flash("Your message has been successfully sent", "success", ['text' => 'You will be be contacted within the next 24 hrs!']);
        return redirect()->route('post.contact');
     }
     

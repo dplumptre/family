@@ -31,7 +31,7 @@ class contactMail extends Mailable
      */
     public function build()
     {
-           return $this->subject('Contact Form ' . config('app.name'))
+           return $this->subject($this->details->subject . config('app.name'))
                     ->markdown('emails.page.contact');
     }
 }
