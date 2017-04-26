@@ -20,6 +20,12 @@ class Pair extends Model
     {
         return $this->belongsTo(Payer::class, 'payer_id');
     }
+    
+    
+        public function receivers()
+    {
+        return $this->belongsTo(Receiver::class, 'receiver_id','payer_id','id');
+    }
 
 
     public function receiver()

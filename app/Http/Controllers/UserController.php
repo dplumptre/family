@@ -47,9 +47,28 @@ class UserController extends Controller
     }
 
 
-    public function dashboardAdmin()
+    public function dashboardAdmin(User $users,  Payer $payer)
     {
-        return view('user-area/dashboard-admin');
+    
+        $paymenttins = auth()->user()->receivers()->with(['pairs' => function ($query) {
+        $query->where('receiver_status',self::COMPLETED);
+        }])->get();
+           
+           
+       // dd($paymenttins);
+            
+            
+        $failedpayers = $payer::with('user')->where('pairing_result',1)->get();
+        
+        if($failedpayers){
+            $fp = $failedpayers;
+        }  else {
+            $fp = "";
+        }
+        
+        
+        return view('user-area/dashboard-admin')->with('fp',$fp)
+                                                ->with('payment', $paymenttins);
     }
 
 

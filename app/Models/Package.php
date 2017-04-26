@@ -15,5 +15,9 @@ class Package extends Model
         return $this->hasMany('App\Models\Payer', 'id');
     }
 
-
+    public function receivers()
+    {
+        return $this->hasMany('App\Models\Receiver', 'id');
+    }
+    
 }

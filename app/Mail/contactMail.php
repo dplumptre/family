@@ -17,11 +17,20 @@ class contactMail extends Mailable
      * @return void
      */
 
-    private $details;
+    public $name ;
+    public $email;
+    public $subject;
+    public $message ;
     
-    public function __construct($contactDetails)
+    public function __construct($request)
     {
-        $this->details = $contactDetails;
+        
+        
+        $this->name = $request->get('name');
+        $this->email = $request->get('email');
+        $this->subject = $request->get('subject');
+        $this->message = $request->get('message');
+        
     }
 
     /**
@@ -31,7 +40,7 @@ class contactMail extends Mailable
      */
     public function build()
     {
-           return $this->subject('Welcome to ' . config('app.name'))
+           return $this->subject($this->subject ." - ". config('app.name'))
                     ->markdown('emails.page.contact');
     }
 }
