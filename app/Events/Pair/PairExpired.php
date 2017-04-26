@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Events\Pairing;
+namespace App\Events\Pair;
 
-use App\Models\Payer;
+use App\Models\Pair;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -11,23 +11,23 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class PairTimeElapsed
+class PairExpired
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
     /**
-     * @var Payer
+     * @var Pair
      */
-    private $payer;
+    public $pair;
 
     /**
      * Create a new event instance.
      *
-     * @param Payer $payer
+     * @param Pair $pair
      */
-    public function __construct(Payer $payer)
+    public function __construct(Pair $pair)
     {
         //
-        $this->payer = $payer;
+        $this->pair = $pair;
     }
 
     /**

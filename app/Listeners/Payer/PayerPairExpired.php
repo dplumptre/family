@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Listeners\Pairing;
+namespace App\Listeners\Payer;
 
-use App\Events\Pairing\MemberPaired;
+use App\Events\Pair\PairExpired;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class MemberPairedSuccess
+class PayerPairExpired
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class MemberPairedSuccess
     /**
      * Handle the event.
      *
-     * @param  MemberPaired  $event
+     * @param  PairExpired  $event
      * @return void
      */
-    public function handle(MemberPaired $event)
+    public function handle(PairExpired $event)
     {
         //
     }

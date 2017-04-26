@@ -9,6 +9,7 @@
 namespace App\Lib;
 
 
+use App\Events\Payer\PayerPairedToReceiver;
 use App\Models\Package;
 use App\Models\Pair;
 use App\Models\Payer;
@@ -77,7 +78,6 @@ class ProcessPairing
 
         if ($payers->count() == 2) {
             $this->payerModel = $payers;
-            dd($this->payerModel);
             return true;
         }
 
@@ -93,12 +93,12 @@ class ProcessPairing
         $pem = config('family.pair_expire_minutes') ?: 6 * 60;
 
         DB::transaction(function () use ($amount, $pem) {
-            //mamke sure u're not processing the receiver more than once
+            //make sure u're not processing the receiver more than once
             if (!$this->pair->find($this->receiverModel->id)) {
 
                 foreach ($this->payerModel as $row):
 
-                    $this->pair->pairReceiverToPayer(
+                    $pairRow = $this->pair->pairReceiverToPayer(
                         $row->id,
                         $this->receiverModel->id,
                         $amount,
@@ -111,8 +111,7 @@ class ProcessPairing
                     //update payer status
                     $this->updatePayerStatus($row->id);
 
-                    //trigger event for the new pairing
-                    //event(PayerPaired($row));
+                    event(new PayerPairedToReceiver($pairRow));
 
                 endforeach;
 

@@ -18,8 +18,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('test', function (AutomatedReceiver $automatedReceiver, Receiver $receiver) {
+    $ar = AutomatedReceiver::getTotalPosition();
+
     dd(
-    array_column($automatedReceiver->getAll()->toArray(), 'id')
+        $ar
     );
 });
 /*
@@ -103,7 +105,12 @@ Route::get('/home', 'HomeController@index');
 Route::group(
     ['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin'], function () {
     //Route::get('/roles', ['uses'=>'AdminController@roleIndex', 'middleware'=>'roles', 'roles'=>['admin']]);
-    Route::get('/roles', ['uses' => 'AdminController@roleIndex',]);
+    Route::get('/roles', ['uses' => 'AdminController@roleIndex',])->name('roles');
     Route::post('/roles', 'AdminController@postRole')->name('post.role');
+
+    Route::get('automated-receivers', 'AdminController@automatedReceivers')->name('automated-receivers');
+    Route::post('automated-receivers', 'AdminController@PostAutomatedReceivers')->name('post.automated-receivers');
+
+
     Route::get('/api-tokens', 'AdminController@apiTokens');
 });

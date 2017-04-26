@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ReceiverGivenPair extends Mailable
+class OnePairExpired extends Mailable
 {
     use Queueable, SerializesModels;
     /**
@@ -23,7 +23,7 @@ class ReceiverGivenPair extends Mailable
      */
     public function __construct(Receiver $receiver)
     {
-        //
+
         $this->receiver = $receiver;
     }
 
@@ -34,7 +34,7 @@ class ReceiverGivenPair extends Mailable
      */
     public function build()
     {
-        return $this->subject('You have a new Donor')
-            ->markdown('emails.user.receiver-given-pair');
+        return $this->subject('One Allocated Donor (pay-time) Expired')
+            ->markdown('emails.user.one-pair-expired');
     }
 }

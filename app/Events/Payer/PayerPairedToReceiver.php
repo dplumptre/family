@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Events\Pairing;
+namespace App\Events\Payer;
 
+use App\Models\Pair;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -10,18 +11,23 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class MemberPaired
+class PayerPairedToReceiver
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+    /**
+     * @var Pair
+     */
+    public $pair;
 
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Pair $pair
      */
-    public function __construct()
+    public function __construct(Pair $pair)
     {
         //
+        $this->pair = $pair;
     }
 
     /**

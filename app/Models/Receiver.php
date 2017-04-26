@@ -19,6 +19,10 @@ class Receiver extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function pairs()
+    {
+        return $this->hasMany(Pair::class, 'receiver_id', 'id');
+    }
 
     public function user()
     {

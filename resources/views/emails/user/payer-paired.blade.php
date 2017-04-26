@@ -14,7 +14,7 @@ This offer will expire in <i>{{ $pair->elapse_time->diffForHumans() }}</i> for y
 View Details Now
 @endcomponent
 
-<small>Should incase you don not have enough funds to make this donation, contact support via {{config('family.emails.support')}}.
+<small>Should incase you do not have enough funds to make this donation, contact support via {{config('family.emails.support')}}.
 
 
 Thanks,<br>

@@ -7,7 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class AutomatedReceiver extends Model
 {
     protected $table = 'automated_receivers';
+    protected $fillable = ['user_id', 'package_id', 'position'];
 
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
 
     public function getAll()
     {
@@ -15,7 +27,7 @@ class AutomatedReceiver extends Model
     }
 
 
-    protected function getTotalPosition()
+    public function getTotalPosition()
     {
         return $this->all()->count();
     }

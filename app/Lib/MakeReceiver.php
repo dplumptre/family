@@ -59,8 +59,6 @@ class MakeReceiver
     {
         $maxReceiversBeforeAdmin = config('family.max_receivers_before_admin');
 
-        dd($this->completedPayers);
-
         if (count($this->completedPayers) > 0):
 
             foreach ($this->completedPayers as $completedPayer) {

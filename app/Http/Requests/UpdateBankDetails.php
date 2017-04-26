@@ -35,22 +35,13 @@ class UpdateBankDetails extends FormRequest
     
       public function save($id)
     {
-
-        
-        
         $user = User::find($id);
         $user->bank_name = $this->bank_name;
         $user->bank_branch = $this->bank_branch;
         $user->account_name = $this->bank_name;
         $user->account_number = $this->bank_name;
         $user->account_type = $this->bank_name;
-        return   $user->save(); 
-        
-        
-        
-        
-        
-        
+        return   $user->save();
     }  
     
     

@@ -93,6 +93,11 @@ class Payer extends Model
         return;
     }
 
+    public function updateFailedPairStatus()
+    {
+        return $this->update(['pairing_result' => 1]);
+    }
+
     /**
      * @return mixed
      * Completed payers are payers who have successfully paid to their receivers

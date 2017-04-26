@@ -9,6 +9,7 @@
 namespace App\Lib;
 
 
+use App\Events\Pair\PairExpired;
 use App\Models\Pair;
 use App\Models\Payer;
 use Carbon\Carbon;
@@ -76,11 +77,18 @@ class ProcessElapsedPair
                     $this->updateNewPayer($newPayer);
 
                     $this->pairUpdated($elapsedPairRow->id, $defaulter);
+
+                    //call event here.
                 });
             } else {
                 //no new payer in row.
+                //but disable existing pair row till a payer is found
+                $elapsedPairRow->payer->updateFailedPairStatus();
                 $this->noNewPayerForElapsedRow($elapsedPairRow->id);
             }
+            //no new payer.
+            //Tell the Receiver & inform the Payer
+            event(new PairExpired($elapsedPairRow));
         }
     }
 
