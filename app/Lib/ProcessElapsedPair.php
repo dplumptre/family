@@ -10,6 +10,7 @@ namespace App\Lib;
 
 
 use App\Events\Pair\PairExpired;
+use App\Events\Pair\PairUpdated;
 use App\Models\Pair;
 use App\Models\Payer;
 use Carbon\Carbon;
@@ -43,7 +44,7 @@ class ProcessElapsedPair
 
     public function getElapsedPairRows()
     {
-        if ( count($this->elapsedPairRows) > 0 )
+        if (count($this->elapsedPairRows) > 0)
             $this->haveElapsedPairRow();
         else
             $this->noElapsedPairRow();
@@ -54,11 +55,7 @@ class ProcessElapsedPair
 
     public function processElapsedPairRows()
     {
-        foreach ($this->elapsedPairRows as $elapsedPairRow)
-        {
-            //update payer to show he has defaulted.
-            $elapsedPairRow->payer->updateFailedPairStatus();
-
+        foreach ($this->elapsedPairRows as $elapsedPairRow) {
             //Find next payer
             $package_id = $elapsedPairRow->payer->package_id;
             $newPayer = $this->payer->findNextPayer($package_id);
@@ -66,9 +63,8 @@ class ProcessElapsedPair
             //if we have a new payer to replace
             //old defaulter payer. Go ahead and
             //update the pair row with new payer.
-            if ( $newPayer )
-            {
-                DB::transaction(function() use($elapsedPairRow, $newPayer){
+            if ($newPayer) {
+                DB::transaction(function () use ($elapsedPairRow, $newPayer) {
 
                     $defaulter = $elapsedPairRow->payer_id;
 
@@ -77,21 +73,24 @@ class ProcessElapsedPair
                     //update new payer.status = 1
                     $this->updateNewPayer($newPayer);
 
-                    //log to file
+                    //Pair updated. log it
                     $this->pairUpdated($elapsedPairRow->id, $defaulter);
 
                     //event
+                    event(new PairUpdated($elapsedPairRow));
                 });
-            } else {
-                //no new payer in row.
-                //but disable existing pair row till a payer is found
-                $elapsedPairRow->payer->updateFailedPairStatus();
-                $this->noNewPayerForElapsedRow($elapsedPairRow->id);
+                return;
             }
-            //no new payer.
+            //no new payer in row. log it
+            $this->noNewPayerForElapsedRow($elapsedPairRow->id);
+
             //Tell the Receiver about defaulted payer
             //& inform the Payer himself
-            event(new PairExpired($elapsedPairRow));
+            if ( $elapsedPairRow->payer->pairing_result == 0 )
+                event(new PairExpired($elapsedPairRow));
+
+            //update payer to show he has defaulted. (So he won't receive emails again)
+            $elapsedPairRow->payer->updateFailedPairStatus();
         }
     }
 
