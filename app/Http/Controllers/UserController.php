@@ -49,15 +49,15 @@ class UserController extends Controller
 
     public function dashboardAdmin(User $users,  Payer $payer,Pair $pair)
     {
-      //return $pair->completedRecRows();
+             $rid = auth()->user()->receivers()->select('id')->first();
         
-        $paymenttins =0;
+             $paymenttins =0;
         
         if(count($pair->completedRecRows())){
-        
-        $paymenttins = auth()->user()->receivers()->with(['pairs' => function ($query) {
-        $query->where('receiver_status',self::COMPLETED);
-        }])->get();
+        $paymenttins = $pair::where('receiver_status',self::COMPLETED)
+                                       ->where('receiver_id',  $rid->id )
+                                      //->toSql();  
+                                       ->get();
         }
            
        // dd($paymenttins);

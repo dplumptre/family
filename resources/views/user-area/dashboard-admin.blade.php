@@ -52,8 +52,7 @@
                         <?php
                         $sum =0;
                         ?>
-                        @foreach($payment as $p)
-                        @foreach($p->pairs as $key => $p)
+                        @foreach($payment as $key => $p)
                         <tr>
                         <td class="text-center"> {{$key +1}}</td>
                         <td class="text-center"> {{ $p->created_at }}</td>
@@ -62,7 +61,6 @@
                         <?php
                            $sum += $p->amount;
                         ?>
-                         @endforeach
                         @endforeach
                                 <p style="font-weight: bold"> Total: &#X20A6 {{ number_format($sum) }} </p>
                         
