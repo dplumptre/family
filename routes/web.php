@@ -21,7 +21,11 @@ Route::get('test', function (AutomatedReceiver $automatedReceiver, Receiver $rec
     $r = \App\Models\Pair::find(2);
 
     dd(
-        $r->payer->user->userDetail->firstname
+        Receiver::create([
+            'user_id' => 9,
+            'package_id' => 1,
+            'status' => 0,
+        ])
     );
 });
 /*
