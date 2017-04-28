@@ -77,18 +77,28 @@ class Receiver extends Model
 
     public function normalReceiversCount()
     {
+
         $last_admin = $this->select()
-            ->whereIn('user_id', config('family.admin_receivers'))
+            ->whereIn('user_id', automated_receivers())
             ->latest()
             ->limit(1)
             //->toSql()
-            ->first()->id
+            ->first()
         ;
-        $last_receiver = $this->select()->latest()->first()->id;
+
+        //$last_receiver = $this->select()->latest()->first()->id;
+
+
+        if ( !$last_admin  )
+        {
+            return $this->count();
+        }
+
+        $last_receiver = $this->select()->latest()->first();
 
         $counter = $this->where([
-            ['id', '>', $last_admin],
-            ['id', '<=', $last_receiver]
+            ['id', '>', $last_admin->id],
+            ['id', '<=', $last_receiver->id]
         ])->get();
 
         return $counter->count();

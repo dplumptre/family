@@ -125,3 +125,13 @@ if ( !function_exists('now') )
         return Carbon::now();
     }
 }
+
+
+if ( !function_exists('automated_receivers') )
+{
+    function automated_receivers()
+    {
+        $r = \App\Models\AutomatedReceiver::select(['id'])->get()->toArray();
+        return array_column($r, 'id');
+    }
+}

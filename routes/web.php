@@ -18,15 +18,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('test', function (AutomatedReceiver $automatedReceiver, Receiver $receiver) {
-    $r = \App\Models\Pair::find(2);
-
-    dd(
-        Receiver::create([
-            'user_id' => 9,
-            'package_id' => 1,
-            'status' => 0,
-        ])
-    );
+    return redirect()->route('dashboard');
 });
 /*
  * AUTH ROUTE

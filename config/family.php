@@ -16,10 +16,6 @@ return [
 
     ],
 
-    'admin_receivers' => [
-        19, 21, 22, 25
-    ],
-
     'pair_expire_minutes' => env('PAIR_EXPIRE_MINUTES', 59),
 
     'max_receivers_before_admin' => env('RECEIVERS_BEFORE_ADMIN', 5),
