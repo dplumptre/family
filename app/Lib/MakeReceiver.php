@@ -92,10 +92,7 @@ class MakeReceiver
 
                     //event to notify payer has become receiver
                     $this->payerNowReceiver($completedPayer->id);
-
-
                 });
-
             }
         else :
             $this->noCompletedPayer();
