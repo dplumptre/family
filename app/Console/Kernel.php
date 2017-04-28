@@ -46,7 +46,7 @@ class Kernel extends ConsoleKernel
         //make successful payers receivers
         $schedule->command('app:make-receivers')
             ->hourly()
-            ->appendOutputTo('commands/receivers.txt');
+            ->appendOutputTo(storage_path('commands/receivers.txt'));
     }
 
     /**

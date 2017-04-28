@@ -20,17 +20,8 @@ return [
         19, 21, 22, 25
     ],
 
-    'pair' => [
-        'frequency' => 'weekly',
-        'when' => 'mondays',
-        'start' => '9:00',
-        'end' => '15:00',
-    ],
+    'pair_expire_minutes' => env('PAIR_EXPIRE_MINUTES', 60),
 
-    'pair_expire' => 7*60, //in hours to minutes
-
-    'pair_expire_minutes' => 5,
-
-    'max_receivers_before_admin' => 5,
+    'max_receivers_before_admin' => env('RECEIVERS_BEFORE_ADMIN', 5),
 
 ];

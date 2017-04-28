@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class Receiver extends Model
 {
+    protected $table = 'receivers';
+    protected $fillable = ['user_id', 'package_id', 'status'];
 
     const PENDING = 0;
     const PROCESSING = 1;
@@ -22,17 +24,8 @@ class Receiver extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
-
-
-    
-    public function pairs()
-    {
-        return $this->hasMany(Pair::class);
-    }
-    
-    
     
     public function packages()
     {
