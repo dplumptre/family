@@ -31,6 +31,12 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\Payer\PayerPaired',
             'App\Listeners\Receiver\NewPayerGiven'
         ],
+        'App\Events\AutomatedAdminSlotted' => [
+            'App\Listeners\AutomatedAdmin\AdminSlotted'
+        ],
+        'App\Events\Payer\PayerMadeReceiver' => [
+            'App\Listeners\Payer\MadeReceiver'
+        ]
 
 
 

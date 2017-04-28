@@ -9,6 +9,8 @@
 namespace App\Lib;
 
 
+use App\Events\AutomatedAdminSlotted;
+use App\Events\Payer\PayerMadeReceiver;
 use App\Models\AutomatedReceiver;
 use App\Models\Payer;
 use App\Models\Receiver;
@@ -71,27 +73,28 @@ class MakeReceiver
                         //time for next admin.
                         //get next admin
                         $nextAdmin = $this->automatedReceiver->getNextAutomatedReceiver();
-                        $this->receiver->create([
+                        $automatedReceiver = $this->receiver->create([
                             'user_id' => $nextAdmin->user_id,
                             'package_id' => $nextAdmin->package_id,
                             'status' => 0,
                         ]);
                         //event to notify admin has been slotted
                         $this->adminReceiverSlotted($nextAdmin->user_id);
+                        event(new AutomatedAdminSlotted($automatedReceiver));
                     }
                     //process the normal receiver.
                     //$this->receiver->makeCompletedPayerReceiver($completedPayer)
-                    $this->receiver->create([
+                    $newReceiver = $this->receiver->create([
                         'user_id' => $completedPayer->user_id,
                         'package_id' => $completedPayer->package_id,
                         'status' => 0,
                     ]);
-
                     //update the payer row set finished=1 for payer so we won't choose him again
                     $completedPayer->finishPayer();
 
                     //event to notify payer has become receiver
                     $this->payerNowReceiver($completedPayer->id);
+                    event(new PayerMadeReceiver(new $newReceiver));
                 });
             }
         else :
