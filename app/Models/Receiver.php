@@ -32,7 +32,11 @@ class Receiver extends Model
         return $this->belongsTo('App\Models\Package', 'package_id');
     }
 
-    
+
+    public function pairs()
+    {
+        return $this->hasMany(Pair::class, 'payer_id', 'id');
+    }
     
     /**
      * created_at + 15days = today

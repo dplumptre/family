@@ -111,7 +111,7 @@ class ProcessPairing
                     //update payer status
                     $this->updatePayerStatus($row->id);
 
-                    event(new PayerPairedToReceiver($pairRow));
+                 //   event(new PayerPairedToReceiver($pairRow));
 
                 endforeach;
 
