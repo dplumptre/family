@@ -146,7 +146,7 @@
                     
                    Already a member ? click <a class="h5" href="{{ URL::asset('/login') }}">
                        <i>here</i> 
-</a>to togin
+</a>to login
                 </div>
             </div>
         </div>
