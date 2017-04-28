@@ -53,7 +53,7 @@ class UserController extends Controller
         
         $paymenttins =0;
         
-        if($pair->completedRecRows() > 0){
+        if($pair->completedRecRows()){
         
         $paymenttins = auth()->user()->receivers()->with(['pairs' => function ($query) {
         $query->where('receiver_status',self::COMPLETED);
