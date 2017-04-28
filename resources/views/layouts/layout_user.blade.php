@@ -119,7 +119,7 @@
                         </li>
 
 
-                        @if($currentUser->hasAnyRole(["superadmin","admin"]))
+                        @if( !empty($currentUser) && $currentUser->hasAnyRole(["superadmin","admin"]))
                             <li>
                                 <a href="{{ secure_asset('user-area/news') }}"><i class="si si-speedometer"></i><span
                                             class="sidebar-mini-hide">News</span></a>

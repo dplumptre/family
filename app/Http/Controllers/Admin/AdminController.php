@@ -6,6 +6,7 @@ use App\Http\Requests\Admin\NewAutomatedReceiver;
 use App\Http\Requests\UpdateUserRole;
 use App\Models\AutomatedReceiver;
 use App\Models\Package;
+use App\Models\Receiver;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -48,5 +49,14 @@ class AdminController extends Controller
     {
         $automatedReceiver->save();
         return redirect()->back();
+    }
+
+
+    public function Receivers()
+    {
+        $data = Receiver::with('user', 'packages')->paginate(20);
+        $users = User::select(['id', 'username', 'email'])->get();
+        $packages = Package::all();
+        return view('admin.receivers.index', compact('data', 'users', 'packages'));
     }
 }

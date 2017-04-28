@@ -111,6 +111,8 @@ Route::group(
     Route::get('automated-receivers', 'AdminController@automatedReceivers')->name('automated-receivers');
     Route::post('automated-receivers', 'AdminController@PostAutomatedReceivers')->name('post.automated-receivers');
 
+    Route::get('receivers', 'AdminController@Receivers')->name('receivers');
+
 
     Route::get('/api-tokens', 'AdminController@apiTokens');
 });

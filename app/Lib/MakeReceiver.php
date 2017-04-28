@@ -67,7 +67,7 @@ class MakeReceiver
 
                 DB::transaction(function () use ($receiversAfterLastAdmin, $maxReceiversBeforeAdmin, $completedPayer) {
 
-                    if ($receiversAfterLastAdmin == $maxReceiversBeforeAdmin) {
+                    if ($receiversAfterLastAdmin >= $maxReceiversBeforeAdmin) {
                         //time for next admin.
                         //get next admin
                         $nextAdmin = $this->automatedReceiver->getNextAutomatedReceiver();

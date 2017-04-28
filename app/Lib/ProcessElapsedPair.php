@@ -78,7 +78,8 @@ class ProcessElapsedPair
 
                     $this->pairUpdated($elapsedPairRow->id, $defaulter);
 
-                    //call event here.
+                    //call event to notify new payer & receiver
+
                 });
             } else {
                 //no new payer in row.

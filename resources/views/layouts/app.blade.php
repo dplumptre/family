@@ -46,7 +46,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{route('roles')}}">Roles</a></li>
                     <li><a href="#">Payers</a></li>
-                    <li><a href="#">Receivers</a></li>
+                    <li><a href="{{route('receivers')}}">Receivers</a></li>
                     <li><a href="{{route('automated-receivers')}}">Automated-Receivers</a></li>
                     &nbsp;
                 </ul>
