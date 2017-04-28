@@ -97,8 +97,13 @@ class User extends Authenticatable
     public function latestUsers()
    {
             
-       $latestusers =  self::latest()->first();    
+       $latestusers =  self::latest()->first();  
+       
+       if($latestusers !== null){
+       
        return $latestusers->username;
+       }
+       return null;
     }
 
 }
