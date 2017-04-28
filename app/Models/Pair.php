@@ -80,5 +80,16 @@ class Pair extends Model
             ->get()
             ;
     }
+    
+    
+       public static function completedRecRows()
+    {
+        return self::select()
+            ->where('receiver_status', 2)
+            //->toSql()
+            ->count()
+            ;
+    } 
+    
 
 }
