@@ -54,8 +54,12 @@ class UserController extends Controller
         $query->where('receiver_status',self::COMPLETED);
         }])->get();
            
-           
-       // dd($paymenttins);
+       
+        if($paymenttins){
+            $paymenttins = $paymenttins;
+        }  else {
+            $paymenttins = "";
+        }
             
             
         $failedpayers = $payer::with('user')->where('pairing_result',1)->get();
