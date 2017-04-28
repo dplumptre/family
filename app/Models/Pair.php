@@ -87,7 +87,7 @@ class Pair extends Model
         return self::select()
             ->where('receiver_status', 2)
             //->toSql()
-            ->count()
+            ->get()
             ;
     } 
     
