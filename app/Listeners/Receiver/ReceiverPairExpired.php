@@ -28,6 +28,6 @@ class ReceiverPairExpired
      */
     public function handle(PairExpired $event)
     {
-        Mail::to($event->pair->receiver->user)->send(new OnePairExpired($event->pair->receiver));
+        Mail::to($event->pair->receiver->user)->send(new OnePairExpired($event->pair));
     }
 }

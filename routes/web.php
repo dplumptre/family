@@ -18,10 +18,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('test', function (AutomatedReceiver $automatedReceiver, Receiver $receiver) {
-    $ar = AutomatedReceiver::getTotalPosition();
+    $r = \App\Models\Pair::find(2);
 
     dd(
-        $ar
+        $r->payer->user->userDetail->firstname
     );
 });
 /*

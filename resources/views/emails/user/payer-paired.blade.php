@@ -3,10 +3,10 @@
 
 Hi {{ ucfirst($pair->payer->user->username) }},
 
-This is to inform you that you now have a new Recipient.
-
 @component('mail::panel')
-This offer will expire in <i>{{ $pair->elapse_time->diffForHumans() }}</i> for your donation to be made.
+This is to inform you that you now have a new Recipient ({{ ucwords($pair->receiver->user->userDetail->firstname) }} {{ucwords($pair->receiver->user->userDetail->lastname)}}).
+
+This offer will expire in <i>{{ $pair->elapse_time->diffForHumans() }}</i> for your donation to be made. Kindly make donations in-time, upload evidence and inform the recipient of your payment.
 @endcomponent
 
 <?php $url = route('outgoing'); ?>

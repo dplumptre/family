@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Listeners\Payer;
+namespace App\Listeners\Receiver;
 
-use App\Events\Pair\PairExpired;
+use App\Events\Pair\PairUpdated;
+use App\Mail\Receiver\NewPayer;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Mail;
 
-class PayerPairExpired
+class NewPayerGiven
 {
     /**
      * Create the event listener.
@@ -22,11 +23,11 @@ class PayerPairExpired
     /**
      * Handle the event.
      *
-     * @param  PairExpired  $event
+     * @param  PairUpdated  $event
      * @return void
      */
-    public function handle(PairExpired $event)
+    public function handle(PairUpdated $event)
     {
-        Mail::to($event->pair->payer->user)->send(new \App\Mail\Payer\PairExpired($event->pair));
+        Mail::to($event->pair->receiver->user)->send(new NewPayer($event->pair));
     }
 }
