@@ -56,30 +56,31 @@ class ProcessElapsedPair
     {
         foreach ($this->elapsedPairRows as $elapsedPairRow)
         {
+            //update payer to show he has defaulted.
+            $elapsedPairRow->payer->updateFailedPairStatus();
+
             //Find next payer
             $package_id = $elapsedPairRow->payer->package_id;
             $newPayer = $this->payer->findNextPayer($package_id);
 
+            //if we have a new payer to replace
+            //old defaulter payer. Go ahead and
+            //update the pair row with new payer.
             if ( $newPayer )
             {
                 DB::transaction(function() use($elapsedPairRow, $newPayer){
 
                     $defaulter = $elapsedPairRow->payer_id;
-                    //update payer.pairing_result = 1
-                    //trigger event(PairTimeElapsed($elapsedPairRow))
-                    $this->updateOldPairingResult($elapsedPairRow->payer_id);
 
                     //Pair new payer with existing pairRow
-                    //trigger event(MemberPaired($newPayer))
                     $this->updatePairWithPayer($elapsedPairRow, $newPayer);
-
                     //update new payer.status = 1
                     $this->updateNewPayer($newPayer);
 
+                    //log to file
                     $this->pairUpdated($elapsedPairRow->id, $defaulter);
 
-                    //call event to notify new payer & receiver
-
+                    //event
                 });
             } else {
                 //no new payer in row.
@@ -88,7 +89,8 @@ class ProcessElapsedPair
                 $this->noNewPayerForElapsedRow($elapsedPairRow->id);
             }
             //no new payer.
-            //Tell the Receiver & inform the Payer
+            //Tell the Receiver about defaulted payer
+            //& inform the Payer himself
             event(new PairExpired($elapsedPairRow));
         }
     }
@@ -107,7 +109,8 @@ class ProcessElapsedPair
 
     private function updatePairWithPayer($pairRow, $payer)
     {
-        $pair_expire_min = config_path('family.pair_expire_minutes')?: 6 * 60 ;
+        $pair_expire_min = config('family.pair_expire_minutes');
+
 
         $pairRow->payer_id = $payer->id;
         $pairRow->image = 'example.jpg';
