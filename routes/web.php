@@ -103,10 +103,10 @@ Route::name('post.contact')->post('contact', 'PagesController@postcontact');
 Route::get('/home', 'HomeController@index');
 
 Route::group(
-    ['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'Admin'], function () {
+    ['prefix' => 'admin', 'middleware' => ['auth','roles'], 'namespace' => 'Admin', 'roles'=>['superadmin', 'admin']], function () {
     //Route::get('/roles', ['uses'=>'AdminController@roleIndex', 'middleware'=>'roles', 'roles'=>['admin']]);
-    Route::get('/roles', ['uses' => 'AdminController@roleIndex',])->name('roles');
-    Route::post('/roles', 'AdminController@postRole')->name('post.role');
+    Route::get('roles', 'AdminController@roleIndex')->name('roles');
+    Route::post('roles', 'AdminController@postRole')->name('post.role');
 
     Route::get('automated-receivers', 'AdminController@automatedReceivers')->name('automated-receivers');
     Route::post('automated-receivers', 'AdminController@PostAutomatedReceivers')->name('post.automated-receivers');

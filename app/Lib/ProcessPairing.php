@@ -90,7 +90,7 @@ class ProcessPairing
     {
         //loop over payer model to do the insert.
         $amount = Package::find($this->receiverModel->package_id)->paying_amount;
-        $pem = config('family.pair_expire_minutes') ?: 6 * 60;
+        $pem = config('family.pair_expire_minutes');
 
         DB::transaction(function () use ($amount, $pem) {
             //make sure u're not processing the receiver more than once
