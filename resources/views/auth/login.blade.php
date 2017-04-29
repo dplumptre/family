@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <div class="form-material form-material-primary floating">
-                                    <input class="form-control" type="text" id="email" name="email" value="{{old('email')}}" autofocus>
+                                    <input class="form-control" type="text" id="email" name="email" value="{{old('email')}}">
                                     <label for="email">Email</label>
                                 </div>
                             </div>
