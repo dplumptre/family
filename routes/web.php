@@ -109,6 +109,8 @@ Route::group(
 
     Route::get('receivers', 'AdminController@Receivers')->name('receivers');
 
+    Route::get('users', 'AdminController@Users')->name('users');
+
 
     Route::get('/api-tokens', 'AdminController@apiTokens');
 });

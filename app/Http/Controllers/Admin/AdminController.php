@@ -59,4 +59,11 @@ class AdminController extends Controller
         $packages = Package::all();
         return view('admin.receivers.index', compact('data', 'users', 'packages'));
     }
+
+
+    public function Users()
+    {
+        $data = User::paginate(20);
+        return view('admin.users.index', compact('data'));
+    }
 }

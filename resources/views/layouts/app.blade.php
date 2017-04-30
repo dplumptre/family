@@ -44,6 +44,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
+                    <li><a href="{{route('users')}}">Users</a></li>
                     <li><a href="{{route('roles')}}">Roles</a></li>
                     <li><a href="#">Payers</a></li>
                     <li><a href="{{route('receivers')}}">Receivers</a></li>

@@ -10,3 +10,5 @@ Homestead.yaml
 .env
 /storage/commands
 worker.log
+/public/assets/images/pics
+/public/assets/images/thumb
