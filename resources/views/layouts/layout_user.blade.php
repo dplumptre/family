@@ -291,7 +291,7 @@
 @include('includes.notify')
 
 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+
 <script type="text/javascript" src="{{ secure_asset('fancybox/jquery.fancybox-1.3.4.pack.js') }}"></script>
 
 
