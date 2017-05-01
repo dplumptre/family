@@ -12,6 +12,7 @@ use App\Http\Requests\contactRequest;
 use Illuminate\Mail\Mailable;
 use App\Mail\contactMail;
 use Illuminate\Support\Facades\Mail;
+use App\Models\UserRole;
 
 
 class PagesController extends Controller
@@ -34,10 +35,30 @@ class PagesController extends Controller
     }
 
 
-    public function home()
+    public function home(UserRole $role)
     {
-              $amount_paid = $this->pairs
+        
+//              $amount_paid = $this->pairs
+//                            ->where('status',1)->select('amount')->get();
+//              if( empty($amount_paid )){  $amount_paid = 0; }
+//        return view('pages.home')->with('allusers',$this->users->allUsers())
+//                                 ->with('latestusers',  $this->users->latestUsers())
+//                                  ->with('amount_paid',$amount_paid);        
+        
+        
+        
+                $r = $role::where('role_id',  1)
+                    ->orWhere('role_id', 2)->distinct()->get(['user_id']);
+                $rec = Receiver::whereIn('user_id',$r)->get(['id']);
+       
+                $amount_paid = $this->pairs
+                            ->whereNotIn('receiver_id', $rec)
                             ->where('status',1)->select('amount')->get();
+              
+              
+              
+          //    dd($amount_paid);
+              
               if( empty($amount_paid )){  $amount_paid = 0; }
         return view('pages.home')->with('allusers',$this->users->allUsers())
                                  ->with('latestusers',  $this->users->latestUsers())
