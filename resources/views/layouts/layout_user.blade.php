@@ -119,11 +119,15 @@
                         </li>
 
 
-                        @if( !empty($currentUser) && $currentUser->hasAnyRole(["superadmin","admin"]))
+                        @if( !empty($currentUser) && $currentUser->hasAnyRole(["superadmin","admin","guider"]))
                             <li>
                                 <a href="{{ secure_asset('user-area/news') }}"><i class="si si-speedometer"></i><span
                                             class="sidebar-mini-hide">News</span></a>
                             </li>
+
+                        @endif
+
+                        @if( !empty($currentUser) && $currentUser->hasAnyRole(["superadmin","admin"]))
                             <li>
                                 <a href="{{ secure_asset('user-area/dashboard-admin') }}"><i
                                             class="si si-speedometer"></i><span
@@ -131,8 +135,6 @@
                             </li>
 
                         @endif
-
-
                     </ul>
                 </div>
                 <!-- END Side Content -->
