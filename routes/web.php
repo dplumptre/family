@@ -108,6 +108,9 @@ Route::group(
     Route::get('automated-receivers', 'AdminController@automatedReceivers')->name('automated-receivers');
     Route::post('automated-receivers', 'AdminController@PostAutomatedReceivers')->name('post.automated-receivers');
 
+    Route::get('pairs', 'AdminController@Pairs')->name('pairs');
+    Route::post('pairs', 'AdminController@POstPairs')->name('post.pairs');
+
     Route::get('receivers', 'AdminController@Receivers')->name('receivers');
     Route::post('receivers', 'AdminController@PostReceivers')->name('post.receivers');
 

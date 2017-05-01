@@ -40,12 +40,12 @@ class Kernel extends ConsoleKernel
 
         //update elapsed pair
         $schedule->command('app:update-pair')
-            ->hourly()
+            ->dailyAt('11:00')
             ->appendOutputTo(storage_path('commands/update-pair.txt'));
 
         //make successful payers receivers
         $schedule->command('app:make-receivers')
-            ->daily()
+            ->dailyAt('8:00')
             ->appendOutputTo(storage_path('commands/receivers.txt'));
     }
 

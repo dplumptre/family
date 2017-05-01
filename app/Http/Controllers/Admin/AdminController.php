@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\NewReceiver;
 use App\Http\Requests\UpdateUserRole;
 use App\Models\AutomatedReceiver;
 use App\Models\Package;
+use App\Models\Pair;
 use App\Models\Receiver;
 use App\Models\Role;
 use App\Models\User;
@@ -35,6 +36,20 @@ class AdminController extends Controller
         $request->save();
         flash('Roles saved', 'success');
         return redirect()->back();
+    }
+
+
+    public function Pairs()
+    {
+        $data = Receiver::with('pairs', 'user')->where('status', '>', 0)->paginate(20);
+        //dd($data);
+        return view('admin.pairs.index', compact('data'));
+    }
+
+
+    public function PostPairs()
+    {
+
     }
 
 

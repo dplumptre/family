@@ -35,7 +35,7 @@ class Receiver extends Model
 
     public function pairs()
     {
-        return $this->hasMany(Pair::class, 'payer_id', 'id');
+        return $this->hasMany(Pair::class);//, 'payer_id', 'id');
     }
     
     /**
