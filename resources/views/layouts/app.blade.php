@@ -13,6 +13,12 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
+    <style type="text/css">
+        .table td {
+            vertical-align: middle;
+        }
+    </style>
+
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
@@ -46,6 +52,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{route('users')}}">Users</a></li>
                     <li><a href="{{route('roles')}}">Roles</a></li>
+                    <li><a href="{{route('pairs')}}">Pairs</a></li>
                     <li><a href="#">Payers</a></li>
                     <li><a href="{{route('receivers')}}">Receivers</a></li>
                     <li><a href="{{route('automated-receivers')}}">Automated-Receivers</a></li>
