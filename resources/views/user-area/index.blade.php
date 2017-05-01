@@ -93,7 +93,8 @@
                     </div>
 
                     <div class="block-content text-center">
-                            <table class="table-responsive table table-bordered table-striped  js-dataTable-full-pagination">
+                        <div class="table-responsive">
+                            <table class="table-vcenter table  table-striped  js-dataTable-full-pagination">
                                 <thead>
                                     <tr>
                                            <th class="text-center" style="width: 10%;"> s/n</th>
@@ -124,7 +125,7 @@
 
                                 </tbody>
                             </table>
-                    </div>
+                        </div></div>
                 </div>
             </div>
 
