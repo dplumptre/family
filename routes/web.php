@@ -58,6 +58,7 @@ Route::get('dashboard', 'UserController@index');
 Route::group(
     ['prefix' => 'user-area', 'middleware' => ['auth']], function () {
     Route::get('/', 'UserController@index')->name('dashboard');
+    Route::get('dashboard', 'UserController@index');
     Route::get('profile', 'UserController@profile')->name('profile');
     Route::post('profile', 'UserController@postProfile')->name('post.profile');
     Route::get('change-password', 'UserController@changePassword')->name('change.password');
@@ -108,6 +109,7 @@ Route::group(
     Route::post('automated-receivers', 'AdminController@PostAutomatedReceivers')->name('post.automated-receivers');
 
     Route::get('receivers', 'AdminController@Receivers')->name('receivers');
+    Route::post('receivers', 'AdminController@PostReceivers')->name('post.receivers');
 
     Route::get('users', 'AdminController@Users')->name('users');
 

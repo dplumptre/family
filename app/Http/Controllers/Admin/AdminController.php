@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\NewAutomatedReceiver;
+use App\Http\Requests\Admin\NewReceiver;
 use App\Http\Requests\UpdateUserRole;
 use App\Models\AutomatedReceiver;
 use App\Models\Package;
@@ -61,9 +62,16 @@ class AdminController extends Controller
     }
 
 
+    public function PostReceivers(NewReceiver $request)
+    {
+        $request->save();
+        return redirect()->back();
+    }
+
+
     public function Users()
     {
-        $data = User::paginate(20);
+        $data = User::with('userDetail')->paginate(20);
         return view('admin.users.index', compact('data'));
     }
 }

@@ -43,10 +43,12 @@
                         <hr>
 
                         <div class="row">
+                            @include('layouts.partials.errors')
                             <div class="col-md-6">
                                 <div>
                                     <h4>Add User to Receivers</h4>
-                                    <form action="">
+                                    <form action="{{route('post.receivers')}}" method="post">
+                                        {{csrf_field()}}
                                         <div class="form-group">
                                             <label for="admin">Admin</label>
                                             <select name="user_id" id="user_id" class="form-control">
@@ -68,6 +70,11 @@
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                        <input type="hidden" name="status" value="0">
                                     </form>
                                 </div>
                             </div>
