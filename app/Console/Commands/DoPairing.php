@@ -43,10 +43,8 @@ class DoPairing extends Command
     {
         //1, get the next receiver
         $receiver = $pairing->getNextReceiver();
-
         //while we have a receiver
         while ($receiver != null) {
-
             //get two payers
             $payers = $pairing->getNextPayers();
 
