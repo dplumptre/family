@@ -45,8 +45,6 @@ class UserController extends Controller
     public function dashboardAdmin(User $users, Payer $payer, Pair $pair)
     {
         $rid = auth()->user()->receivers()->select('id')->first();
-<<<<<<< HEAD
-
         $paymenttins = 0;
 
         if (count($pair->completedRecRows())) {
@@ -54,21 +52,11 @@ class UserController extends Controller
                 ->where('receiver_id', $rid->id)
                 //->toSql();
                 ->get();
-=======
-        $paymenttins =0;
-        
-        if(count($pair->completedRecRows())){
-        $paymenttins = $pair::where('receiver_status',self::COMPLETED)
-                                       ->where('receiver_id',  $rid->id )
-                                      //->toSql();  
-                                       ->get();
-        
-            if(!$paymenttins){
-            $paymenttins =0;
+
+            if (!$paymenttins) {
+                $paymenttins = 0;
             }
-        
-        
->>>>>>> 4cc903d518f058da51fa301fd93ceb13a1891f27
+
         }
 
         $failedpayers = $payer::with('user')->where('pairing_result', 1)->get();
