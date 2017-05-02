@@ -60,6 +60,7 @@
                                         <th class="text-center"></th>
                                         <th class="text-center">Total</th>
                                         <th class="text-center">Payment Date</th>
+                                         <th class="text-center">Donor Claims</th>
                                          <th class="text-center">Receipt</th>
                                         <th class="text-center" style="width: 15%;">Status</th>
                                         <th class="text-center" style="width: 10%;">Actions</th>
@@ -73,6 +74,17 @@
                                     <td class="text-center"> {{ $key + 1 }} </td>
                                     <td class="text-center">{{ number_format($p->amount) }}</td>
                                     <td class="text-center"> {{ $p->elapse_time }}</td>
+                                    
+                                    
+                                    <td class="text-center">
+                                         @if($p->payer_status  == 1)
+                                         <span class="label label-warning">Pending payment</span>
+                                         @else 
+                                         <span class="label label-success">Payment has been made</span>
+                                         @endif 
+                                    </td>                                 
+                                    
+                                   
                                     <td class="text-center">
                                     @if($p->image !== 'example.jpg')
                                     <a id="single_image"  href="{{ URL::asset('assets/images/pics/'.$p->image) }}" title="" >  
