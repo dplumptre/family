@@ -59,7 +59,7 @@ class MakeReceiver
      */
     public function processQueue()
     {
-        $maxReceiversBeforeAdmin = config('family.max_receivers_before_admin');
+        $maxReceiversBeforeAdmin = (int) config('family.max_receivers_before_admin');
 
         if (count($this->completedPayers) > 0):
 
@@ -91,7 +91,6 @@ class MakeReceiver
                     ]);
                     //update the payer row set finished=1 for payer so we won't choose him again
                     $completedPayer->finishPayer();
-
                     //event to notify payer has become receiver
                     $this->payerNowReceiver($completedPayer->id);
                     event(new PayerMadeReceiver(new $newReceiver));

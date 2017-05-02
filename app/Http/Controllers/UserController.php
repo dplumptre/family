@@ -20,14 +20,9 @@ use App\Models\Newz;
 
 class UserController extends Controller
 {
-    //
-
-
     const PENDING = 0;
     const PROCESSING = 1;
     const COMPLETED = 2;
-
-
 
 
     function __construct()
@@ -36,7 +31,7 @@ class UserController extends Controller
     }
 
 
-    public function index(User $users,Newz $news)
+    public function index(User $users, Newz $news)
     {
         $id = Auth::id();
         $payer = Payer::with('packages')->where('user_id', $id)->where('pairing_result', 0)->oldest()->get();
@@ -47,38 +42,34 @@ class UserController extends Controller
     }
 
 
-    public function dashboardAdmin(User $users,  Payer $payer,Pair $pair)
+    public function dashboardAdmin(User $users, Payer $payer, Pair $pair)
     {
         $rid = auth()->user()->receivers()->select('id')->first();
-        $paymenttins =0;
-        
-        if(count($pair->completedRecRows())){
-        $paymenttins = $pair::where('receiver_status',self::COMPLETED)
-                                       ->where('receiver_id',  $rid->id )
-                                      //->toSql();  
-                                       ->get();
-        
-            if(!$paymenttins){
-            $paymenttins =0;
+        $paymenttins = 0;
+
+        if (count($pair->completedRecRows())) {
+            $paymenttins = $pair::where('receiver_status', self::COMPLETED)
+                ->where('receiver_id', $rid->id)
+                //->toSql();
+                ->get();
+
+            if (!$paymenttins) {
+                $paymenttins = 0;
             }
-        
-        
+
         }
-           
-       // dd($paymenttins);
-            
-            
-        $failedpayers = $payer::with('user')->where('pairing_result',1)->get();
-        
-        if($failedpayers){
+
+        $failedpayers = $payer::with('user')->where('pairing_result', 1)->get();
+
+        if ($failedpayers) {
             $fp = $failedpayers;
-        }  else {
+        } else {
             $fp = "";
         }
-        
-        
-        return view('user-area/dashboard-admin')->with('fp',$fp)
-                                                ->with('payment', $paymenttins);
+
+
+        return view('user-area/dashboard-admin')->with('fp', $fp)
+            ->with('payment', $paymenttins);
     }
 
 
@@ -89,17 +80,17 @@ class UserController extends Controller
     }
 
 
-    public function viewNews($id,Newz $news)
+    public function viewNews($id, Newz $news)
     {
         $news = $news::find($id);
         return view('user-area/view-news')->with('news', $news);
     }
 
 
-    public function postNews(NewsRequest $request,Newz $news)
+    public function postNews(NewsRequest $request, Newz $news)
     {
         $id = Auth::id();
-       $news::create([
+        $news::create([
             'title' => $request->title,
             'slug_title' => str_slug($request->title),
             'picture' => 'example.jpg',
@@ -110,7 +101,7 @@ class UserController extends Controller
     }
 
 
-    public function destroyNews($id,Newz $news)
+    public function destroyNews($id, Newz $news)
     {
         $news = $news::find($id);
         $news->delete();

@@ -55,6 +55,18 @@ class Receiver extends Model
             ->first();
     }
 
+    public function TakeNextReceiverInQueue()
+    {
+        return $this->where('status', self::PENDING)
+            ->oldest()->first();
+    }
+
+
+    public function DoUpdateReceiverAfterPairing($receiver_id)
+    {
+        return $this->where('id', $receiver_id)->update(['status' => self::PROCESSING]);
+    }
+
 
     public function scopeUpdateReceiverAfterPairing($query, $receiver_id)
     {

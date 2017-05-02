@@ -56,12 +56,14 @@ class ProcessPairing
 
     public function getNextReceiver()
     {
-        $receiver = $this->receiver->getNextReceiverInQueue();
-        if ($receiver->exists()) {
+        $receiver = $this->receiver->TakeNextReceiverInQueue();
+
+        if ($receiver) {
             $this->receiverModel = $receiver;
             $this->receiverFoundQueue();
             return true;
         }
+        unset($this->receiverModel);
         $this->noReceiverInQueue();
         return null;
     }
@@ -69,7 +71,7 @@ class ProcessPairing
 
     public function getNextPayers()
     {
-        $payers = $this->payer->getNextPayersInQueue($this->receiverModel->package_id);
+        $payers = $this->payer->TakeNextPayersInQueue($this->receiverModel->package_id);
 
         if ($payers->count() == 0) {
             $this->noPayersInQueue();
@@ -90,11 +92,11 @@ class ProcessPairing
     {
         //loop over payer model to do the insert.
         $amount = Package::find($this->receiverModel->package_id)->paying_amount;
-        $pem = config('family.pair_expire_minutes');
+        $pem = (int) config('family.pair_expire_minutes');
 
         DB::transaction(function () use ($amount, $pem) {
             //make sure u're not processing the receiver more than once
-            if (!$this->pair->find($this->receiverModel->id)) {
+            if (!$this->pair->where('receiver_id', $this->receiverModel->id)->first()) {
 
                 foreach ($this->payerModel as $row):
 
@@ -114,7 +116,6 @@ class ProcessPairing
                     event(new PayerPairedToReceiver($pairRow));
 
                 endforeach;
-
                 //update receiver status
                 $this->updateReceiverStatus($this->receiverModel->id);
             }

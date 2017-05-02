@@ -17,7 +17,8 @@ use App\Models\Receiver;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
-Route::get('test', function (AutomatedReceiver $automatedReceiver, Receiver $receiver) {
+Route::get('test', function (User $user) {
+    dd($user->disabled->get());
     return redirect()->route('dashboard');
 });
 /*
@@ -115,6 +116,9 @@ Route::group(
     Route::post('receivers', 'AdminController@PostReceivers')->name('post.receivers');
 
     Route::get('users', 'AdminController@Users')->name('users');
+
+    Route::get('disabled-users', 'AdminController@DisabledUsers')->name('disabled.users');
+    Route::post('disabled-users', 'AdminController@PostDisabledUsers')->name('post.disabled.users');
 
 
     Route::get('/api-tokens', 'AdminController@apiTokens');
