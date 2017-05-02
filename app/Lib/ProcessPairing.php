@@ -62,6 +62,7 @@ class ProcessPairing
             $this->receiverFoundQueue();
             return true;
         }
+        unset($this->receiverModel);
         $this->noReceiverInQueue();
         return null;
     }

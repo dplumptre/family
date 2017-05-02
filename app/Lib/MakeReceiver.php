@@ -91,7 +91,6 @@ class MakeReceiver
                     ]);
                     //update the payer row set finished=1 for payer so we won't choose him again
                     $completedPayer->finishPayer();
-
                     //event to notify payer has become receiver
                     $this->payerNowReceiver($completedPayer->id);
                     event(new PayerMadeReceiver(new $newReceiver));
