@@ -59,7 +59,7 @@ class MakeReceiver
      */
     public function processQueue()
     {
-        $maxReceiversBeforeAdmin = config('family.max_receivers_before_admin');
+        $maxReceiversBeforeAdmin = (int) config('family.max_receivers_before_admin');
 
         if (count($this->completedPayers) > 0):
 
