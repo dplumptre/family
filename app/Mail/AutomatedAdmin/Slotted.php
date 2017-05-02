@@ -2,6 +2,7 @@
 
 namespace App\Mail\AutomatedAdmin;
 
+use App\Models\Receiver;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -10,15 +11,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class Slotted extends Mailable
 {
     use Queueable, SerializesModels;
+    /**
+     * @var Receiver
+     */
+    public $receiver;
 
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param Receiver $receiver
      */
-    public function __construct()
+    public function __construct(Receiver $receiver)
     {
-        //
+        $this->receiver = $receiver;
     }
 
     /**

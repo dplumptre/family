@@ -55,6 +55,12 @@ class User extends Authenticatable
     }
 
 
+    public function disabledUser()
+    {
+        return $this->hasOne(DisabledUser::class);
+    }
+
+
     public function hasAnyRole($roles)
     {
         if (is_array($roles)):

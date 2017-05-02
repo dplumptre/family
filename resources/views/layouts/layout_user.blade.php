@@ -173,7 +173,8 @@
 
                         <li>
                             <a tabindex="-1" href="{{ secure_asset('logout')}}"
-                               onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                               {{--onclick="event.preventDefault();document.getElementById('logout-form').submit();"--}}
+                            >
                                 <i class="si si-logout pull-right"></i>Log out
                             </a>
                             <form id="logout-form" action="{{ secure_asset('logout') }}" method="POST"
@@ -291,12 +292,7 @@
 <script src="{{ secure_asset('assets/js/pages/base_tables_datatables.js') }}"></script>
 @yield('scripts')
 @include('includes.notify')
-
-
-
 <script type="text/javascript" src="{{ secure_asset('fancybox/jquery.fancybox-1.3.4.pack.js') }}"></script>
-
-
 <script>
     $(document).ready(function () {
 
@@ -306,12 +302,7 @@
 
 
     function paid(pair, payer) {
-
-        //alert(sel +" "+p);
-
         $('.mark' + pair).show();
-
-
         $.ajax(
                 {
                     url: 'https://family.dev/user-area/ogaidonpay',
@@ -325,26 +316,17 @@
                     error: function (response) {
                         console.log("error:" + response.responseText);
                     }
-
-
                 });
-
     }
 
     $(document).ready(function () {
-
         /* This is basic - uses default settings */
-
         $("a#single_image").fancybox();
-
         /* Using custom settings */
-
         $("a#inline").fancybox({
             'hideOnContentClick': true
         });
-
         /* Apply fancybox to multiple items */
-
         $("a.group").fancybox({
             'transitionIn': 'elastic',
             'transitionOut': 'elastic',
@@ -352,7 +334,6 @@
             'speedOut': 200,
             'overlayShow': false
         });
-
     });
 
 </script>

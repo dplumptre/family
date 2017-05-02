@@ -6,11 +6,13 @@ use App\Http\Requests\Admin\NewAutomatedReceiver;
 use App\Http\Requests\Admin\NewReceiver;
 use App\Http\Requests\UpdateUserRole;
 use App\Models\AutomatedReceiver;
+use App\Models\DisabledUser;
 use App\Models\Package;
 use App\Models\Pair;
 use App\Models\Receiver;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\UserDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -88,5 +90,18 @@ class AdminController extends Controller
     {
         $data = User::with('userDetail')->paginate(20);
         return view('admin.users.index', compact('data'));
+    }
+
+
+    public function DisabledUsers()
+    {
+        $data = DisabledUser::with('user')->get();
+        return view('admin.disabled-users.index', compact('data'));
+    }
+
+
+    public function PostDisabledUsers()
+    {
+
     }
 }
