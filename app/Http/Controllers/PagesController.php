@@ -53,7 +53,7 @@ class PagesController extends Controller
        
                 $amount_paid = $this->pairs
                             ->whereNotIn('receiver_id', $rec)
-                            ->where('status',1)->select('amount')->get();
+                            ->where('receiver_status',2)->select('amount')->get();
               
               
               

@@ -19,6 +19,7 @@
                                 <td rowspan="2" valign="middle">{{$receiver->user->username}}</td>
                                 <td>
                                     {{
+                                $receiver->pairs[0]->created_at . ' | ' .        
                                 $receiver->pairs[0]->payer->user->username . ' | ' .
                                 $receiver->pairs[0]->payer->user->email . ' | ' .
                                 $receiver->pairs[0]->payer->user->userDetail->firstname . '  ' .
@@ -26,7 +27,7 @@
                                 ' ('.$receiver->pairs[0]->payer->user_id.')'
                                 }}
                                     <?php
-                                        switch((int) $receiver->pairs[0]->payer_status){
+                                        switch((int) $receiver->pairs[0]->receiver_status){
                                             case 0 :
                                                 echo '<span class="label label-default">Pending</span>';
                                                 break;
@@ -42,6 +43,7 @@
                             </tr>
                             <tr>
                                 <td>{{
+                                $receiver->pairs[0]->created_at . ' | ' .    
                                 $receiver->pairs[1]->payer->user->username . ' | ' .
                                 $receiver->pairs[1]->payer->user->email . ' | ' .
                                 $receiver->pairs[1]->payer->user->userDetail->firstname . '  ' .
@@ -49,7 +51,7 @@
                                 ' ('.$receiver->pairs[1]->payer->user_id.')'
                                 }}
                                     <?php
-                                    switch((int) $receiver->pairs[1]->payer_status){
+                                    switch((int) $receiver->pairs[1]->receiver_status){
                                         case 0 :
                                             echo '<span class="label label-default">Pending</span>';
                                             break;

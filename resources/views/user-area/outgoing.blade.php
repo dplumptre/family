@@ -70,6 +70,7 @@ $dateElements=[];
                             <th class="text-center">Upload Attachment</th>
                             <th class="text-center" style="width: 15%;">Time Left</th>
                             <th class="text-center" style="width: 10%;">Actions</th>
+                            <th class="text-center" style="width: 10%;">Confirmation</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -121,27 +122,33 @@ $dateElements=[];
                                                 @endif
                                             </strong>
                                     </td>
-                                <td class="text-center">
+        <td class="text-center">
         @if ( $p->elapse_time > $carbon->now()->format('Y-m-d H:i:s') )
-        
-                                    
-                            <form  action="{{  secure_url('user-area/outgoing') }}" method="POST">{{ csrf_field() }}
-                                <input type="hidden" value="<?php echo $p->id?>" name="pair_id"/><input name="payer_id" type="hidden" value="<?php echo $p->payer_id?>" />
-                            <button type="submit" onclick="return confirm('Are you sure ?');" class="btn btn-danger btn-sm">I,ve Paid
-                                @if($p->payer_status == 2)
-                                <span>  <i class="fa fa-check"></i></span>
-                                @endif
-                            </button> 
-                            </form> 
+            <form  action="{{  secure_url('user-area/outgoing') }}" method="POST">{{ csrf_field() }}
+            <input type="hidden" value="<?php echo $p->id?>" name="pair_id"/><input name="payer_id" type="hidden" value="<?php echo $p->payer_id?>" />
+            <button type="submit" onclick="return confirm('Are you sure ?');" class="btn btn-danger btn-sm">I,ve Paid
+            @if($p->payer_status == 2)
+            <span>  <i class="fa fa-check"></i></span>
+            @endif
+            </button> 
+            </form> 
         @else
-        <div>
-            <span class="label label-danger">Failed</span>
-        </div>
+            <div>
+            <span class="label label-warning">completed</span>
+            </div>
         @endif                                 
-                                    
-                                    
-                                    
-                              </td>
+        </td>
+                <td class="text-center"> 
+                  
+                    @if ( $p->receiver_status == 1 ) 
+                    <div><span class="label label-danger"><i class="fa fa-close"></i></span></div>
+                    @else
+                    <div><span class="label label-success"><i class="fa fa-check"></i></span></div>
+                    @endif                
+                
+                
+                
+                </td>
                                     </tr>
                                 @endforeach
                             @endforeach
