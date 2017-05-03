@@ -14,7 +14,7 @@ class NewPayer extends Mailable
     /**
      * @var Pair
      */
-    private $pair;
+    public $pair;
 
     /**
      * Create a new message instance.
