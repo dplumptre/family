@@ -71,6 +71,7 @@ Route::group(
     Route::post('incoming', 'UserController@postIn')->name('post.incoming');
     Route::get('donate', 'UserController@donate')->name('donate');
     Route::post('donate', 'UserController@postDonate')->name('post.donate');
+    Route::delete('donate/{id}', 'UserController@destroyDonation')->name('del.donation');
     Route::get('upload/{id}', 'UserController@upload')->name('upload');
     Route::post('upload', 'UserController@postupload')->name('post.upload');
     Route::get('news', 'UserController@news')->name('newz');

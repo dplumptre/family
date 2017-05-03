@@ -259,6 +259,16 @@ class UserController extends Controller
     }
 
 
+    
+       public function destroyDonation($id)
+    {
+        $payer = Payer::find($id);
+        $payer->delete();
+        return redirect()->route('donate');
+    }
+    
+    
+    
     public function updateDetails()
     {
         return view('user-area.update-details');
