@@ -38,6 +38,7 @@ class DoPairing extends Command
      * Execute the console command.
      *
      * @param \App\Lib\Pairing\DoPairing $doPairing
+     * @param ProcessElapsedPair $processElapsedPair
      * @return mixed
      * @internal param ProcessPairing $pairing
      */

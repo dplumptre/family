@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
 
         //update elapsed pair payer
         $schedule->command('app:update-elapse-payer')
-            ->hourly()
+            ->twiceDaily(12, 18)
             ->appendOutputTo( storage_path('commands/elapsed-payers.txt') );
         ;
 
