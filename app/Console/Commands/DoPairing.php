@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Lib\ProcessElapsedPair;
 use App\Lib\ProcessPairing;
 use App\Models\Payer;
 use App\Models\Receiver;
@@ -36,27 +37,32 @@ class DoPairing extends Command
     /**
      * Execute the console command.
      *
-     * @param ProcessPairing $pairing
+     * @param \App\Lib\Pairing\DoPairing $doPairing
      * @return mixed
+     * @internal param ProcessPairing $pairing
      */
-    public function handle(ProcessPairing $pairing)
+    public function handle(\App\Lib\Pairing\DoPairing $doPairing, ProcessElapsedPair $processElapsedPair)
     {
-        //1, get the next receiver
-        $receiver = $pairing->getNextReceiver();
-        //while we have a receiver
-        while ($receiver != null) {
-            //get two payers
-            $payers = $pairing->getNextPayers();
-
-            if ($payers != null) {
-                $pairing->doPair();
-                //get next receiver to keep loop going or stop.
-                $receiver = $pairing->getNextReceiver();
-            }
-            else
-            {
-                $receiver = null;
-            }
-        }
+        $doPairing->process();
     }
+//    public function handle(ProcessPairing $pairing)
+//    {
+//        //1, get the next receiver
+//        $receiver = $pairing->getNextReceiver();
+//        //while we have a receiver
+//        while ($receiver != null) {
+//            //get two payers
+//            $payers = $pairing->getNextPayers();
+//
+//            if ($payers != null) {
+//                $pairing->doPair();
+//                //get next receiver to keep loop going or stop.
+//                $receiver = $pairing->getNextReceiver();
+//            }
+//            else
+//            {
+//                $receiver = null;
+//            }
+//        }
+//    }
 }

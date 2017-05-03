@@ -61,10 +61,19 @@ class Receiver extends Model
             ->oldest()->first();
     }
 
+    public function TakeAllPendingReceivers()
+    {
+        return $this->where('status', self::PENDING)->oldest()->get();
+    }
+
 
     public function DoUpdateReceiverAfterPairing($receiver_id)
     {
         return $this->where('id', $receiver_id)->update(['status' => self::PROCESSING]);
+    }
+    public function UpdatePairStatus($status=1)
+    {
+        return $this->update(['status' => $status]);
     }
 
 

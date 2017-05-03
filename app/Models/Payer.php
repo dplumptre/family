@@ -46,14 +46,21 @@ class Payer extends Model
             ->where('package_id', $package_id)->oldest()->limit(2)->get();
 
     }
-    public function TakeNextPayersInQueue($package_id)
+    public function TakeNextPayersInQueue($package_id, $count=2)
     {
         return $this->where('status', self::PENDING)
             ->where('package_id', $package_id)
+            ->where('pairing_result', self::PENDING)
+            ->where('finished', self::PENDING)
             ->oldest()
-            ->limit(2)
+            ->limit($count)
             ->get();
     }
+    public function UpdatePairedPayer($status=1)
+    {
+        $this->update(['status' => $status]);
+    }
+
 
 
     public function scopeUpdatePayerAfterPairing($query, $payer_id)

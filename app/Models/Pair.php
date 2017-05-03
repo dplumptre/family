@@ -89,7 +89,22 @@ class Pair extends Model
             //->toSql()
             ->get()
             ;
-    } 
-    
+    }
+
+    public function PairPayersToReceiver
+    ($payer_id, $receiver_id, $amount, $payer_status, $receiver_status, $status, $elapse_time)
+    {
+        return $this->create([
+            'payer_id' => $payer_id,
+            'receiver_id' => $receiver_id,
+            'image' => 'example.jpg',
+            'amount' => $amount,
+            'payer_status' => $payer_status,
+            'receiver_status' => $receiver_status,
+            'status' => $status,
+            'elapse_time' => $elapse_time
+        ]);
+    }
+
 
 }

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\DoPairing;
 use App\Console\Commands\MakeCompletedPayerReceiver;
+use App\Console\Commands\UpdateElapsedPayer;
 use App\Console\Commands\UpdateElapsedPayers;
 use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
@@ -19,6 +20,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         DoPairing::class,
         UpdateElapsedPayers::class,
+        UpdateElapsedPayer::class,
         MakeCompletedPayerReceiver::class,
     ];
 
@@ -33,20 +35,26 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
+        //update elapsed pair payer
+        $schedule->command('app:update-elapse-payer')
+            ->hourly()
+            ->appendOutputTo( storage_path('commands/elapsed-payers.txt') );
+        ;
+
         //pair payers to a receiver
-        $schedule->command('app:pair')
-            ->dailyAt('12:00')
-            ->appendOutputTo(storage_path('commands/pairing-output.txt'));
+//        $schedule->command('app:pair')
+//            ->dailyAt('12:00')
+//            ->appendOutputTo(storage_path('commands/pairing-output.txt'));
 
         //update elapsed pair
-        $schedule->command('app:update-pair')
-            ->dailyAt('11:00')
-            ->appendOutputTo(storage_path('commands/update-pair.txt'));
+//        $schedule->command('app:update-pair')
+//            ->dailyAt('11:00')
+//            ->appendOutputTo(storage_path('commands/update-pair.txt'));
 
         //make successful payers receivers
-        $schedule->command('app:make-receivers')
-            ->dailyAt('8:00')
-            ->appendOutputTo(storage_path('commands/receivers.txt'));
+//        $schedule->command('app:make-receivers')
+//            ->dailyAt('8:00')
+//            ->appendOutputTo(storage_path('commands/receivers.txt'));
     }
 
     /**

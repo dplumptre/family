@@ -119,7 +119,6 @@ class ProcessPairing
                 //update receiver status
                 $this->updateReceiverStatus($this->receiverModel->id);
             }
-
         });
 
     }

@@ -18,7 +18,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('test', function (User $user) {
-    dd($user->disabled->get());
+    dd((new Receiver())->TakeAllPendingReceivers());
     return redirect()->route('dashboard');
 });
 /*
