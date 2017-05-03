@@ -37,14 +37,14 @@ class Kernel extends ConsoleKernel
 
         //update elapsed pair payer
         $schedule->command('app:update-elapse-payer')
-            ->twiceDaily(12, 18)
+            ->hourly()
             ->appendOutputTo( storage_path('commands/elapsed-payers.txt') );
         ;
 
         //pair payers to a receiver
-//        $schedule->command('app:pair')
-//            ->dailyAt('12:00')
-//            ->appendOutputTo(storage_path('commands/pairing-output.txt'));
+        $schedule->command('app:pair')
+            ->twiceDaily(12, 18)
+            ->appendOutputTo(storage_path('commands/pairing-output.txt'));
 
         //update elapsed pair
 //        $schedule->command('app:update-pair')
@@ -52,9 +52,14 @@ class Kernel extends ConsoleKernel
 //            ->appendOutputTo(storage_path('commands/update-pair.txt'));
 
         //make successful payers receivers
-//        $schedule->command('app:make-receivers')
-//            ->dailyAt('8:00')
-//            ->appendOutputTo(storage_path('commands/receivers.txt'));
+        $schedule->command('app:make-receivers')
+            ->dailyAt('11:50')
+            ->appendOutputTo(storage_path('commands/receivers.txt'));
+
+        $schedule->command('app:make-receivers')
+            ->dailyAt('17:50')
+            ->appendOutputTo(storage_path('commands/receivers.txt'));
+
     }
 
     /**

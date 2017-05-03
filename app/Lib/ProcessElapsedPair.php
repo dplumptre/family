@@ -79,7 +79,6 @@ class ProcessElapsedPair
                     //event
                     event(new PairUpdated($elapsedPairRow));
                 });
-                return;
             }
             //no new payer in row. log it
             $this->noNewPayerForElapsedRow($elapsedPairRow->id);
