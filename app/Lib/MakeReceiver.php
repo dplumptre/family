@@ -69,19 +69,19 @@ class MakeReceiver
 
                 DB::transaction(function () use ($receiversAfterLastAdmin, $maxReceiversBeforeAdmin, $completedPayer) {
 
-                    if ($receiversAfterLastAdmin >= $maxReceiversBeforeAdmin) {
-                        //time for next admin.
-                        //get next admin
-                        $nextAdmin = $this->automatedReceiver->getNextAutomatedReceiver();
-                        $automatedReceiver = $this->receiver->create([
-                            'user_id' => $nextAdmin->user_id,
-                            'package_id' => $nextAdmin->package_id,
-                            'status' => 0,
-                        ]);
-                        //event to notify admin has been slotted
-                        $this->adminReceiverSlotted($nextAdmin->user_id);
-                        event(new AutomatedAdminSlotted($automatedReceiver));
-                    }
+//                    if ($receiversAfterLastAdmin >= $maxReceiversBeforeAdmin) {
+//                        //time for next admin.
+//                        //get next admin
+//                        $nextAdmin = $this->automatedReceiver->getNextAutomatedReceiver();
+//                        $automatedReceiver = $this->receiver->create([
+//                            'user_id' => $nextAdmin->user_id,
+//                            'package_id' => $nextAdmin->package_id,
+//                            'status' => 0,
+//                        ]);
+//                        //event to notify admin has been slotted
+//                        $this->adminReceiverSlotted($nextAdmin->user_id);
+//                        event(new AutomatedAdminSlotted($automatedReceiver));
+//                    }
                     //process the normal receiver.
                     //$this->receiver->makeCompletedPayerReceiver($completedPayer)
                     $newReceiver = $this->receiver->create([

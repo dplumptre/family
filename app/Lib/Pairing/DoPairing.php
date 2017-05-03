@@ -68,7 +68,7 @@ class DoPairing
             foreach ($this->receivers as $receiver) {
                 $this->receiverFound();
                 //see if we have pairs.
-                $payers = $this->TakeNextPayers($receiver->package_id);
+                $payers = $this->TakeNextPayers($receiver->package_id, 2);
                 //dd($payers, get_class_methods(new \Illuminate\Database\Eloquent\Collection()));
                 if ($payers->count() == 1) {
                     $this->onePayerInQueue();
@@ -80,12 +80,14 @@ class DoPairing
                     break;
                 }
 
-                DB::transaction(function() use ($payers, $receiver){
-                    //if the pairs are 2, go on.
-                    if ($payers->count() == 2) {
+
+                //if the pairs are 2, go on.
+                if ($payers->count() == 2) {
+
+                    DB::transaction(function () use ($payers, $receiver) {
                         //prepare to pair.
                         $amount = Package::find($receiver->package_id)->paying_amount;
-                        $elapse = (int) config('family.pair_expire_minutes');
+                        $elapse = (int)config('family.pair_expire_minutes');
 
                         foreach ($payers as $payer) {
                             $pairRow = $this->pair->PairPayersToReceiver(
@@ -101,9 +103,9 @@ class DoPairing
                             $payer->UpdatePairedPayer(self::PROCESSING);
                             event(new PayerPairedToReceiver($pairRow));
                         }
-                    }
-                    $receiver->UpdatePairStatus(self::PROCESSING);
-                });
+                        $receiver->UpdatePairStatus(self::PROCESSING);
+                    });
+                };
 
             }
         } else {

@@ -44,6 +44,7 @@ class DoPairing extends Command
      */
     public function handle(\App\Lib\Pairing\DoPairing $doPairing, ProcessElapsedPair $processElapsedPair)
     {
+        $processElapsedPair->processElapsedPairRows();
         $doPairing->process();
     }
 //    public function handle(ProcessPairing $pairing)
