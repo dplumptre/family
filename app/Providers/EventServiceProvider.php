@@ -28,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\Receiver\ReceiverPairExpired'
         ],
         'App\Events\Pair\PairUpdated' => [
-            'App\Listeners\Payer\PayerPaired',
+            'App\Listeners\Payer\PayerPairedOldPair',
             'App\Listeners\Receiver\NewPayerGiven'
         ],
         'App\Events\AutomatedAdminSlotted' => [

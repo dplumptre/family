@@ -84,13 +84,19 @@ class ProcessElapsedPair
             //no new payer in row. log it
             $this->noNewPayerForElapsedRow($elapsedPairRow->id);
 
-            //Tell the Receiver about defaulted payer
-            //& inform the Payer himself
-            if ( $elapsedPairRow->payer->pairing_result == 0 )
-                event(new PairExpired($elapsedPairRow));
 
-            //update payer to show he has defaulted. (So he won't receive emails again)
-            $elapsedPairRow->payer->updateFailedPairStatus();
+
+
+            DB::transaction(function() use($elapsedPairRow){
+                //Tell the Receiver about defaulted payer
+                //& inform the Payer himself
+                if ( $elapsedPairRow->payer->pairing_result == 0 )
+                    event(new PairExpired($elapsedPairRow));
+
+                //update payer to show he has defaulted. (So he won't receive emails again)
+                $elapsedPairRow->payer->updateFailedPairStatus();
+            });
+
         }
     }
 
