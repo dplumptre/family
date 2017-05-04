@@ -16,9 +16,7 @@
                         <tbody>
                         @foreach($data as $receiver)
                             <?php
-                                    if ( $receiver->id == 146 ){
-                                        continue;
-                                    }
+                                    if ( $receiver->id == 146 ){continue;}
                             ?>
                             <tr>
                                 <td rowspan="2" valign="middle">{{$receiver->user->username}}</td>

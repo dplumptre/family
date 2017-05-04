@@ -21,6 +21,9 @@
                             </thead>
                             <tbody>
                             @foreach($data as $row)
+                                <?php
+                                if ( $receiver->id == 146 ){continue;}
+                                ?>
                                 <tr>
                                     <td>{{$row->user->username}}</td>
                                     <td>{{$row->user->email}}</td>
