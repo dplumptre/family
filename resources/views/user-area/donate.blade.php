@@ -163,6 +163,7 @@
                                         <th class="text-center">Package Chosen</th>
                                          <th class="text-center">&#8358; Amount</th>                 
                                         <th class="text-center" style="width: 10%;">Status</th>
+                                        <th class="text-center" style="width: 10%;">Delete</th>
                                      
                                     </tr>
                                 </thead>
@@ -176,7 +177,20 @@
                         <td class="text-center"> {{ $p->created_at }}</td>
                         <td class="text-center"> {{ $p->packages->name }}</td>
                         <td class="text-center">{{ number_format($p->packages->paying_amount) }}</td>
-                        <td class="text-center">   <span class="label label-danger">{{ $arr[$p->status] }} <!--Pending / completed --></span>   </td>
+                        <td class="text-center">   <span class="label label-warning">{{ $arr[$p->status] }} <!--Pending / completed --></span>   </td>
+                        <td class="text-center">   
+
+                        @if($arr[$p->status] == "processing" || $arr[$p->status]=="completed") 
+                         <span class="label label-danger"> sorry dude! too late</span>
+                        @else
+                        <form class="form-horizontal push-5-t" action="{{ url('user-area/donate/'.$p->id) }}" method="POST">
+                        <input type="hidden" name="_method" value="delete" />    
+                        {{csrf_field()}}      
+                        <button type="submit" onclick="javascript:return confirm('Are you sure to delete this news')" class="label label-danger"> <i class="fa fa-trash-o"></i></button> 
+                        </form>                             
+                         @endif   
+                            
+                        </td> 
                         </tr>
                             @endforeach
                             @endif

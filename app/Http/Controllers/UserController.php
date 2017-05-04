@@ -44,14 +44,20 @@ class UserController extends Controller
 
     public function dashboardAdmin(User $users, Payer $payer, Pair $pair)
     {
-        $rid = auth()->user()->receivers()->select('id')->first();
+        $rid = auth()->user()->receivers()->where('status', '>', self::PENDING)->pluck('id');
+        
+        //dd($rid);
+        
         $paymenttins = 0;
 
         if (count($pair->completedRecRows())) {
             $paymenttins = $pair::where('receiver_status', self::COMPLETED)
-                ->where('receiver_id', $rid->id)
+                ->whereIn('receiver_id', $rid)
                 //->toSql();
                 ->get();
+            
+            
+           // dd($paymenttins);
 
             if (!$paymenttins) {
                 $paymenttins = 0;
@@ -253,6 +259,16 @@ class UserController extends Controller
     }
 
 
+    
+       public function destroyDonation($id)
+    {
+        $payer = Payer::find($id);
+        $payer->delete();
+        return redirect()->route('donate');
+    }
+    
+    
+    
     public function updateDetails()
     {
         return view('user-area.update-details');

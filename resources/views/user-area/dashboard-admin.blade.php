@@ -96,6 +96,7 @@
                                     <tr>
                                            <th class="text-center" style="width: 10%;"> s/n</th>
                                         <th class="text-center">Date</th>
+                                        <th class="text-center">USER ID</th> 
                                         <th class="text-center">Username</th> 
                                         <th class="text-center">Email</th>
                                   
@@ -107,7 +108,8 @@
                         @foreach($fp as $key => $p)
                         <tr>
                         <td class="text-center">{{$key +1}}</td>
-                        <td class="text-center"> {{ $p->created_at }}</td>
+                        <td class="text-center"> {{ $p->created_at }}</td>                        
+                        <td class="text-center"> {{  $p->user->id }}</td>
                         <td class="text-center"> {{ $p->user->username }}</td>
                         <td class="text-center">  {{ $p->user->email }}  
                         </td>
