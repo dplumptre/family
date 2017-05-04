@@ -14,6 +14,7 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Disabled Reaseon</th>
+                                <th>Date disabled</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -23,6 +24,7 @@
                                     <td>{{$row->user->username}}</td>
                                     <td>{{$row->user->email}}</td>
                                     <td>{{$row->reason}}</td>
+                                    <td>{{$row->created_at}}</td>
                                     <td>
                                         <a href="#" class="btn btn-primary btn-xs">enable</a>
                                     </td>
@@ -36,6 +38,23 @@
                             There are no Receivers yet.
                         </div>
                     @endif
+
+                        <hr>
+
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <h4>Disable User</h4>
+                            <form action="{{route('post.disabled.users')}}" method="post">
+                                {{csrf_field()}}
+                                <div class="form-group">
+                                    <label for="user_id">User Name/Email</label>
+                                    <select name="user_id" id="user_id" class="form-control">
+                                        <option value="">Select One</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

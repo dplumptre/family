@@ -116,9 +116,12 @@ Route::group(
     Route::post('receivers', 'AdminController@PostReceivers')->name('post.receivers');
 
     Route::get('users', 'AdminController@Users')->name('users');
+    Route::get('search-user', 'AdminController@SearchUser')->name('search.user');
 
     Route::get('disabled-users', 'AdminController@DisabledUsers')->name('disabled.users');
     Route::post('disabled-users', 'AdminController@PostDisabledUsers')->name('post.disabled.users');
+
+    Route::get('defaulters', 'AdminController@defaulters')->name('defaulters');
 
 
     Route::get('/api-tokens', 'AdminController@apiTokens');

@@ -62,7 +62,7 @@ class Kernel extends ConsoleKernel
 
     }
 
-    /**
+    /**w
      * Register the Closure based commands for the application.
      *
      * @return void

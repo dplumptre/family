@@ -9,6 +9,7 @@ use App\Models\AutomatedReceiver;
 use App\Models\DisabledUser;
 use App\Models\Package;
 use App\Models\Pair;
+use App\Models\Payer;
 use App\Models\Receiver;
 use App\Models\Role;
 use App\Models\User;
@@ -95,12 +96,26 @@ class AdminController extends Controller
 
     public function DisabledUsers()
     {
-        $data = DisabledUser::with('user')->get();
+        $data = DisabledUser::with('user')->latest()->paginate(20);
         return view('admin.disabled-users.index', compact('data'));
     }
 
 
     public function PostDisabledUsers()
+    {
+
+    }
+
+
+    public function defaulters()
+    {
+        $data = Payer::where('pairing_result', 1)->with('user')->get();
+        dd($data);
+        return view('admin.defaulters.index');
+    }
+
+
+    public function SearchUser()
     {
 
     }

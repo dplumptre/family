@@ -50,9 +50,23 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{route('users')}}">Users</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Users <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{route('users')}}">All Users</a></li>
+                            <li><a href="{{route('search.user')}}">Search User</a></li>
+                            <li><a href="{{route('disabled.users')}}">Disabled Users</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{{route('roles')}}">Roles</a></li>
                     <li><a href="{{route('pairs')}}">Pairs</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Payers <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">All Payers</a></li>
+                            <li><a href="#">Defaulters</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#">Payers</a></li>
                     <li><a href="{{route('receivers')}}">Receivers</a></li>
                     <li><a href="{{route('automated-receivers')}}">Automated-Receivers</a></li>
