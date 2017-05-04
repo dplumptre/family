@@ -11548,10 +11548,6 @@ Vue.component('passport-authorized-clients', __webpack_require__(42));
 
 Vue.component('passport-personal-access-tokens', __webpack_require__(44));
 
-var app = new Vue({
-    el: '#app'
-});
-
 /***/ }),
 /* 14 */
 /***/ (function(module, exports) {

@@ -63,7 +63,7 @@ class Receiver extends Model
 
     public function TakeAllPendingReceivers()
     {
-        return $this->where('status', self::PENDING)->oldest()->get();
+        return $this->where('status', self::PENDING)->latest()->get();
     }
 
 

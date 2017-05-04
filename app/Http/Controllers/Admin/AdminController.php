@@ -107,10 +107,14 @@ class AdminController extends Controller
     }
 
 
+    public function ApiDefaulters()
+    {
+        return Payer::where('pairing_result', 1)->with('user', '')->get();
+    }
     public function defaulters()
     {
         $data = Payer::where('pairing_result', 1)->with('user')->get();
-        dd($data);
+        //return $data;
         return view('admin.defaulters.index');
     }
 

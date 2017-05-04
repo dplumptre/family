@@ -16,6 +16,8 @@ class DisabledUser extends Model
     }
 
 
+
+
     public static function check($id)
     {
         return self::where('user_id', $id)->first();
