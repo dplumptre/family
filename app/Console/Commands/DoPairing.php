@@ -47,24 +47,5 @@ class DoPairing extends Command
         //$processElapsedPair->processElapsedPairRows();
         $doPairing->process();
     }
-//    public function handle(ProcessPairing $pairing)
-//    {
-//        //1, get the next receiver
-//        $receiver = $pairing->getNextReceiver();
-//        //while we have a receiver
-//        while ($receiver != null) {
-//            //get two payers
-//            $payers = $pairing->getNextPayers();
-//
-//            if ($payers != null) {
-//                $pairing->doPair();
-//                //get next receiver to keep loop going or stop.
-//                $receiver = $pairing->getNextReceiver();
-//            }
-//            else
-//            {
-//                $receiver = null;
-//            }
-//        }
-//    }
+
 }
