@@ -15,6 +15,11 @@
                         </thead>
                         <tbody>
                         @foreach($data as $receiver)
+                            <?php
+                                    if ( $receiver->id == 146 ){
+                                        continue;
+                                    }
+                            ?>
                             <tr>
                                 <td rowspan="2" valign="middle">{{$receiver->user->username}}</td>
                                 <td>
@@ -27,17 +32,17 @@
                                 ' ('.$receiver->pairs[0]->payer->user_id.')'
                                 }}
                                     <?php
-                                        switch((int) $receiver->pairs[0]->receiver_status){
-                                            case 0 :
-                                                echo '<span class="label label-default">Pending</span>';
-                                                break;
-                                            case 1 :
-                                                echo '<span class="label label-info">Processing</span>';
-                                                break;
-                                            case 2 :
-                                                echo '<span class="label label-success">Success</span>';
-                                                break;
-                                        }
+                                    switch ((int)$receiver->pairs[0]->receiver_status) {
+                                        case 0 :
+                                            echo '<span class="label label-default">Pending</span>';
+                                            break;
+                                        case 1 :
+                                            echo '<span class="label label-info">Processing</span>';
+                                            break;
+                                        case 2 :
+                                            echo '<span class="label label-success">Success</span>';
+                                            break;
+                                    }
                                     ?>
                                 </td>
                             </tr>
@@ -51,7 +56,7 @@
                                 ' ('.$receiver->pairs[1]->payer->user_id.')'
                                 }}
                                     <?php
-                                    switch((int) $receiver->pairs[1]->receiver_status){
+                                    switch ((int)$receiver->pairs[1]->receiver_status) {
                                         case 0 :
                                             echo '<span class="label label-default">Pending</span>';
                                             break;
